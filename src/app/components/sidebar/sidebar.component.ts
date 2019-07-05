@@ -11,8 +11,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/graficos', title: 'Gráficos',  icon: 'trending_up', class: '' },
     { path: '/perfil-user', title: 'Perfil de Usuário',  icon: 'person', class: '' },
     { path: '/mural', title: 'Mural de Perguntas',  icon: 'content_paste', class: '' },
-    { path: '/suasperguntas', title: 'Suas Perguntas',  icon: 'library_books', class: '' },
     { path: '/chat', title: 'Chat',  icon: 'speaker_notes', class: '' },
+    { path: '/admin', title: 'Admin',  icon: 'build', class: '' },
 ];
 
 @Component({

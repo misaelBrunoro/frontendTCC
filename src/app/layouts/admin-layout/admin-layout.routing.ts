@@ -52,6 +52,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'graficos',      component: DashboardComponent },
     { path: 'perfil-user',   component: UserProfileComponent },
     { path: 'mural',     component: TableListComponent },
-    { path: 'suasperguntas',     component: TypographyComponent },
     { path: 'chat',          component: IconsComponent },
+    { path: 'admin',     component: TypographyComponent },
 ];
