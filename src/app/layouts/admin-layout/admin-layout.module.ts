@@ -11,7 +11,6 @@ import { TypographyComponent } from '../../pages/typography/typography.component
 import { IconsComponent } from '../../pages/icons/icons.component';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
 import {
   MatButtonModule,
   MatInputModule,
@@ -20,8 +19,10 @@ import {
   MatTooltipModule,
   MatSelectModule,
   MatNativeDateModule,
-  MAT_DATE_LOCALE
+  MAT_DATE_LOCALE,
 } from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -37,6 +38,8 @@ import {
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatExpansionModule,
+    MatPaginatorModule,
   ],
   declarations: [
     DashboardComponent,
