@@ -10,7 +10,7 @@ import { TableListComponent } from '../../pages/table-list/table-list.component'
 import { TypographyComponent } from '../../pages/typography/typography.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
 
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
   MatButtonModule,
   MatInputModule,

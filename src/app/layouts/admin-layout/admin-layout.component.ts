@@ -4,7 +4,7 @@ import 'rxjs/add/operator/filter';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
-import * as $ from "jquery";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-admin-layout',
@@ -31,17 +31,17 @@ export class AdminLayoutComponent implements OnInit {
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
       const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
 
-    this.location.subscribe((ev:PopStateEvent) => {
+    this.location.subscribe((ev: PopStateEvent) => {
         this.lastPoppedUrl = ev.url;
     });
 
-    this.router.events.subscribe((event:any) => {
+    this.router.events.subscribe((event: any) => {
         if (event instanceof NavigationStart) {
-            if (event.url != this.lastPoppedUrl){
+            if (event.url !== this.lastPoppedUrl) {
                 this.yScrollStack.push(window.scrollY);
             }
         } else if (event instanceof NavigationEnd) {
-            if (event.url == this.lastPoppedUrl) {
+            if (event.url === this.lastPoppedUrl) {
                 this.lastPoppedUrl = undefined;
                 window.scrollTo(0, this.yScrollStack.pop());
             } else {
@@ -61,8 +61,8 @@ export class AdminLayoutComponent implements OnInit {
 
       const window_width = $(window).width();
 
-      if(window_width > 767){
-          if($('.fixed-plugin .dropdown').hasClass('show-dropdown')){
+      if (window_width > 767) {
+          if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')){
               $('.fixed-plugin .dropdown').addClass('open');
           }
 
@@ -73,14 +73,9 @@ export class AdminLayoutComponent implements OnInit {
       this.runOnRouteChange();
   }
   isMaps(path){
-      var titlee = this.location.prepareExternalUrl(this.location.path());
+      let titlee = this.location.prepareExternalUrl(this.location.path());
       titlee = titlee.slice( 1 );
-      if(path == titlee){
-          return false;
-      }
-      else {
-          return true;
-      }
+      return path !== titlee;
   }
   runOnRouteChange(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {

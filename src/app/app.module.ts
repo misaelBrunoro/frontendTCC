@@ -11,6 +11,14 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginService } from './services/login.service';
+import { HttpUtilService } from './services/http-util-service';
+import { AuthGuard } from './guards/auth.guard';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import {environment} from '../environments/environment';
+import {LoginComponent} from './pages/login/login.component';
 
 @NgModule({
   imports: [
@@ -21,13 +29,14 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
+    LoginComponent,
   ],
-  providers: [],
+  providers: [ AuthGuard, HttpUtilService, LoginService, AngularFireModule, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
