@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  selector: 'app-mural',
+  templateUrl: './mural.component.html',
+  styleUrls: ['./mural.component.css']
 })
-export class TableListComponent implements OnInit {
+export class MuralComponent implements OnInit {
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];

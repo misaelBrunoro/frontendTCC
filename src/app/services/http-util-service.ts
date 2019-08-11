@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class HttpUtilService {
 
-  private API_URL = 'http://localhost:8000/';
+  private API_URL = 'http://localhost:4200/';
 
   constructor(private router: Router) { }
 

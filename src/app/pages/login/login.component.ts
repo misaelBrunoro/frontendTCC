@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { Observable } from 'rxjs/Observable';
 
-import * as firebase from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +12,33 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  userEmail: FormControl;
+  userPassword: FormControl;
+  loginForm: FormGroup;
+  isSendingLoginRequest = false;
 
-  constructor(private router: Router, private loginService: LoginService) { }
+  constructor(
+      public loginService: AuthService,
+      public router: Router
+  ) { }
 
   ngOnInit() {
+    this.userEmail = new FormControl('', Validators.required);
+    this.userPassword = new FormControl('', Validators.required);
+    this.loginForm = new FormGroup({
+      userEmail: this.userEmail,
+      userPassword: this.userPassword
+    });
   }
 
-  logOn(mail, password) {
-    this.loginService.login(mail, password);
+  onSubmitLogin() {
+    this.loginService.loginEmail(this.userEmail.value, this.userPassword.value)
+    .then((res) => {
+      this.router.navigate(['/graficos']);
+    }).catch((err) => {
+      console.log(err);
+      this.router.navigate(['/login']);
+    })
   }
+
 }

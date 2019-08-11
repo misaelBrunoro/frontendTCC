@@ -4,39 +4,59 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment} from '../environments/environment';
+import { AuthGuard} from './guards/auth.guard';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatCardModule,
+  MatIconModule,
+  MatProgressSpinnerModule,
+} from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { LoginService } from './services/login.service';
-import { HttpUtilService } from './services/http-util-service';
-import { AuthGuard } from './guards/auth.guard';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
-import {environment} from '../environments/environment';
-import {LoginComponent} from './pages/login/login.component';
+import { AuthService} from './services/auth.service';
+import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    ComponentsModule,
-    RouterModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+      BrowserAnimationsModule,
+      FormsModule,
+      ReactiveFormsModule,
+      HttpModule,
+      ComponentsModule,
+      RouterModule,
+      AppRoutingModule,
+      MatButtonModule,
+      MatInputModule,
+      MatFormFieldModule,
+      MatCardModule,
+      MatIconModule,
+      FlexLayoutModule,
+      MatProgressSpinnerModule,
+      AngularFireAuthModule,
+      AngularFireModule.initializeApp( environment.firebase),
   ],
   declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    LoginComponent,
+      AppComponent,
+      AdminLayoutComponent,
+      LoginComponent,
+      RegistroComponent
   ],
-  providers: [ AuthGuard, HttpUtilService, LoginService, AngularFireModule, AngularFireAuth],
+  providers: [
+      AuthService,
+      AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
