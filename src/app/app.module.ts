@@ -21,12 +21,17 @@ import {
   MatIconModule,
   MatProgressSpinnerModule,
 } from '@angular/material';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlashMessagesService} from 'angular2-flash-messages';
+import { FlashMessagesModule} from 'angular2-flash-messages';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthService} from './services/auth.service';
+
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+
 
 @NgModule({
   imports: [
@@ -46,6 +51,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
       MatProgressSpinnerModule,
       AngularFireAuthModule,
       AngularFireModule.initializeApp( environment.firebase),
+      FlashMessagesModule
   ],
   declarations: [
       AppComponent,
@@ -56,6 +62,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
   providers: [
       AuthService,
       AuthGuard,
+      FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })

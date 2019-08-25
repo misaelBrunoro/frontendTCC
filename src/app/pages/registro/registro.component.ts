@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService} from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-registro',
@@ -16,7 +17,8 @@ export class RegistroComponent implements OnInit {
 
   constructor(
       public loginService: AuthService,
-      public router: Router
+      public router: Router,
+      public flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -31,9 +33,10 @@ export class RegistroComponent implements OnInit {
   onSubmitAddUser() {
       this.loginService.registerUser(this.userEmail.value, this.userPassword.value)
       .then ( (res) => {
+          this.flashMessage.show('Usuario cadastrado.', {cssClass: 'alert-success', timeout: 4000});
           this.router.navigate(['/graficos']);
       }).catch ((err) => {
-          console.log(err);
+          this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
       });
   }
 }
