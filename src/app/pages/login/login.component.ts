@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   isSendingLoginRequest = false;
 
   constructor(
-      public loginService: AuthService,
+      public authService: AuthService,
       public router: Router,
       public flashMessage: FlashMessagesService
   ) { }
@@ -33,15 +33,47 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin() {
-    this.loginService.loginEmail(this.userEmail.value, this.userPassword.value)
+    this.authService.loginEmail(this.userEmail.value, this.userPassword.value)
     .then((res) => {
       this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
       this.router.navigate(['/graficos']);
     }).catch((err) => {
       console.log(err);
-      this.flashMessage.show(err.message, {cssClass: 'alert-success', timeout: 4000});
+      this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
       this.router.navigate(['/login']);
-    })
+    });
   }
 
+  onClickGoogleLogin() {
+    this.authService.loginGoogle()
+        .then((res) => {
+          this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
+          this.router.navigate(['/graficos']);
+        }).catch((err) => {
+          this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
+          this.router.navigate(['/login']);
+    });
+  }
+
+    onClickFacebookLogin() {
+        this.authService.loginFacebook()
+            .then((res) => {
+                this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
+                this.router.navigate(['/graficos']);
+            }).catch((err) => {
+            this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
+            this.router.navigate(['/login']);
+        });
+    }
+
+    onClickTwitterLogin() {
+        this.authService.loginTwitter()
+            .then((res) => {
+                this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
+                this.router.navigate(['/graficos']);
+            }).catch((err) => {
+            this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
+            this.router.navigate(['/login']);
+        });
+    }
 }

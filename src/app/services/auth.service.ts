@@ -30,6 +30,18 @@ export class AuthService {
         })
     }
 
+    loginGoogle() {
+        return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    }
+
+    loginFacebook() {
+        return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    }
+
+    loginTwitter() {
+        return this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
+    }
+
     getAuth() {
         return this.afAuth.authState.map ( auth => auth)
     }
