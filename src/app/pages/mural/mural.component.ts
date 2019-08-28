@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material';
+import { PerguntaNovaComponent } from '../../components/dialog/pergunta-nova/pergunta-nova.component';
 
 @Component({
   selector: 'app-mural',
@@ -14,7 +16,9 @@ export class MuralComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent;
 
-  constructor() { }
+  constructor(
+      public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
   }
@@ -23,4 +27,7 @@ export class MuralComponent implements OnInit {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
+  onClickNovaPergunta() {
+    this.dialog.open(PerguntaNovaComponent);
+  }
 }

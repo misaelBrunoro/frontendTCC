@@ -3,12 +3,13 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
-
+import { FiltrosComponent } from '../../components/filtros/filtros.component';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { PerfilUserComponent } from '../../pages/perfil-user/perfil-user.component';
 import { MuralComponent } from '../../pages/mural/mural.component';
 import { AdminComponent } from '../../pages/admin/admin.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
+import { PerguntaNovaComponent } from '../../components/dialog/pergunta-nova/pergunta-nova.component';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
@@ -23,6 +24,7 @@ import {
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   imports: [
@@ -47,11 +49,16 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MuralComponent,
     AdminComponent,
     IconsComponent,
+    FiltrosComponent,
+    PerguntaNovaComponent
   ],
   providers: [
     MatDatepickerModule,
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
-    ]
+    ],
+  entryComponents: [
+      PerguntaNovaComponent
+  ],
 })
 
 export class AdminLayoutModule {}

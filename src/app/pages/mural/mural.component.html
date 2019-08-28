@@ -1,110 +1,16 @@
 <div class="main-content">
     <div class="container-fluid">
-        <mat-accordion>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <b>Filtros de Busca:</b>
-                </mat-panel-title>
-                <mat-panel-description>
-                    Clique para expandir.
-                </mat-panel-description>
-                </mat-expansion-panel-header>
-                    <form action="submit">
-                        <div class="row">
-                            <div class="col-6 col-md-6">
-                                <mat-form-field>
-                                    <input matInput placeholder="Buscar por texto">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <mat-form-field>
-                                    <mat-label>Disciplinas</mat-label>
-                                    <mat-select disableOptionCentering >
-                                        <mat-option value='exemplo'>Exemplo</mat-option>
-                                        <mat-option value='exemplo'>Exemplo</mat-option>
-                                        <mat-option value='exemplo'>Exemplo</mat-option>
-                                        <mat-option value='exemplo'>Exemplo</mat-option>
-                                        <mat-option value='exemplo'>Exemplo</mat-option>
-                                        <mat-option value='exemplo'>Exemplo</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div> 
-                        </div>
-                        <div class="row">
-                            <div class="col-3 col-md-3">
-                                <mat-form-field>
-                                    <input matInput [matDatepicker]="picker1" placeholder="Data Inicial">
-                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker1></mat-datepicker>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <mat-form-field>
-                                    <input matInput [matDatepicker]="picker2" placeholder="Data Final">
-                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker2></mat-datepicker>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-1 col-md-1">
-                                <button mat-raised-button type="submit" color="primary" class="btn-just-icon">
-                                        <i class="material-icons">search</i><div class="ripple-container"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </form>  
-            </mat-expansion-panel>   
-        </mat-accordion> 
+        <app-filtros></app-filtros>
+
         <div class="card">
+
             <div class="card-header card-header-danger">
                 <h4 class="card-title">Consulte o Mural de Perguntas</h4>
                 <p class="card-category">Perguntas feitas recentemente</p>
             </div>
-            <div class="card-body">              
-                <div class="card">
-                    <div class="card-header ">
-                        <h4 class="card-title"><b>Como converter uma string em um Date?</b></h4>
-                        <p class="card-category">Disciplina: Programação.</p>
-                    </div>
-                    <div class="card-body">
-                        <p>Queria saber como posso converter uma string em um Date na linguagen java se...</p>
-                        <span class="pull-left">Data de publicação: 04/07/2019 </span>
-                        <button mat-raised-button class="btn btn-success pull-right">Resolvido</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title"><b>Como converter uma string em um Date?</b></h4>
-                        <p class="card-category">Disciplina: Programação.</p>
-                    </div>
-                    <div class="card-body">
-                        <p>Queria saber como posso converter uma string em um Date na linguagen java se...</p>
-                        <span class="pull-left">Data de publicação: 05/07/2019 </span>
-                        <button mat-raised-button class="btn btn-danger pull-right">Visualizar</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title"><b>Como converter uma string em um Date?</b></h4>
-                        <p class="card-category">Disciplina: Programação.</p>
-                    </div>
-                    <div class="card-body">
-                        <p>Queria saber como posso converter uma string em um Date na linguagen java se...</p>
-                        <span class="pull-left">Data de publicação: 06/07/2019 </span>
-                        <button mat-raised-button class="btn btn-success pull-right">Resolvido</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title"><b>Como converter uma string em um Date?</b></h4>
-                        <p class="card-category">Disciplina: Programação.</p>
-                    </div>
-                    <div class="card-body">
-                        <p>Queria saber como posso converter uma string em um Date na linguagen java se...</p>
-                        <span class="pull-left">Data de publicação: 07/07/2019 </span>
-                        <button mat-raised-button class="btn btn-danger pull-right">Visualizar</button>
-                    </div>
-                </div>  
+
+            <div class="card-body">
+                <button mat-raised-button color="primary" (click)="onClickNovaPergunta()">Adicionar uma Pergunta</button>
             </div>
         </div>
     </div>
