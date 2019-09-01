@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment} from '../environments/environment';
 import { AuthGuard} from './guards/auth.guard';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -51,7 +52,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
       MatProgressSpinnerModule,
       AngularFireAuthModule,
       AngularFireModule.initializeApp( environment.firebase),
-      FlashMessagesModule
+      AngularFireDatabaseModule,
+      FlashMessagesModule,
   ],
   declarations: [
       AppComponent,

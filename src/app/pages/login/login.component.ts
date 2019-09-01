@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {FlashMessagesService} from 'angular2-flash-messages';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-login',
@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
   onClickGoogleLogin() {
     this.authService.loginGoogle()
         .then((res) => {
+          console.log(res.user.providerData);
           this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
           this.router.navigate(['/graficos']);
         }).catch((err) => {
