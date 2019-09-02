@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="onClickAnexo()">Anexar Arquivo</button>
-                    <button mat-raised-button type="submit" class="btn btn-danger pull-right">Enviar Pergunta</button>
+                    <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="perguntaForm.invalid">Enviar Pergunta</button>
                     <div class="clearfix"></div>
                 </form>
             </div>

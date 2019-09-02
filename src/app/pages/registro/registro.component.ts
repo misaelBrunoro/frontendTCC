@@ -3,7 +3,6 @@ import { AuthService} from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { UserService } from '../../services/user/user.service';
 import { Usuario } from '../../entities/user.model';
 
 @Component({
@@ -20,8 +19,7 @@ export class RegistroComponent implements OnInit {
   objectUser: Usuario;
 
   constructor(
-      public userService: UserService,
-      public loginService: AuthService,
+      public authService: AuthService,
       public router: Router,
       public flashMessage: FlashMessagesService
   ) { }
@@ -40,7 +38,7 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmitAddUser() {
-      this.loginService.registerUser(this.userEmail.value, this.userPassword.value)
+      this.authService.registerUser(this.userEmail.value, this.userPassword.value)
       .then ( (res) => {
           this.objectUser.nomeVirtual = this.nomeVirtual.value;
           this.flashMessage.show('Usuario cadastrado.', {cssClass: 'alert-success', timeout: 4000});

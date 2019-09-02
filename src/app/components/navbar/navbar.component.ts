@@ -3,6 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Usuario } from '../../entities/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -15,8 +16,13 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private userEmail: string;
+    private objectUser: Usuario;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router, private loginService: AuthService) {
+    constructor(location: Location,
+                private element: ElementRef,
+                private router: Router,
+                private authService: AuthService) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -27,12 +33,23 @@ export class NavbarComponent implements OnInit {
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
       this.router.events.subscribe((event) => {
         this.sidebarClose();
-         var $layer: any = document.getElementsByClassName('close-layer')[0];
+         const $layer: any = document.getElementsByClassName('close-layer')[0];
          if ($layer) {
            $layer.remove();
            this.mobile_menu_visible = 0;
          }
      });
+
+    this.authService.getAuth().subscribe( auth => {
+        if (auth) {
+            this.objectUser = new Usuario();
+            this.userEmail = auth.email;
+            this.objectUser.email = auth.email;
+            this.objectUser.nomeVirtual = auth.displayName;
+            this.objectUser.id = auth.uid;
+            this.objectUser.tipo = 'Aluno';
+        }
+    });
     }
 
     sidebarOpen() {
@@ -55,7 +72,7 @@ export class NavbarComponent implements OnInit {
     sidebarToggle() {
         // const toggleButton = this.toggleButton;
         // const body = document.getElementsByTagName('body')[0];
-        var $toggle = document.getElementsByClassName('navbar-toggler')[0];
+        const $toggle = document.getElementsByClassName('navbar-toggler')[0];
 
         if (this.sidebarVisible === false) {
             this.sidebarOpen();
@@ -86,7 +103,7 @@ export class NavbarComponent implements OnInit {
 
             if (body.querySelectorAll('.main-panel')) {
                 document.getElementsByClassName('main-panel')[0].appendChild($layer);
-            }else if (body.classList.contains('off-canvas-sidebar')) {
+            } else if (body.classList.contains('off-canvas-sidebar')) {
                 document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
             }
 
@@ -111,12 +128,12 @@ export class NavbarComponent implements OnInit {
     };
 
     getTitle() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
+      let titlee = this.location.prepareExternalUrl(this.location.path());
       if (titlee.charAt(0) === '#') {
           titlee = titlee.slice( 1 );
       }
 
-      for (var item = 0; item < this.listTitles.length; item++) {
+      for (let item = 0; item < this.listTitles.length; item++) {
           if (this.listTitles[item].path === titlee) {
               return this.listTitles[item].title;
           }
@@ -125,7 +142,8 @@ export class NavbarComponent implements OnInit {
     }
 
     logout() {
-        this.loginService.logout();
+        this.authService.logout();
         this.router.navigate(['/login']);
     }
+    
 }

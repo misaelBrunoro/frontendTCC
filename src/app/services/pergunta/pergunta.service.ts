@@ -1,42 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Pergunta } from '../../entities/pergunta.model';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { map } from 'rxjs/operators';
+import { Pergunta } from 'app/entities/pergunta.model';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerguntaService {
+  private pergunta;
 
   constructor(
-      private db: AngularFireDatabase,
+    private firestore: AngularFirestore,
   ) { }
 
-  insert(pergunta: Pergunta) {
-    this.db.list('pergunta').push(pergunta)
-        .then((result: any) => {
-          console.log(result.toString());
-        })
-  }
-
-  update(pergunta: Pergunta) {
-    this.db.list('pergunta').update(pergunta.$key, pergunta)
-        .then((error: any) => {
-          console.log(error.key);
-        });
-  }
-
-  getAll() {
-    this.db.list('pergunta')
-        .snapshotChanges()
-        .pipe(
-            map(changes => {
-              return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-            })
-        )
-  }
-
-  delete(pergunta: Pergunta) {
-    this.db.object('pergunta/' + pergunta.$key).remove();
+  insert (data: Pergunta) {
+    return this.firestore.collection('pergunta').add(data.getData()).then( res => 'sucess');
   }
 }

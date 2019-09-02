@@ -1,5 +1,7 @@
 export class Usuario {
+  tipo: string; // aluno ou monitor
   nomeVirtual: string;
-  uid: string;
-  $key;
+  id: string;
+  email: string;
+  key: string;
 }

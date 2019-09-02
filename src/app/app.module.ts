@@ -8,7 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment} from '../environments/environment';
 import { AuthGuard} from './guards/auth.guard';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -29,10 +29,11 @@ import { FlashMessagesModule} from 'angular2-flash-messages';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthService} from './services/auth.service';
+import { PerguntaService } from './services/pergunta/pergunta.service';
+import { UserService } from './services/user/user.service';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
-
 
 @NgModule({
   imports: [
@@ -52,8 +53,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
       MatProgressSpinnerModule,
       AngularFireAuthModule,
       AngularFireModule.initializeApp( environment.firebase),
-      AngularFireDatabaseModule,
       FlashMessagesModule,
+      AngularFirestoreModule
   ],
   declarations: [
       AppComponent,
@@ -62,6 +63,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
       RegistroComponent
   ],
   providers: [
+      PerguntaService,
+      UserService,
       AuthService,
       AuthGuard,
       FlashMessagesService
