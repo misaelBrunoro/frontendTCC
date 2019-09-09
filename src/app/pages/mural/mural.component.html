@@ -8,9 +8,17 @@
                 <h4 class="card-title">Consulte o Mural de Perguntas</h4>
                 <p class="card-category">Perguntas feitas recentemente</p>
             </div>
-
             <div class="card-body">
-                <button mat-raised-button color="primary" (click)="onClickNovaPergunta()">Adicionar uma Pergunta</button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button mat-raised-button color="primary" (click)="onClickNovaPergunta()">Adicionar uma Pergunta</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <app-listar-perguntas></app-listar-perguntas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

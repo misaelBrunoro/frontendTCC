@@ -7,10 +7,4 @@ export class Pergunta {
     dataPublicacao: Date;
     disciplina: string;
     key: string;
-
-    getData(): object {
-        const result = {};
-        Object.keys(this).map(key => result[key] = this[key]);
-        return result;
-    }
 }

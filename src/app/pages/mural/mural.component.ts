@@ -29,8 +29,8 @@ export class MuralComponent implements OnInit {
 
   onClickNovaPergunta() {
     const dialogRef = this.dialog.open(PerguntaNovaComponent, {
-        width:  '70%',
-        height: '90%'
+        width:  '80%',
+        height: '95%'
     });
   }
 }

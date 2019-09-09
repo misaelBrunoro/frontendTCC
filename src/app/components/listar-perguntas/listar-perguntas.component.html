@@ -1,0 +1,18 @@
+<table class="table table-hover">
+    <thead>
+        <th>Título</th>
+        <th>Disciplina</th>
+        <th>Data De Publicação</th>
+        <th>Situação</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pergunta of perguntas">
+            <td>{{pergunta.titulo}}</td>
+            <td>{{pergunta.disciplina}}</td>
+            <td>{{pergunta.dataPublicacao.toDate()  | date: 'dd/MM/yyyy'}}</td>
+            <td *ngIf="pergunta.resolvido == false"><span class="badge-danger">Aguardando</span></td>
+            <td *ngIf="pergunta.resolvido == true"><span  class="badge-success">Respondido</span></td>
+            <td><a class="btn text-danger"><i class="fa fa-trash"></i></a></td>
+        </tr>
+    </tbody>
+</table>
