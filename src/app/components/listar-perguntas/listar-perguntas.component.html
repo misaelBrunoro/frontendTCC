@@ -35,8 +35,8 @@
     </div>
 <div>-->
 <div class="text-center">
-    <button class="btn btn btn-info btn-sm float-left" (click)="prevPage()"
-            [disabled]="disable_prev || !(pagination_clicked_count>0)">Anterior</button> <b>Pagina atual: {{pagination_clicked_count+1}}</b>
+    <button class="btn btn btn-info btn-sm float-left" (click)="prevPage()" [disabled]="disable_prev || !(pagination_clicked_count>0)">Anterior</button>
+    <b>Pagina atual: {{pagination_clicked_count+1}}</b>
     <button class="btn btn btn-info btn-sm float-right" (click)="nextPage()" [disabled]="disable_next">Proximo</button>
 </div>
 
@@ -44,26 +44,26 @@
     
     <ng-container matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef><b> Titulo </b></th>
-        <td style="width: 50%" mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+        <td style="width: 55%; word-break: break-word; padding-left: 5px;" mat-cell *matCellDef="let element"> {{element.titulo}} </td>
     </ng-container>
 
     <ng-container matColumnDef="disciplina">
         <th mat-header-cell *matHeaderCellDef><b> Disciplina </b></th>
-        <td style="width: 20%" mat-cell *matCellDef="let element"> {{element.disciplina}} </td>
+        <td style="width: 25%; word-wrap: break-word; padding-left: 5px;" mat-cell *matCellDef="let element"> {{element.disciplina}} </td>
     </ng-container>
 
     <ng-container matColumnDef="publicacao">
         <th mat-header-cell *matHeaderCellDef><b> Publicação </b></th>
-        <td style="width: 15%" mat-cell *matCellDef="let element"> {{element.dataPublicacao.toDate()  | date: 'dd/MM/yyyy'}} </td>
+        <td style="width: 10%" mat-cell *matCellDef="let element"> {{element.dataPublicacao.toDate()  | date: 'dd/MM/yyyy'}} </td>
     </ng-container>
     
     <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef><b> Status </b></th>
         <ng-container *matCellDef="let element">
-            <td style="width: 15%" mat-cell *ngIf="element.resolvido == false"><span class="badge badge-pill badge-danger">Aguardando</span></td>
+            <td style="width: 10%; padding-left: 5px;" mat-cell *ngIf="element.resolvido == false"><span class="badge badge-pill badge-danger">Aguardando</span></td>
         </ng-container>
         <ng-container *matCellDef="let element">
-            <td style="width: 15%" mat-cell *ngIf="element.resolvido == true"><span class="badge badge-pill badge-success">Sucesso</span></td>
+            <td style="width: 10%; padding-left: 5px;" mat-cell *ngIf="element.resolvido == true"><span class="badge badge-pill badge-success">Sucesso</span></td>
         </ng-container>
     </ng-container>
     
