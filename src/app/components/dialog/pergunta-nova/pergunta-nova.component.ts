@@ -44,8 +44,11 @@ export class PerguntaNovaComponent implements OnInit {
         this.perguntaObject.userId = auth.uid;
         this.perguntaObject.anexo = 'N/A';
         this.perguntaObject.dataPublicacao = new Date();
-        this.perguntaService.insert(this.perguntaObject);
-        this.toastr.success('Pergunta enviada com sucesso', 'Envio de Pergunta');
+        this.perguntaService.insert(this.perguntaObject).then(response => {
+          this.toastr.success('Pergunta enviada com sucesso', 'Envio de Pergunta');
+        }).catch(error => {
+          this.toastr.error(error, 'Falha ao enviar pergunta');
+        });
         this.dialogRef.close();
       }
     });

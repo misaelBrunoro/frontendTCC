@@ -25,7 +25,7 @@ import {
 } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -43,6 +43,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatNativeDateModule,
     MatExpansionModule,
     MatPaginatorModule,
+    MatTableModule
   ],
   declarations: [
     DashboardComponent,

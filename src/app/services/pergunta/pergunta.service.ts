@@ -15,18 +15,43 @@ export class PerguntaService {
   ) { this.perguntasRef = firestore.collection(this.dbPath); }
 
   insert (pergunta: Pergunta) {
-    this.perguntasRef.add({...pergunta});
+    return this.perguntasRef.add({...pergunta});
   }
 
-  updatePergunta(key: string, value: any): Promise<void> {
+  updatePergunta(key: string, value: any) {
     return this.perguntasRef.doc(key).update(value);
   }
 
-  deletePergunta(key: string): Promise<void> {
+  deletePergunta(key: string) {
     return this.perguntasRef.doc(key).delete();
   }
 
   getPerguntasList() {
     return this.perguntasRef.snapshotChanges();
+  }
+
+  // Paginacao
+  loadItems() {
+    return this.firestore.collection('perguntas', ref => ref
+      .limit(10)
+      .orderBy('dataPublicacao', 'desc')
+    ).snapshotChanges();
+  }
+
+  prevPage(firstInResponse, get_prev_startAt) {
+    return this.firestore.collection('perguntas', ref => ref
+      .orderBy('dataPublicacao', 'desc')
+      .startAt(get_prev_startAt)
+      .endBefore(firstInResponse)
+      .limit(10)
+      ).get()
+  }
+
+  nextPage(lastInResponse) {
+    return this.firestore.collection('perguntas', ref => ref
+      .limit(10)
+      .orderBy('dataPublicacao', 'desc')
+      .startAfter(lastInResponse)
+    ).get()
   }
 }
