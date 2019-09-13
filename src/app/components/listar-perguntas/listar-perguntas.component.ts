@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from '../../services/pergunta/pergunta.service';
 import { Pergunta } from '../../entities/pergunta.model';
-import { PageEvent } from '@angular/material/paginator';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-listar-perguntas',
@@ -73,7 +71,7 @@ export class ListarPerguntasComponent implements OnInit {
   }
 
   // Mostra dataset Anterior
-  prevPage() {
+  prevPage(el: HTMLElement) {
     this.disable_prev = true;
     this.perguntaService.prevPage(this.firstInResponse, this.get_prev_startAt()).subscribe(response => {
       this.firstInResponse = response.docs[0];
@@ -95,10 +93,12 @@ export class ListarPerguntasComponent implements OnInit {
     }, error => {
       this.disable_prev = false;
     });
+
+    el.scrollIntoView({behavior: 'smooth'});
   }
 
   // Monstrar proximo dataset
-  nextPage() {
+  nextPage(el: HTMLElement) {
     this.disable_next = true;
     this.perguntaService.nextPage(this.lastInResponse).subscribe(response => {
 
@@ -123,6 +123,8 @@ export class ListarPerguntasComponent implements OnInit {
     }, error => {
       this.disable_next = false;
     });
+
+    el.scrollIntoView({behavior: 'smooth'});
   }
 
   push_prev_startAt(prev_first_doc) {
@@ -144,11 +146,5 @@ export class ListarPerguntasComponent implements OnInit {
       this.prev_strt_at.splice(this.prev_strt_at.length - 2, this.prev_strt_at.length - 1);
     }
     return this.prev_strt_at[this.pagination_clicked_count - 1];
-  }
-
-  // Formatar data
-  dataLegivel(time) {
-    const d = new Date(time);
-    return d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
   }
 }
