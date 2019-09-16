@@ -22,6 +22,7 @@ import {
   MatSelectModule,
   MatNativeDateModule,
   MAT_DATE_LOCALE,
+  MatIconModule,
 } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -43,7 +44,8 @@ import { MatTableModule } from '@angular/material/table';
     MatNativeDateModule,
     MatExpansionModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   declarations: [
     DashboardComponent,

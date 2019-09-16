@@ -1,7 +1,7 @@
 export class Usuario {
   tipo: string; // aluno ou monitor
   nomeVirtual: string;
-  id: string;
+  nomeReal: string;
   email: string;
   key: string;
 }

@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user/user.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -22,7 +23,8 @@ export class NavbarComponent implements OnInit {
     constructor(location: Location,
                 private element: ElementRef,
                 private router: Router,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private userService: UserService) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -40,16 +42,26 @@ export class NavbarComponent implements OnInit {
          }
      });
 
-    this.authService.getAuth().subscribe( auth => {
-        if (auth) {
-            this.objectUser = new Usuario();
-            this.userEmail = auth.email;
-            this.objectUser.email = auth.email;
-            this.objectUser.nomeVirtual = auth.displayName;
-            this.objectUser.id = auth.uid;
-            this.objectUser.tipo = 'Aluno';
-        }
-    });
+        this.authService.getAuth().subscribe( auth => {
+            if (auth) {
+                this.objectUser = new Usuario();
+                this.userEmail = auth.email;
+                this.objectUser.email = auth.email;
+                this.objectUser.nomeVirtual = auth.displayName;
+                this.objectUser.nomeReal = '';
+                this.objectUser.key = auth.uid;
+                this.objectUser.tipo = 'Aluno';
+
+                this.userService.getUsuarioList().subscribe(response => {
+                    const result = response.filter((user) => {
+                        return user.payload.doc.data().key === auth.uid;
+                    });
+                    if (!result.length) {
+                        this.userService.insert(this.objectUser);
+                    }
+                });
+            }
+        });
     }
 
     sidebarOpen() {
@@ -145,5 +157,4 @@ export class NavbarComponent implements OnInit {
         this.authService.logout();
         this.router.navigate(['/login']);
     }
-    
 }

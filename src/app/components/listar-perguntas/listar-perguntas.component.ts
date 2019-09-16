@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from '../../services/pergunta/pergunta.service';
-import { Pergunta } from '../../entities/pergunta.model';
+import { UserService } from 'app/services/user/user.service';
 
 @Component({
   selector: 'app-listar-perguntas',
@@ -8,13 +8,6 @@ import { Pergunta } from '../../entities/pergunta.model';
   styleUrls: ['./listar-perguntas.component.scss']
 })
 export class ListarPerguntasComponent implements OnInit {
-  displayedColumns: string[] = ['titulo', 'disciplina', 'publicacao', 'status'];
-  perguntas: Pergunta[];
-
-  // Models for Input fields
-  nameValue: string;
-  placeValue: string;
-
   // Itens buscados
   tableData: any[] = [];
 
@@ -35,7 +28,7 @@ export class ListarPerguntasComponent implements OnInit {
   disable_prev: boolean = false;
 
   constructor(
-      private perguntaService: PerguntaService
+      private perguntaService: PerguntaService,
   ) { }
 
 
@@ -65,7 +58,6 @@ export class ListarPerguntasComponent implements OnInit {
       // Adiciona o primeiro item para usar em Anterior
       this.push_prev_startAt(this.firstInResponse);
     }, error => {
-      console.log('loadItens');
       console.log(error);
     });
   }

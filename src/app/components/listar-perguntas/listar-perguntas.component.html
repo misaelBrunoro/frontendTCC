@@ -1,3 +1,30 @@
+<div class="row mt-3" #top>
+    <div class="col-md-12">
+        <div *ngFor="let item of tableData; let i of index">
+            <div class="card">
+            <div class="card-body">
+                <h3><b>{{item.titulo}}</b></h3>
+                <h4>{{item.descricao}}</h4>
+                <label class="mr-5"><b>Disciplina: {{item.disciplina}}</b></label>
+                <label><b>Publicação: {{item.dataPublicacao.toDate() | date: 'dd/MM/yyyy'}}</b></label>
+                <button *ngIf="item.resolvido == false" class="btn btn btn-danger btn-sm float-right">Aguardando</button>
+                <button *ngIf="item.resolvido == true"class="btn btn btn-success btn-sm float-right">Resolvido</button>
+                <button class="btn btn btn-info btn-sm float-right mr-2">Visualizar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="text-center">
+            <button class="btn btn btn-warning btn-sm float-left" (click)="prevPage(top)"
+                [disabled]="disable_prev || !(pagination_clicked_count>0)">Anterior</button> <b>Pagina atual: {{pagination_clicked_count+1}}</b>
+            <button class="btn btn btn-warning btn-sm float-right" (click)="nextPage(top)" [disabled]="disable_next">Proximo</button>
+        </div>
+    </div>
+</div>
 <!--<div class="row mt-3">
     <div class="col-md-12">
 
@@ -34,29 +61,3 @@
         </div>
     </div>
 <div>-->
-<div class="row mt-3" #top>
-    <div class="col-md-12">
-        <div *ngFor="let item of tableData">
-            <div class="card">
-            <div class="card-body">
-                <h3><b>{{item.titulo}}</b></h3>
-                <h4>{{item.descricao}}</h4>
-                <label class="mr-5"><b>Disciplina: {{item.disciplina}}</b></label><label><b>Publicação: {{item.dataPublicacao.toDate()  | date: 'dd/MM/yyyy'}}</b></label>
-                <button *ngIf="item.resolvido == false" class="btn btn btn-danger btn-sm float-right">Aguardando</button>
-                <button *ngIf="item.resolvido == true"class="btn btn btn-success btn-sm float-right">Resolvido</button>
-                <button class="btn btn btn-info btn-sm float-right mr-2">Visualizar</button>
-            </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-md-12">
-        <div class="text-center">
-            <button class="btn btn btn-warning btn-sm float-left" (click)="prevPage(top)"
-                [disabled]="disable_prev || !(pagination_clicked_count>0)">Anterior</button> <b>Pagina atual: {{pagination_clicked_count+1}}</b>
-            <button class="btn btn btn-warning btn-sm float-right" (click)="nextPage(top)" [disabled]="disable_next">Proximo</button>
-        </div>
-    </div>
-</div>
