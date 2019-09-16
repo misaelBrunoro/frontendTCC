@@ -30,4 +30,9 @@ export class UserService {
     return this.usersRef.snapshotChanges();
   }
 
+  getUserByKey(key: string) {
+    return this.firestore.collection('users', ref => ref
+        .where('key', '==', key))
+        .snapshotChanges();
+  }
 }

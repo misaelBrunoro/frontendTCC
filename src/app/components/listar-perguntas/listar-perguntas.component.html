@@ -5,6 +5,7 @@
             <div class="card-body">
                 <h3><b>{{item.titulo}}</b></h3>
                 <h4>{{item.descricao}}</h4>
+                <label class="mr-5"><b>Publicação: {{(userData[item.userId] ? userData[item.userId].nomeVirtual : '')}}</b></label>
                 <label class="mr-5"><b>Disciplina: {{item.disciplina}}</b></label>
                 <label><b>Publicação: {{item.dataPublicacao.toDate() | date: 'dd/MM/yyyy'}}</b></label>
                 <button *ngIf="item.resolvido == false" class="btn btn btn-danger btn-sm float-right">Aguardando</button>

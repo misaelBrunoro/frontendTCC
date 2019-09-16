@@ -32,11 +32,10 @@ export class PerguntaService {
 
   // Paginacao
   loadItems() {
-    const query = ref => ref
-    .limit(10)
-    .orderBy('dataPublicacao', 'desc');
-
-    return this.firestore.collection('perguntas', query).snapshotChanges();
+    return this.firestore.collection('perguntas', ref => ref
+        .limit(10)
+        .orderBy('dataPublicacao', 'desc'))
+        .snapshotChanges();
   }
 
   prevPage(firstInResponse, get_prev_startAt) {
