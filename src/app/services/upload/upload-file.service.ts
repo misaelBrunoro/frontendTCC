@@ -12,7 +12,7 @@ export class UploadFilesService {
     private afStorage: AngularFireStorage
   ) { }
 
-  upload(caminho: string, aquivoParaUpload: any) {
-    return this.afStorage.upload(caminho, aquivoParaUpload['Arquivo']);
+  upload(Arquivo: any) {
+    return this.afStorage.upload(Arquivo['Caminho'], Arquivo['File']);
   }
 }

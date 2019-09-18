@@ -37,38 +37,55 @@ export class PerguntaNovaComponent implements OnInit {
     });
   }
 
-  onSubmitEnviarPergunta() {
+  async onSubmitEnviarPergunta() {
     this.authService.getAuth().subscribe( auth => {
       if (auth) {
         this.perguntaObject = new Pergunta();
-        this.perguntaObject.titulo = this.perguntaForm.get('titulo').value;
-        this.perguntaObject.descricao = this.perguntaForm.get('descricao').value;
-        this.perguntaObject.disciplina = this.perguntaForm.get('disciplina').value;
-        this.perguntaObject.resolvido = false;
         this.perguntaObject.userId = auth.uid;
+
         if (this.perguntaForm.get('file').value) {
-          this.perguntaObject.anexo = this.uploadAnexo(auth.uid);
+          this.uploadAnexo(auth.uid).then(res => {
+            console.log(res.State);
+            if (res.State === 'success') {
+              this.perguntaObject.anexo = res.Path;
+              this.enviarPergunta();
+            } else {
+              this.toastr.error('Falha ao enviar anexo da pergunta');
+            }
+          });
+        } else {
+          this.enviarPergunta();
         }
-        this.perguntaObject.dataPublicacao = new Date();
-        this.perguntaService.insert(this.perguntaObject).then(response => {
-          this.toastr.success('Pergunta enviada com sucesso', 'Envio de Pergunta');
-        }).catch(error => {
-          this.toastr.error(error, 'Falha ao enviar pergunta');
-        });
-        this.dialogRef.close();
+
       }
     });
   }
 
-  uploadAnexo(caminho: string): any {
-    const file = this.perguntaForm.get('file').value;
-    const caminhoStorage = '/Anexo/' + caminho;
-    console.log(file.files[0]);
-    this.uploadService.upload(caminhoStorage, file.files[0]).then(response => {
-      console.log(caminhoStorage + '/' + file.files[0].name);
-      return caminhoStorage + '/' + file.files[0].name;
-    }).catch (error => {
-      return {'ERRO': error};
+  enviarPergunta() {
+    this.perguntaObject.titulo = this.perguntaForm.get('titulo').value;
+    this.perguntaObject.descricao = this.perguntaForm.get('descricao').value;
+    this.perguntaObject.disciplina = this.perguntaForm.get('disciplina').value;
+    this.perguntaObject.resolvido = false;
+    this.perguntaObject.dataPublicacao = new Date();
+    this.perguntaService.insert(this.perguntaObject).then(response => {
+      this.toastr.success('Pergunta enviada com sucesso', 'Envio de Pergunta');
+    }).catch(error => {
+      this.toastr.error(error, 'Falha ao enviar pergunta');
+    });
+    this.dialogRef.close();
+  }
+
+  uploadAnexo(uid: string): any {
+    const File = this.perguntaForm.get('file').value;
+    const Arquivo = {
+      'File': File.files[0],
+      'Caminho': '/Anexos/' + uid + '/' + File.files[0].name
+    }
+    return this.uploadService.upload(Arquivo).then(response => {
+      return {
+              'Path': Arquivo['Caminho'],
+              'State': response.state
+            };
     });
   }
 }
