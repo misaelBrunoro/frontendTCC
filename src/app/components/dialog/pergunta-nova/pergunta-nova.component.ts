@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { PerguntaService } from 'app/services/pergunta/pergunta.service';
@@ -7,6 +7,8 @@ import { Pergunta } from 'app/entities/pergunta.model';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef } from '@angular/material';
 import { AuthService } from '../../../services/auth.service';
+import { FileValidator } from 'ngx-material-file-input';
+import { UploadFilesService } from 'app/services/upload/upload-file.service';
 
 @Component({
   selector: 'app-pergunta-nova',
@@ -22,14 +24,16 @@ export class PerguntaNovaComponent implements OnInit {
       private dialogRef: MatDialogRef<PerguntaNovaComponent>,
       private perguntaService: PerguntaService,
       private toastr: ToastrService,
-      private authService: AuthService
+      private authService: AuthService,
+      private uploadService: UploadFilesService
   ) { }
 
   ngOnInit() {
     this.perguntaForm = new FormGroup({
       titulo: new FormControl('', Validators.required),
       descricao: new FormControl('', Validators.required),
-      disciplina: new FormControl('', Validators.required)
+      disciplina: new FormControl('', Validators.required),
+      file: new FormControl('', FileValidator.maxContentSize(5242880))
     });
   }
 
@@ -42,7 +46,9 @@ export class PerguntaNovaComponent implements OnInit {
         this.perguntaObject.disciplina = this.perguntaForm.get('disciplina').value;
         this.perguntaObject.resolvido = false;
         this.perguntaObject.userId = auth.uid;
-        this.perguntaObject.anexo = 'N/A';
+        if (this.perguntaForm.get('file').value) {
+          this.perguntaObject.anexo = this.uploadAnexo(auth.uid);
+        }
         this.perguntaObject.dataPublicacao = new Date();
         this.perguntaService.insert(this.perguntaObject).then(response => {
           this.toastr.success('Pergunta enviada com sucesso', 'Envio de Pergunta');
@@ -54,8 +60,16 @@ export class PerguntaNovaComponent implements OnInit {
     });
   }
 
-  onClickAnexo() {
-    console.log(this.perguntaForm.value);
+  uploadAnexo(caminho: string): any {
+    const file = this.perguntaForm.get('file').value;
+    const caminhoStorage = '/Anexo/' + caminho;
+    console.log(file.files[0]);
+    this.uploadService.upload(caminhoStorage, file.files[0]).then(response => {
+      console.log(caminhoStorage + '/' + file.files[0].name);
+      return caminhoStorage + '/' + file.files[0].name;
+    }).catch (error => {
+      return {'ERRO': error};
+    });
   }
 }
 

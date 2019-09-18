@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment} from '../environments/environment';
 import { AuthGuard} from './guards/auth.guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -57,6 +58,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
       AngularFireModule.initializeApp( environment.firebase),
       FlashMessagesModule,
       AngularFirestoreModule,
+      AngularFireStorageModule,
       ToastrModule.forRoot()
   ],
   declarations: [
