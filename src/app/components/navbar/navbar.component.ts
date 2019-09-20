@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
                 this.objectUser.nomeReal = '';
                 this.objectUser.key = auth.uid;
                 this.objectUser.tipo = 'Aluno';
-
+                console.log('ola navbar');
                 this.userService.getUsuarioList().subscribe(response => {
                     const result = response.filter((user) => {
                         return user.payload.doc.data().key === auth.uid;

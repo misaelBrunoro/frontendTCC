@@ -10,7 +10,7 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { PerfilUserComponent } from '../../pages/perfil-user/perfil-user.component';
 import { MuralComponent } from '../../pages/mural/mural.component';
 import { AdminComponent } from '../../pages/admin/admin.component';
-import { IconsComponent } from '../../pages/icons/icons.component';
+import { ChatComponent } from '../../pages/chat/chat.component';
 import { PerguntaNovaComponent } from '../../components/dialog/pergunta-nova/pergunta-nova.component';
 import { ListarPerguntasComponent } from '../../components/listar-perguntas/listar-perguntas.component';
 
@@ -56,7 +56,7 @@ import { MatTableModule } from '@angular/material/table';
     PerfilUserComponent,
     MuralComponent,
     AdminComponent,
-    IconsComponent,
+    ChatComponent,
     FiltrosComponent,
     PerguntaNovaComponent,
     ListarPerguntasComponent

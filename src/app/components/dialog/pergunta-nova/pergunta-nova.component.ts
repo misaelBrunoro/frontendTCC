@@ -45,7 +45,6 @@ export class PerguntaNovaComponent implements OnInit {
 
         if (this.perguntaForm.get('file').value) {
           this.uploadAnexo(auth.uid).then(res => {
-            console.log(res.State);
             if (res.State === 'success') {
               this.perguntaObject.anexo = res.Path;
               this.enviarPergunta();

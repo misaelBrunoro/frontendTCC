@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DetalhesPerguntaComponent } from './detalhes-pergunta/detalhes-pergunta.component';
+import { ListarSalasComponent } from './listar-salas/listar-salas.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { DetalhesPerguntaComponent } from './detalhes-pergunta/detalhes-pergunta
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    DetalhesPerguntaComponent
+    DetalhesPerguntaComponent,
+    ListarSalasComponent
   ],
   exports: [
     FooterComponent,
