@@ -38,26 +38,7 @@ export class PerguntaNovaComponent implements OnInit {
   }
 
   async onSubmitEnviarPergunta() {
-    this.authService.getAuth().subscribe( auth => {
-      if (auth) {
-        this.perguntaObject = new Pergunta();
-        this.perguntaObject.userId = auth.uid;
-
-        if (this.perguntaForm.get('file').value) {
-          this.uploadAnexo(auth.uid).then(res => {
-            if (res.State === 'success') {
-              this.perguntaObject.anexo = res.Path;
-              this.enviarPergunta();
-            } else {
-              this.toastr.error('Falha ao enviar anexo da pergunta');
-            }
-          });
-        } else {
-          this.enviarPergunta();
-        }
-
-      }
-    });
+ 
   }
 
   enviarPergunta() {
@@ -66,12 +47,7 @@ export class PerguntaNovaComponent implements OnInit {
     this.perguntaObject.disciplina = this.perguntaForm.get('disciplina').value;
     this.perguntaObject.resolvido = false;
     this.perguntaObject.dataPublicacao = new Date();
-    this.perguntaService.insert(this.perguntaObject).then(response => {
-      this.toastr.success('Pergunta enviada com sucesso', 'Envio de Pergunta');
-    }).catch(error => {
-      this.toastr.error(error, 'Falha ao enviar pergunta');
-    });
-    this.dialogRef.close();
+    this.perguntaService.insert(this.perguntaObject);
   }
 
   uploadAnexo(uid: string): any {
@@ -80,12 +56,7 @@ export class PerguntaNovaComponent implements OnInit {
       'File': File.files[0],
       'Caminho': '/Anexos/' + uid + '/' + File.files[0].name
     }
-    return this.uploadService.upload(Arquivo).then(response => {
-      return {
-              'Path': Arquivo['Caminho'],
-              'State': response.state
-            };
-    });
+    return this.uploadService.upload(Arquivo);
   }
 }
 

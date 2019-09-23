@@ -1,4 +1,5 @@
 export class Pergunta {
+    _id: string;
     titulo: string;
     descricao: string;
     anexo: string;
@@ -6,5 +7,4 @@ export class Pergunta {
     userId: string;
     dataPublicacao: Date;
     disciplina: string;
-    key: string;
 }

@@ -3,13 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { environment} from '../environments/environment';
 import { AuthGuard} from './guards/auth.guard';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -25,15 +21,13 @@ import {
 } from '@angular/material';
 
 import { ToastrModule } from 'ngx-toastr';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FlashMessagesService} from 'angular2-flash-messages';
-import { FlashMessagesModule} from 'angular2-flash-messages';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthService} from './services/auth.service';
 import { PerguntaService } from './services/pergunta/pergunta.service';
 import { UserService } from './services/user/user.service';
+import { UploadFilesService } from './services/upload/upload-file.service';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
@@ -44,6 +38,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
       FormsModule,
       ReactiveFormsModule,
       HttpModule,
+      HttpClientModule,
       ComponentsModule,
       RouterModule,
       AppRoutingModule,
@@ -54,25 +49,20 @@ import { RegistroComponent } from './pages/registro/registro.component';
       MatIconModule,
       FlexLayoutModule,
       MatProgressSpinnerModule,
-      AngularFireAuthModule,
-      AngularFireModule.initializeApp( environment.firebase),
-      FlashMessagesModule,
-      AngularFirestoreModule,
-      AngularFireStorageModule,
-      ToastrModule.forRoot()
+      ToastrModule.forRoot(),
   ],
   declarations: [
       AppComponent,
       AdminLayoutComponent,
       LoginComponent,
-      RegistroComponent
+      RegistroComponent,
   ],
   providers: [
       PerguntaService,
+      UploadFilesService,
       UserService,
       AuthService,
       AuthGuard,
-      FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FlashMessagesService } from 'angular2-flash-messages';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,68 +10,35 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  userEmail: FormControl;
-  userPassword: FormControl;
+  email: FormControl;
+  password: FormControl;
   loginForm: FormGroup;
-  isSendingLoginRequest = false;
+  isSendingRequest = false;
 
   constructor(
       public authService: AuthService,
       public router: Router,
-      public flashMessage: FlashMessagesService
+      private toastr: ToastrService
   ) { }
 
   ngOnInit() {
-    this.userEmail = new FormControl('', Validators.required);
-    this.userPassword = new FormControl('', Validators.required);
+    this.email = new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.required);
     this.loginForm = new FormGroup({
-      userEmail: this.userEmail,
-      userPassword: this.userPassword
+      email: this.email,
+      password: this.password
     });
   }
 
   onSubmitLogin() {
-    this.authService.loginEmail(this.userEmail.value, this.userPassword.value)
-    .then((res) => {
-      this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
-      this.router.navigate(['/graficos']);
-    }).catch((err) => {
-      console.log(err);
-      this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
-      this.router.navigate(['/login']);
+    this.isSendingRequest = true;
+    this.authService.login(this.loginForm.value).subscribe(data => {
+      localStorage.setItem('token', data['token']);
+      this.toastr.success('Logado com sucesso', 'Login');
+      this.isSendingRequest = false;
+    }, error => {
+      this.toastr.error(error['error']['errors'], 'Login');
+      this.isSendingRequest = false;
     });
   }
-
-  onClickGoogleLogin() {
-    this.authService.loginGoogle()
-        .then((res) => {
-          this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
-          this.router.navigate(['/graficos']);
-        }).catch((err) => {
-          this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
-          this.router.navigate(['/login']);
-    });
-  }
-
-    onClickFacebookLogin() {
-        this.authService.loginFacebook()
-            .then((res) => {
-                this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
-                this.router.navigate(['/graficos']);
-            }).catch((err) => {
-            this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
-            this.router.navigate(['/login']);
-        });
-    }
-
-    onClickTwitterLogin() {
-        this.authService.loginTwitter()
-            .then((res) => {
-                this.flashMessage.show('Usuario logado.', {cssClass: 'alert-success', timeout: 4000});
-                this.router.navigate(['/graficos']);
-            }).catch((err) => {
-            this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
-            this.router.navigate(['/login']);
-        });
-    }
 }

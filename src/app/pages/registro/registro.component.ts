@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService} from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
-import { Usuario } from '../../entities/user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registro',
@@ -11,40 +10,32 @@ import { Usuario } from '../../entities/user.model';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
-  userEmail:    FormControl;
-  userPassword: FormControl;
-  nomeVirtual:  FormControl;
-  loginForm:    FormGroup;
-  isSendingLoginRequest = false;
-  objectUser: Usuario;
+  registroForm:    FormGroup;
+  isSendingRequest = false;
 
   constructor(
       public authService: AuthService,
       public router: Router,
-      public flashMessage: FlashMessagesService
+      private toastr: ToastrService
   ) { }
 
   ngOnInit() {
-    this.userEmail = new FormControl('', Validators.required);
-    this.userPassword = new FormControl('', Validators.required);
-    this.nomeVirtual = new FormControl('', Validators.required);
-    this.loginForm = new FormGroup({
-      userEmail: this.userEmail,
-      userPassword: this.userPassword,
-      nomeVirtual: this.nomeVirtual,
+    this.registroForm = new FormGroup({
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      confirm_password: new FormControl('', Validators.required),
+      nomeVirtual: new FormControl('', Validators.required),
+      nomeReal: new FormControl('', Validators.required)
     });
-
-    this.objectUser = new Usuario();
   }
 
   onSubmitAddUser() {
-      this.authService.registerUser(this.userEmail.value, this.userPassword.value)
-      .then ( (res) => {
-          this.objectUser.nomeVirtual = this.nomeVirtual.value;
-          this.flashMessage.show('Usuario cadastrado.', {cssClass: 'alert-success', timeout: 4000});
-          this.router.navigate(['/graficos']);
-      }).catch ((err) => {
-          this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
-      });
+    this.isSendingRequest = true;
+    this.authService.register(this.registroForm.value).subscribe(data => {
+      this.toastr.success('Registrado com sucesso', 'Registro');
+      this.isSendingRequest = false;
+    }, error => {
+      this.toastr.error('ERRO:' + error, 'Registro');
+    });
   }
 }

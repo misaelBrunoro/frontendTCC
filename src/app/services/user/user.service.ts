@@ -1,38 +1,31 @@
 import { Usuario } from './../../entities/user.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private dbPath = '/users';
-  usersRef: AngularFirestoreCollection<Usuario> = null;
 
-  constructor(
-    private firestore: AngularFirestore,
-  ) { this.usersRef = firestore.collection(this.dbPath); }
+  constructor( private _http: HttpClient ) { }
 
   insert (usuario: Usuario) {
-    return this.usersRef.add({...usuario});
+
   }
 
-  updateUsuario(key: string, value: any) {
-    return this.usersRef.doc(key).update(value);
+  update(usuario: Usuario) {
+
   }
 
-  deleteUsuario(key: string) {
-    return this.usersRef.doc(key).delete();
+  delete(_id: string) {
+
   }
 
-  getUsuarioList() {
-    return this.usersRef.snapshotChanges();
+  getList() {
+
   }
 
-  getUserByKey(key: string) {
-    return this.firestore.collection('users', ref => ref
-        .where('key', '==', key))
-        .snapshotChanges();
+  getUserBy_id(_id: string) {
+
   }
 }

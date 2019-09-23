@@ -4,7 +4,6 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { Usuario } from '../../entities/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -18,13 +17,11 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     private userEmail: string;
-    private objectUser: Usuario;
 
     constructor(location: Location,
                 private element: ElementRef,
                 private router: Router,
-                private authService: AuthService,
-                private userService: UserService) {
+                private authService: AuthService) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -41,27 +38,6 @@ export class NavbarComponent implements OnInit {
            this.mobile_menu_visible = 0;
          }
      });
-
-        this.authService.getAuth().subscribe( auth => {
-            if (auth) {
-                this.objectUser = new Usuario();
-                this.userEmail = auth.email;
-                this.objectUser.email = auth.email;
-                this.objectUser.nomeVirtual = auth.displayName;
-                this.objectUser.nomeReal = '';
-                this.objectUser.key = auth.uid;
-                this.objectUser.tipo = 'Aluno';
-                console.log('ola navbar');
-                this.userService.getUsuarioList().subscribe(response => {
-                    const result = response.filter((user) => {
-                        return user.payload.doc.data().key === auth.uid;
-                    });
-                    if (!result.length) {
-                        this.userService.insert(this.objectUser);
-                    }
-                });
-            }
-        });
     }
 
     sidebarOpen() {

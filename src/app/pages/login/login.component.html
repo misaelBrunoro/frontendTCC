@@ -1,36 +1,39 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6" style="margin: 0 auto">
+            <div class="col-md-5" style="margin: 0 auto">
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Login</h4>
                     </div>
                     <div class="card-body">
+                        <mat-progress-spinner style="margin:0 auto;"
+                                              mode="indeterminate"
+                                              *ngIf="isSendingRequest"></mat-progress-spinner>
+
                         <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
                             <h5 class="font-weight-bold">Dados de Login</h5>
                             <hr class="mt-1">
 
                             <mat-form-field class="example-full-width">
-                                <input formControlName="userEmail" matInput placeholder="Email" type="email">
+                                <input formControlName="email" matInput placeholder="Email" type="email">
                             </mat-form-field>
 
                             <mat-form-field class="example-full-width">
-                                <input formControlName="userPassword" matInput placeholder="Senha" type="password">
+                                <input formControlName="password" matInput placeholder="Senha" type="password">
                             </mat-form-field>
 
                             <div class="row" fxLayoutAlign="center">
-                                <button  mat-raised-button type="submit" class="btn btn-danger pull-right">Logar</button>
-                                <button  mat-raised-button type="button" class="btn btn-danger pull-right" [routerLink] = "['/registro']" >Registro</button>
+                                <button mat-raised-button type="submit" 
+                                        class="btn btn-danger pull-right">Logar</button>
+                                <button mat-raised-button type="button"
+                                        class="btn btn-danger pull-right"
+                                        [routerLink] = "['/registro']" >Registro</button>
                             </div>
                             <div class="clearfix"></div>
                         </form>
-                        <div class="row" fxLayoutAlign="center">
-                            <button class="btn btn-facebook" (click)="onClickFacebookLogin()"><i class="fa fa-facebook"></i>&nbsp; Facebook</button>
-                            <button class="btn btn-twitter" (click)="onClickTwitterLogin()"><i class="fa fa-twitter"></i>&nbsp; Twitter</button>
-                            <button class="btn btn-google" (click)="onClickGoogleLogin()"><i class="fa fa-google"></i>&nbsp; Google</button>
-                        </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
