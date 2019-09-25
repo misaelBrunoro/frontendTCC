@@ -22,7 +22,7 @@ export class PerguntaService {
   }
 
   getList() {
-    return this._http.get(environment.OAPI_URL + '/signup', {
+    return this._http.get(environment.API_URL + '/perguntas', {
       observe: 'body',
       params: new HttpParams().append('token', localStorage.getItem('token'))
     });

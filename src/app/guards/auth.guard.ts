@@ -18,13 +18,10 @@ export class AuthGuard implements CanActivate {
     private authService: AuthService
   ) {}
 
-  canActivate( ): Observable<boolean> | Promise<boolean> | boolean {
-    let activate = false;
-    this.authService.verifyToken( ).subscribe(data => {
-      activate = data['valid'];
-    }, error => {
-      activate =  false;
+  canActivate( ): Promise<boolean | UrlTree> {
+    // let activate = false;
+    return this.authService.verifyToken( ).then(data => {
+      return data['valid'];
     });
-    return activate;
   }
 }

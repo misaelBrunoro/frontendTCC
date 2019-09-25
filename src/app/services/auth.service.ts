@@ -23,12 +23,10 @@ export class AuthService {
 
     }
 
-    verifyToken( ) {
+    verifyToken( ): Promise<any> {
         const body = {
             token: localStorage.getItem('token')
         }
-        return this._http.post(environment.OAPI_URL + '/validateToken', body, {
-            observe: 'body'
-        });
+        return this._http.post(environment.OAPI_URL + '/validateToken', body).toPromise();
     }
 }
