@@ -1,62 +1,69 @@
-<div class="main-content">
+<div class="main-content bg-dark">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12" >
-                <form [formGroup]="perguntaForm" (ngSubmit)="onSubmitEnviarPergunta()">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <mat-form-field class="example-full-width">
-                                <input formControlName="titulo" matInput placeholder="Titulo da sua pergunta">
-                            </mat-form-field>
+            <div class="col-md-12">
+                <div [formGroup]="perguntaForm" (ngSubmit)="onSubmitEnviarPergunta()">
+                    
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Descreva a sua pergunta</h4>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <mat-form-field>
-                                <mat-label>Selecione uma disciplina</mat-label>
-                                <mat-select formControlName="disciplina">
-                                    <mat-option value="Calculo">Calculo</mat-option>
-                                    <mat-option value="Programação">Programação</mat-option>
-                                    <mat-option value="Ética">Ética?</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="titulo" matInput placeholder="Titulo da sua pergunta">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Selecione uma disciplina</mat-label>
+                                        <mat-select formControlName="disciplina">
+                                            <mat-option value="Calculo">Calculo</mat-option>
+                                            <mat-option value="Programação">Programação</mat-option>
+                                            <mat-option value="Ética">Ética?</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput 
+                                                placeholder="Descreva a sua pergunta" 
+                                                formControlName="descricao" 
+                                                cdkTextareaAutosize
+                                                cdkAutosizeMinRows="12"
+                                                cdkAutosizeMaxRows="12"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Anexar um arquivo (máximo 5mb)</mat-label>
+                                        <ngx-mat-file-input 
+                                                            #removableInput formControlName="file"
+                                                            placeholder="Anexar um arquivo (máximo 5mb)">
+                                        </ngx-mat-file-input>
+                                        <button mat-icon-button matSuffix 
+                                                *ngIf="!removableInput.empty"
+                                                (click)="removableInput.clear($event)">
+                                            <mat-icon>clear</mat-icon>
+                                        </button>
+                                    </mat-form-field>
+                
+                                    <button mat-raised-button type="submit" 
+                                        class="btn btn-danger pull-right" 
+                                        [disabled]="perguntaForm.invalid">Enviar Pergunta
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <mat-form-field class="example-full-width">
-                                <textarea matInput 
-                                          placeholder="Descreva a sua pergunta" 
-                                          formControlName="descricao" 
-                                          cdkTextareaAutosize
-                                          cdkAutosizeMinRows="12"
-                                          cdkAutosizeMaxRows="12"></textarea>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Anexar um arquivo (máximo 5mb)</mat-label>
-                                <ngx-mat-file-input 
-                                                    #removableInput formControlName="file"
-                                                    placeholder="Anexar um arquivo (máximo 5mb)">
-                                </ngx-mat-file-input>
-                                <button mat-icon-button matSuffix 
-                                        *ngIf="!removableInput.empty"
-                                        (click)="removableInput.clear($event)">
-                                    <mat-icon>clear</mat-icon>
-                                </button>
-                            </mat-form-field>
-        
-                            <button mat-raised-button type="submit" 
-                                class="btn btn-danger pull-right" 
-                                [disabled]="perguntaForm.invalid">Enviar Pergunta
-                            </button>
-                        </div>
-                    </div>
- 
-                </form>
+                    </div>   
+                </div> 
             </div>
         </div>
     </div>

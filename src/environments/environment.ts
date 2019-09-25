@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:3003/api/',
-  OAPI_URL: 'http://localhost:3003/oapi/'
+  API_URL: 'http://localhost:3003/api',
+  OAPI_URL: 'http://localhost:3003/oapi'
 };

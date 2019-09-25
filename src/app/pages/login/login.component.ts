@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', data['token']);
       this.toastr.success('Logado com sucesso', 'Login');
       this.isSendingRequest = false;
+      this.router.navigate(['/mural']);
     }, error => {
       this.toastr.error(error['error']['errors'], 'Login');
       this.isSendingRequest = false;

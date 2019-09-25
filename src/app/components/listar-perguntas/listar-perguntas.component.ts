@@ -25,7 +25,11 @@ export class ListarPerguntasComponent implements OnInit {
   }
 
   loadItens() {
-
+    this.perguntaService.getList().subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
   }
 
   // Mostra dataset Anterior

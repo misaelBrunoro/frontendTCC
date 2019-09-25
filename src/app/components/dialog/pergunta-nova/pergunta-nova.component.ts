@@ -47,7 +47,7 @@ export class PerguntaNovaComponent implements OnInit {
     this.perguntaObject.disciplina = this.perguntaForm.get('disciplina').value;
     this.perguntaObject.resolvido = false;
     this.perguntaObject.dataPublicacao = new Date();
-    this.perguntaService.insert(this.perguntaObject);
+    //this.perguntaService.insert(this.perguntaObject);
   }
 
   uploadAnexo(uid: string): any {

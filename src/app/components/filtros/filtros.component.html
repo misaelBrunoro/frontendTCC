@@ -1,58 +1,62 @@
 <div>
     <div>
         <mat-accordion>
-            <mat-expansion-panel>
+            <mat-expansion-panel class="bg-dark">
                 <mat-expansion-panel-header>
-                    <mat-panel-title>
+                    <mat-panel-title style="color: white">
                         <b>Filtros de Busca:</b>
                     </mat-panel-title>
-                    <mat-panel-description>
+                    <mat-panel-description style="color: white">
                         Clique para expandir.
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <form action="submit">
-                    <div class="row">
-                        <div class="col-6 col-md-6">
-                            <mat-form-field>
-                                <input matInput placeholder="Buscar por texto">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3 col-md-3">
-                            <mat-form-field>
-                                <mat-label>Disciplinas</mat-label>
-                                <mat-select disableOptionCentering >
-                                    <mat-option value='exemplo'>Exemplo</mat-option>
-                                    <mat-option value='exemplo'>Exemplo</mat-option>
-                                    <mat-option value='exemplo'>Exemplo</mat-option>
-                                    <mat-option value='exemplo'>Exemplo</mat-option>
-                                    <mat-option value='exemplo'>Exemplo</mat-option>
-                                    <mat-option value='exemplo'>Exemplo</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="submit">
+                            <div class="row">
+                                <div class="col-6 col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Buscar por texto">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Disciplinas</mat-label>
+                                        <mat-select disableOptionCentering >
+                                            <mat-option value='exemplo'>Exemplo</mat-option>
+                                            <mat-option value='exemplo'>Exemplo</mat-option>
+                                            <mat-option value='exemplo'>Exemplo</mat-option>
+                                            <mat-option value='exemplo'>Exemplo</mat-option>
+                                            <mat-option value='exemplo'>Exemplo</mat-option>
+                                            <mat-option value='exemplo'>Exemplo</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 col-md-3">
+                                    <mat-form-field>
+                                        <input matInput [matDatepicker]="picker1" placeholder="Data Inicial">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <mat-form-field>
+                                        <input matInput [matDatepicker]="picker2" placeholder="Data Final">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-1 col-md-1">
+                                    <button mat-raised-button type="submit" color="primary" class="btn-just-icon">
+                                        <i class="material-icons">search</i><div class="ripple-container"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col-3 col-md-3">
-                            <mat-form-field>
-                                <input matInput [matDatepicker]="picker1" placeholder="Data Inicial">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-3 col-md-3">
-                            <mat-form-field>
-                                <input matInput [matDatepicker]="picker2" placeholder="Data Final">
-                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                <mat-datepicker #picker2></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-1 col-md-1">
-                            <button mat-raised-button type="submit" color="primary" class="btn-just-icon">
-                                <i class="material-icons">search</i><div class="ripple-container"></div>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
