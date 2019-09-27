@@ -21,6 +21,9 @@ export class AuthGuard implements CanActivate {
   canActivate( ): Promise<boolean | UrlTree> {
     // let activate = false;
     return this.authService.verifyToken( ).then(data => {
+      if (!data['valid']) {
+        this.router.navigate(['/login']);
+      }
       return data['valid'];
     });
   }

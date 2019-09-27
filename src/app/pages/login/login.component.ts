@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,12 @@ export class LoginComponent implements OnInit {
   email: FormControl;
   password: FormControl;
   loginForm: FormGroup;
-  isSendingRequest = false;
 
   constructor(
       public authService: AuthService,
       public router: Router,
-      private toastr: ToastrService
+      private toastr: ToastrService,
+      private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -31,15 +32,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin() {
-    this.isSendingRequest = true;
+    this.spinner.show();
     this.authService.login(this.loginForm.value).subscribe(data => {
       localStorage.setItem('token', data['token']);
       this.toastr.success('Logado com sucesso', 'Login');
-      this.isSendingRequest = false;
+      this.spinner.hide();
       this.router.navigate(['/mural']);
     }, error => {
       this.toastr.error(error['error']['errors'], 'Login');
-      this.isSendingRequest = false;
+      this.spinner.hide();
     });
   }
 }

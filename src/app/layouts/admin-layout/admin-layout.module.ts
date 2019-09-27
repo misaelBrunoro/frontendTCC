@@ -11,8 +11,10 @@ import { PerfilUserComponent } from '../../pages/perfil-user/perfil-user.compone
 import { MuralComponent } from '../../pages/mural/mural.component';
 import { AdminComponent } from '../../pages/admin/admin.component';
 import { ChatComponent } from '../../pages/chat/chat.component';
-import { PerguntaNovaComponent } from '../../components/dialog/pergunta-nova/pergunta-nova.component';
-import { ListarPerguntasComponent } from '../../components/listar-perguntas/listar-perguntas.component';
+import { PerguntaNovaComponent } from '../../components/pergunta/pergunta-nova/pergunta-nova.component';
+import { ListarPerguntasComponent } from '../../components/pergunta/listar-perguntas/listar-perguntas.component';
+import { DetalhesPerguntaComponent } from '../../components/pergunta/detalhes-pergunta/detalhes-pergunta.component';
+import { ListarSalasComponent } from '../../components/salas/listar-salas/listar-salas.component';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -30,6 +32,7 @@ import {
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -49,7 +52,8 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatTableModule,
     MatIconModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    NgxSpinnerModule
   ],
   declarations: [
     DashboardComponent,
@@ -59,7 +63,9 @@ import { MatTableModule } from '@angular/material/table';
     ChatComponent,
     FiltrosComponent,
     PerguntaNovaComponent,
-    ListarPerguntasComponent
+    ListarPerguntasComponent,
+    DetalhesPerguntaComponent,
+    ListarSalasComponent
   ],
   providers: [
     MatDatepickerModule,

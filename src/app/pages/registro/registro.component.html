@@ -7,9 +7,14 @@
                         <h4 class="card-title">Registrar-se</h4>
                     </div>
                     <div class="card-body">
-                        <mat-progress-spinner style="margin:0 auto;"
-                                              mode="indeterminate"
-                                              *ngIf="isSendingRequest"></mat-progress-spinner> 
+                        <ngx-spinner
+                            bdColor = "#090909"
+                            size = "medium"
+                            color = "#f40b0b"
+                            type = "square-jelly-box"
+                            [fullScreen] = "true">
+                            <p style="color: white" > Autenticando... </p>
+                        </ngx-spinner>
 
                         <form novalidate [formGroup]="registroForm" (ngSubmit)="onSubmitAddUser()">
                             <h5 class="font-weight-bold">Dados de Registro</h5>

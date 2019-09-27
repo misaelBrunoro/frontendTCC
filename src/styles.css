@@ -4,3 +4,7 @@
 .alert.flash-message{
     margin-top:10px;
 }
+
+.my-dialog-class .mat-dialog-container {
+    padding: 0;
+  }

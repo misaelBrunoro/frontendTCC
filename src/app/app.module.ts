@@ -16,12 +16,12 @@ import {
   MatInputModule,
   MatFormFieldModule,
   MatCardModule,
-  MatIconModule,
-  MatProgressSpinnerModule,
+  MatIconModule
 } from '@angular/material';
 
 import { ToastrModule } from 'ngx-toastr';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthService} from './services/auth.service';
@@ -48,7 +48,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
       MatCardModule,
       MatIconModule,
       FlexLayoutModule,
-      MatProgressSpinnerModule,
+      NgxSpinnerModule,
       ToastrModule.forRoot(),
   ],
   declarations: [

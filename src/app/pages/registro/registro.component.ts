@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-registro',
@@ -11,12 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegistroComponent implements OnInit {
   registroForm:    FormGroup;
-  isSendingRequest = false;
 
   constructor(
       public authService: AuthService,
       public router: Router,
-      private toastr: ToastrService
+      private toastr: ToastrService,
+      private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -30,12 +31,13 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmitAddUser() {
-    this.isSendingRequest = true;
+    this.spinner.show();
     this.authService.register(this.registroForm.value).subscribe(data => {
       this.toastr.success('Registrado com sucesso', 'Registro');
-      this.isSendingRequest = false;
+      this.spinner.hide();
     }, error => {
-      this.toastr.error('ERRO:' + error, 'Registro');
+      this.toastr.error(error['error']['errors'], 'Registro');
+      this.spinner.hide();
     });
   }
 }
