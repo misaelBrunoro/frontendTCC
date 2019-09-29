@@ -25,7 +25,7 @@ export class ListarPerguntasComponent implements OnInit {
   }
 
   loadItens() {
-    this.perguntaService.getList().subscribe(data => {
+    this.perguntaService.loadItems(1, 2).subscribe(data => {
       console.log(data);
     }, error => {
       console.log(error);
