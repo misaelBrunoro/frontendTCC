@@ -1,32 +1,40 @@
-<div class="row mt-3" #top>
+<div class="row mt-3">
     <div class="col-md-12">
-        <div *ngFor="let item of tableData; let i of index">
+        <div *ngFor="let item of pageOfItems">
             <div class="card">
-            <div class="card-body">
-                <h3><b>{{item.titulo}}</b></h3>
-                <h4>{{item.descricao}}</h4>
-                <label class="mr-5"><b>Postado por: {{(userData[item.userId] ? userData[item.userId].nomeVirtual : '')}}</b></label>
-                <label class="mr-5"><b>Disciplina: {{item.disciplina}}</b></label>
-                <label><b>Publicação: {{item.dataPublicacao.toDate() | date: 'dd/MM/yyyy'}}</b></label>
-                <button *ngIf="item.resolvido == false" class="btn btn btn-danger btn-sm float-right">Aguardando</button>
-                <button *ngIf="item.resolvido == true"class="btn btn btn-success btn-sm float-right">Resolvido</button>
-                <button class="btn btn btn-info btn-sm float-right mr-2">Visualizar</button>
-            </div>
+                <div class="card-body">
+                    <h3><b>{{item.titulo}}</b></h3>
+                    <h4 class="broken-text">{{item.descricao}}...</h4>
+                    <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
+                    <label class="mr-5"><b>Disciplina: {{item.disciplina.nome}}</b></label>
+                    <label><b>Publicação: {{item.disciplina.createdAt | date: 'dd/MM/yyyy'}}</b></label>
+                    <button *ngIf="item.resolvido == false" class="btn btn btn-danger btn-sm float-right">Aguardando</button>
+                    <button *ngIf="item.resolvido == true"class="btn btn btn-success btn-sm float-right">Resolvido</button>
+                    <button class="btn btn btn-info btn-sm float-right mr-2">Visualizar</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="row mt-3">
     <div class="col-md-12">
-        <div class="text-center">
-            <button class="btn btn btn-warning btn-sm float-left" (click)="prevPage(top)">
-                Anterior
-            </button> 
-            <b>Pagina atual: </b>
-            <button class="btn btn btn-warning btn-sm float-right" (click)="nextPage(top)">
-                Proximo
-            </button>
-        </div>
+        <ul *ngIf="pager.pages && pager.pages.length" 
+            class="pagination justify-content-center">
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item first-item">
+                <a routerLink="/mural" [queryParams]="{page: 1 }" class="page-link">Primeiro</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item previous-item">
+                <a routerLink="/mural" [queryParams]="{ page: pager.currentPage - 1 }" class="page-link">Anterior</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item number-item">
+                <a routerLink="/mural" [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item next-item">
+                <a routerLink="/mural" [queryParams]="{ page: pager.currentPage + 1 }" class="page-link">Próximo</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item last-item">
+                <a routerLink="/mural" [queryParams]="{ page: pager.totalPages }" class="page-link">Último</a>
+            </li>
+        </ul>
     </div>
 </div>

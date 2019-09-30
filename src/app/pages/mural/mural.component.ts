@@ -1,7 +1,5 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { PerguntaNovaComponent } from '../../components/pergunta/pergunta-nova/pergunta-nova.component';
 
 @Component({
   selector: 'app-mural',
@@ -11,7 +9,6 @@ import { PerguntaNovaComponent } from '../../components/pergunta/pergunta-nova/p
 export class MuralComponent implements OnInit {
 
   constructor(
-      public dialog: MatDialog,
       public route: Router
   ) { }
 

@@ -32,13 +32,11 @@ export class PerguntaService {
   }
 
   // Paginacao
-  loadItems(skip, limit) {
-    return this._http.get(environment.API_URL + '/perguntas', {
+  loadItems(page) {
+    return this._http.get<any>(environment.API_URL + '/perguntas/pagination', {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-      params: new HttpParams()
-          .append('skip', skip)
-          .append('limit', limit)
+      params: new HttpParams().append('page', page)
     });
   }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from '../../../services/pergunta/pergunta.service';
 import { UserService } from 'app/services/user/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar-perguntas',
@@ -9,37 +11,25 @@ import { UserService } from 'app/services/user/user.service';
 })
 export class ListarPerguntasComponent implements OnInit {
   // Itens buscados
-  tableData: any[];
-  userData: any;
+  pager = {};
+  pageOfItems = [];
 
   constructor(
       private perguntaService: PerguntaService,
-      private usuarioService: UserService
-  ) {
-    this.tableData = [];
-    this.userData = {};
-  }
+      private route: ActivatedRoute,
+      private toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
-    this.loadItens();
+    this.route.queryParams.subscribe(x => this.loadPage(x.page || 1));
   }
 
-  loadItens() {
-    this.perguntaService.loadItems(1, 2).subscribe(data => {
-      console.log(data);
+  loadPage(page) {
+    this.perguntaService.loadItems(page).subscribe(x => {
+      this.pager = x.pager;
+      this.pageOfItems = x.pageOfItems;
     }, error => {
-      console.log(error);
+      this.toastr.error(error['error']['errors'], 'Buscar pergunta');
     });
   }
-
-  // Mostra dataset Anterior
-  prevPage(el: HTMLElement) {
-
-  }
-
-  // Monstrar proximo dataset
-  nextPage(el: HTMLElement) {
-
-  }
-
 }
