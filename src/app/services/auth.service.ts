@@ -8,13 +8,13 @@ export class AuthService {
     constructor( private _http: HttpClient ) {}
 
     register (body: any) {
-        return this._http.post(environment.OAPI_URL + '/signup', body, {
+        return this._http.post<any>(environment.OAPI_URL + '/signup', body, {
             observe: 'body'
         });
     }
 
     login (body: any) {
-        return this._http.post(environment.OAPI_URL + '/login', body, {
+        return this._http.post<any>(environment.OAPI_URL + '/login', body, {
             observe: 'body'
         });
     }
@@ -27,6 +27,6 @@ export class AuthService {
         const body = {
             token: localStorage.getItem('token')
         }
-        return this._http.post(environment.OAPI_URL + '/validateToken', body).toPromise();
+        return this._http.post<any>(environment.OAPI_URL + '/validateToken', body).toPromise();
     }
 }

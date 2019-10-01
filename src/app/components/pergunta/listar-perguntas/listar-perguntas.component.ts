@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from '../../../services/pergunta/pergunta.service';
-import { UserService } from 'app/services/user/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -29,7 +28,7 @@ export class ListarPerguntasComponent implements OnInit {
       this.pager = x.pager;
       this.pageOfItems = x.pageOfItems;
     }, error => {
-      this.toastr.error(error['error']['errors'], 'Buscar pergunta');
+      this.toastr.error(error.error.errors, 'Buscar pergunta');
     });
   }
 }

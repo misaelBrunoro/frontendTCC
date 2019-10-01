@@ -10,7 +10,7 @@ export class PerguntaService {
   constructor( private _http: HttpClient ) { }
 
   insert (body: any) {
-    return this._http.post(environment.API_URL + '/perguntas', body, {
+    return this._http.post<any>(environment.API_URL + '/perguntas', body, {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
     });
@@ -25,7 +25,7 @@ export class PerguntaService {
   }
 
   getList() {
-    return this._http.get(environment.API_URL + '/perguntas', {
+    return this._http.get<any>(environment.API_URL + '/perguntas', {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
     });
@@ -40,11 +40,10 @@ export class PerguntaService {
     });
   }
 
-  prevPage( ) {
-
-  }
-
-  nextPage( ) {
-
+  filteredItems(body) {
+    return this._http.post<any>(environment.API_URL + '/perguntas/pagination', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
+    });
   }
 }

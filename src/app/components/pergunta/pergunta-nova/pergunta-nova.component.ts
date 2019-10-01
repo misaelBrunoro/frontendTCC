@@ -40,17 +40,14 @@ export class PerguntaNovaComponent implements OnInit {
   loadComboDisciplina() {
     this.disciplinaService.getList().subscribe((data: any[]) => {
       this.comboDisciplinas = data;
-      console.log(data);
     });
   }
 
   onSubmitEnviarPergunta() {
-    console.log(this.perguntaForm.value);
     this.perguntaForm.removeControl('file');
     if (this.perguntaForm.get('anexo').value === '') {
       this.perguntaForm.removeControl('anexo');
     }
-    console.log(this.perguntaForm.value);
     // TODO ENVIAR ANEXO VERIFICAR SE FOI E DEPOIS A PERGUNTA
     this.enviarPergunta();
   }
@@ -62,7 +59,7 @@ export class PerguntaNovaComponent implements OnInit {
       this.spinner.hide();
       this.router.navigate(['/mural']);
     }, error => {
-      this.toastr.error(error['error']['errors'], 'Falha ao enviar pergunta');
+      this.toastr.error(error.error.errors, 'Falha ao enviar pergunta');
       this.spinner.hide();
     });
   }
