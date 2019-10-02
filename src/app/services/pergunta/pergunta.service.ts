@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PerguntaService {
-  
+
   constructor( private _http: HttpClient ) { }
 
   insert (body: any) {
@@ -28,15 +28,6 @@ export class PerguntaService {
     return this._http.get<any>(environment.API_URL + '/perguntas', {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-    });
-  }
-
-  // Paginacao
-  loadItems(page) {
-    return this._http.get<any>(environment.API_URL + '/perguntas/pagination', {
-      observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-      params: new HttpParams().append('page', page)
     });
   }
 
