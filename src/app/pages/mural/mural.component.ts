@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-mural',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mural.component.css']
 })
 export class MuralComponent implements OnInit {
+
+  filtroTemporario;
 
   constructor(
       public route: Router
@@ -17,5 +19,9 @@ export class MuralComponent implements OnInit {
 
   onClickNovaPergunta() {
     this.route.navigate(['mural/nova-pergunta']);
+  }
+
+  receiveFiltros(filtros) {
+    this.filtroTemporario = filtros;
   }
 }

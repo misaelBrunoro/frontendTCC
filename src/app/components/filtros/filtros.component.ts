@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PerguntaService } from 'app/services/pergunta/pergunta.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DisciplinaService } from 'app/services/disciplina/disciplina.service';
 
 @Component({
@@ -13,9 +11,9 @@ export class FiltrosComponent implements OnInit {
   filtroForm: FormGroup;
   comboDisciplinas: any[];
 
+  @Output() enviaFiltros  = new EventEmitter();
+
   constructor(
-    private perguntaService: PerguntaService,
-    private spinner: NgxSpinnerService,
     private disciplinaService: DisciplinaService,
   ) { }
 
@@ -23,8 +21,7 @@ export class FiltrosComponent implements OnInit {
     this.filtroForm = new FormGroup({
       texto: new FormControl(''),
       disciplina: new FormControl(''),
-      dataInicial: new FormControl(''),
-      dataFinal: new FormControl(''),
+      dataPublicacao: new FormControl(''),
     });
     this.loadComboDisciplina();
   }
@@ -36,8 +33,6 @@ export class FiltrosComponent implements OnInit {
   }
 
   onSubmitEnviarFiltros() {
-    this.perguntaService.filteredItems(this.filtroForm.value).subscribe(data => {
-      console.log(data);
-    });
+    this.enviaFiltros.emit(this.filtroForm.value);
   }
 }

@@ -6,11 +6,11 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PerguntaService {
-
+  
   constructor( private _http: HttpClient ) { }
 
   insert (body: any) {
-    return this._http.post<any>(environment.API_URL + '/perguntas', body, {
+    return this._http.post<any>(environment.API_URL + '/perguntas/nova_pergunta', body, {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
     });
@@ -40,10 +40,11 @@ export class PerguntaService {
     });
   }
 
-  filteredItems(body) {
+  filteredItems(page, body) {
     return this._http.post<any>(environment.API_URL + '/perguntas/pagination', body, {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
+      params: new HttpParams().append('page', page)
     });
   }
 }

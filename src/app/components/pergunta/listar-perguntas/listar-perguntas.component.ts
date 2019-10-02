@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, SimpleChange, OnChanges } from '@angular/core';
 import { PerguntaService } from '../../../services/pergunta/pergunta.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,10 +8,11 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './listar-perguntas.component.html',
   styleUrls: ['./listar-perguntas.component.scss']
 })
-export class ListarPerguntasComponent implements OnInit {
+export class ListarPerguntasComponent implements OnChanges, OnInit {
   // Itens buscados
   pager = {};
   pageOfItems = [];
+  @Input() filtros;
 
   constructor(
       private perguntaService: PerguntaService,
@@ -19,12 +20,32 @@ export class ListarPerguntasComponent implements OnInit {
       private toastr: ToastrService,
   ) { }
 
+  ngOnChanges() {
+    this.filteredLoadPage(1);
+  }
+
   ngOnInit() {
-    this.route.queryParams.subscribe(x => this.loadPage(x.page || 1));
+    this.route.queryParams.subscribe(x => {
+      if (!this.filtros) {
+        this.loadPage(x.page || 1)
+      } else {
+        this.filteredLoadPage(x.page || 1)
+      }
+    });
   }
 
   loadPage(page) {
     this.perguntaService.loadItems(page).subscribe(x => {
+      this.pager = x.pager;
+      this.pageOfItems = x.pageOfItems;
+    }, error => {
+      this.toastr.error(error.error.errors, 'Buscar pergunta');
+    });
+  }
+
+  filteredLoadPage(page) {
+    const body = this.filtros;
+    this.perguntaService.filteredItems(page, body).subscribe(x => {
       this.pager = x.pager;
       this.pageOfItems = x.pageOfItems;
     }, error => {
