@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="container-fluid">
-        <app-filtros (enviaFiltros)=receiveFiltros($event) ></app-filtros>
+        <app-filtros></app-filtros>
 
         <div class="card bg-dark" >
 
@@ -14,7 +14,7 @@
                         <button mat-raised-button color="primary" (click)="onClickNovaPergunta()">Adicionar uma Pergunta</button>
                     </div>
                 </div>
-                    <app-listar-perguntas [filtros]=filtroTemporario></app-listar-perguntas>
+                    <app-listar-perguntas></app-listar-perguntas>
             </div>
         </div>
     </div>

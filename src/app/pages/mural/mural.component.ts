@@ -8,8 +8,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class MuralComponent implements OnInit {
 
-  filtroTemporario;
-
   constructor(
       public route: Router
   ) { }
@@ -19,9 +17,5 @@ export class MuralComponent implements OnInit {
 
   onClickNovaPergunta() {
     this.route.navigate(['mural/nova-pergunta']);
-  }
-
-  receiveFiltros(filtros) {
-    this.filtroTemporario = filtros;
   }
 }

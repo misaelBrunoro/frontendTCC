@@ -24,7 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AuthService} from './services/auth.service';
+import { AuthService} from './services/auth//auth.service';
 import { PerguntaService } from './services/pergunta/pergunta.service';
 import { UserService } from './services/user/user.service';
 import { UploadFilesService } from './services/upload/upload-file.service';

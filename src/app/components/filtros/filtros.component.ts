@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DisciplinaService } from 'app/services/disciplina/disciplina.service';
+import { EventEmitterService } from '../../services/event/event-emitter.service';
 
 @Component({
   selector: 'app-filtros',
@@ -10,8 +11,6 @@ import { DisciplinaService } from 'app/services/disciplina/disciplina.service';
 export class FiltrosComponent implements OnInit {
   filtroForm: FormGroup;
   comboDisciplinas: any[];
-
-  @Output() enviaFiltros  = new EventEmitter();
 
   constructor(
     private disciplinaService: DisciplinaService,
@@ -33,6 +32,6 @@ export class FiltrosComponent implements OnInit {
   }
 
   onSubmitEnviarFiltros() {
-    this.enviaFiltros.emit(this.filtroForm.value);
+    EventEmitterService.get('sendFilter').emit(this.filtroForm.value);
   }
 }
