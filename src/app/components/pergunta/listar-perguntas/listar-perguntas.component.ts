@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, SimpleChange, OnChanges } from '@angular/core';
 import { PerguntaService } from '../../../services/pergunta/pergunta.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EventEmitterService } from '../../../services/event/event-emitter.service';
 
@@ -18,7 +18,7 @@ export class ListarPerguntasComponent implements OnInit {
   constructor(
       private perguntaService: PerguntaService,
       private route: ActivatedRoute,
-      private toastr: ToastrService,
+      private toastr: ToastrService
   ) { }
 
   ngOnInit() {

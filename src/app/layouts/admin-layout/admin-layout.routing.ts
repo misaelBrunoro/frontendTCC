@@ -10,11 +10,11 @@ import { PerguntaNovaComponent } from 'app/components/pergunta/pergunta-nova/per
 import { DetalhesPerguntaComponent } from './../../components/pergunta/detalhes-pergunta/detalhes-pergunta.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'graficos',      component: DashboardComponent },
-    { path: 'perfil-user',   component: PerfilUserComponent },
-    { path: 'mural',         component: MuralComponent },
-    { path: 'mural/nova-pergunta', component: PerguntaNovaComponent},
+    { path: 'graficos',                    component: DashboardComponent },
+    { path: 'perfil-user',                 component: PerfilUserComponent },
+    { path: 'mural',                       component: MuralComponent },
+    { path: 'mural/nova-pergunta',         component: PerguntaNovaComponent},
     { path: 'mural/detalhe-pergunta/:id',  component: DetalhesPerguntaComponent},
-    { path: 'chat',          component: ChatComponent },
-    { path: 'admin',         component: AdminComponent },
+    { path: 'chat',                        component: ChatComponent },
+    { path: 'admin',                       component: AdminComponent },
 ];

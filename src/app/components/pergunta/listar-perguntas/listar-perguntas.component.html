@@ -8,9 +8,18 @@
                     <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
                     <label class="mr-5"><b>Disciplina: {{item.disciplina.nome}}</b></label>
                     <label><b>Publicação: {{item.disciplina.createdAt | date: 'dd/MM/yyyy'}}</b></label>
-                    <button *ngIf="item.resolvido == false" class="btn btn btn-danger btn-sm float-right">Aguardando</button>
-                    <button *ngIf="item.resolvido == true"class="btn btn btn-success btn-sm float-right">Resolvido</button>
-                    <button class="btn btn btn-info btn-sm float-right mr-2">Visualizar</button>
+                    <button *ngIf="item.resolvido == false"
+                            class="btn btn btn-danger btn-sm float-right">
+                            Aguardando
+                    </button>
+                    <button *ngIf="item.resolvido == true"
+                            class="btn btn btn-success btn-sm float-right">
+                            Resolvido
+                    </button>
+                    <button class="btn btn btn-info btn-sm float-right mr-2"
+                            [routerLink]="['detalhe-pergunta/', item._id]">
+                        Visualizar
+                    </button>
                 </div>
             </div>
         </div>
