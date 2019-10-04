@@ -5,12 +5,12 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class PerguntaService {
+export class RespostaService {
 
   constructor( private _http: HttpClient ) { }
 
   insert (body: any) {
-    return this._http.post<any>(environment.API_URL + '/perguntas/nova_pergunta', body, {
+    return this._http.post<any>(environment.API_URL + '/respostas', body, {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
     });
@@ -25,25 +25,17 @@ export class PerguntaService {
   }
 
   getList() {
-    return this._http.get<any>(environment.API_URL + '/perguntas', {
+    return this._http.get<any>(environment.API_URL + '/respostas', {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
     });
   }
 
-  filteredItems(page, body) {
-    return this._http.post<any>(environment.API_URL + '/perguntas/pagination', body, {
+  loadItems(page, body) {
+    return this._http.post<any>(environment.API_URL + '/respostas/pagination', body, {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('page', page)
-    });
-  }
-
-  findByID(id) {
-    return this._http.get<any>(environment.API_URL + '/perguntas/findByID', {
-      observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-      params: new HttpParams().append('id', id)
     });
   }
 }

@@ -1,1 +1,40 @@
-<p>detalhes-pergunta works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-md-12">
+                
+                <div class="card bg-dark">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Detalhamento da pergunta</h4>
+                    </div>
+                    <div class="card-body">
+                        <ngx-spinner
+                            bdColor = "#090909"
+                            size = "medium"
+                            color = "#f40b0b"
+                            type = "square-jelly-box"
+                            [fullScreen] = "true">
+                            <p style="color: white" > Autenticando... </p>
+                        </ngx-spinner>
+                        <div class="card">
+                            <div class="card-header card-header-danger">
+                                <h4 class="card-title">Pergunta</h4>
+                            </div>
+                            <div class="card-body">
+                                <h3><b>{{pergunta.titulo}}</b></h3>
+                                <h4>{{pergunta.descricao}}</h4>
+                                <label class="mr-5"><b>Postado por: {{pergunta.usuario.nomeReal}}</b></label>
+                                <label class="mr-5"><b>Disciplina: {{pergunta.disciplina.nome}}</b></label>
+                                <label>
+                                    <b>Publicação: {{pergunta.disciplina.createdAt | date: 'dd/MM/yyyy'}}</b>
+                                </label>
+                            </div>
+                        </div>   
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

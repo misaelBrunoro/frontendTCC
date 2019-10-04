@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, SimpleChanges, SimpleChange, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from '../../../services/pergunta/pergunta.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 import { EventEmitterService } from '../../../services/event/event-emitter.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-listar-perguntas',
@@ -11,14 +11,14 @@ import { EventEmitterService } from '../../../services/event/event-emitter.servi
 })
 export class ListarPerguntasComponent implements OnInit {
   // Itens buscados
-  pager = {};
+  pager = { pages: ''};
   pageOfItems = [];
   filter = {};
 
   constructor(
       private perguntaService: PerguntaService,
       private route: ActivatedRoute,
-      private toastr: ToastrService
+      private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -33,11 +33,13 @@ export class ListarPerguntasComponent implements OnInit {
   }
 
   filteredLoadPage(page) {
+    this.spinner.show();
     this.perguntaService.filteredItems(page, this.filter).subscribe(x => {
       this.pager = x.pager;
       this.pageOfItems = x.pageOfItems;
+      this.spinner.hide();
     }, error => {
-      this.toastr.error(error.error.errors, 'Buscar pergunta');
+      console.log(error);
     });
   }
 }
