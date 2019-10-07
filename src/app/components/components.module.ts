@@ -11,6 +11,7 @@ import { DetalhesPerguntaComponent } from '.././components/pergunta/detalhes-per
 import { ListarSalasComponent } from '.././components/salas/listar-salas/listar-salas.component';
 import { FiltrosComponent } from '.././components/filtros/filtros.component';
 import { MaterialFormatModule } from '../material/material-format.module';
+import { ListarRespostasComponent } from './listar-respostas/listar-respostas.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { MaterialFormatModule } from '../material/material-format.module';
     ListarPerguntasComponent,
     DetalhesPerguntaComponent,
     ListarSalasComponent,
-    FiltrosComponent
+    FiltrosComponent,
+    ListarRespostasComponent
   ],
   exports: [
     FooterComponent,

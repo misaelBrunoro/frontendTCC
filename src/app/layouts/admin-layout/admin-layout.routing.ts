@@ -8,6 +8,7 @@ import { AdminComponent } from '../../pages/admin/admin.component';
 import { ChatComponent } from '../../pages/chat/chat.component';
 import { PerguntaNovaComponent } from 'app/components/pergunta/pergunta-nova/pergunta-nova.component';
 import { DetalhesPerguntaComponent } from './../../components/pergunta/detalhes-pergunta/detalhes-pergunta.component';
+import { ListarRespostasComponent } from 'app/components/listar-respostas/listar-respostas.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'graficos',                    component: DashboardComponent },
@@ -15,6 +16,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'mural',                       component: MuralComponent },
     { path: 'mural/nova-pergunta',         component: PerguntaNovaComponent},
     { path: 'mural/detalhe-pergunta/:id',  component: DetalhesPerguntaComponent},
+    { path: 'mural/detalhe-pergunta/respostas/:id', component: ListarRespostasComponent},
     { path: 'chat',                        component: ChatComponent },
     { path: 'admin',                       component: AdminComponent },
 ];

@@ -1,7 +1,7 @@
+import { Pergunta } from './../../../entities/pergunta.model';
 import { Component, OnInit } from '@angular/core';
-import { RespostaService } from 'app/services/resposta/resposta.service';
 import { PerguntaService } from 'app/services/pergunta/pergunta.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -10,33 +10,33 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./detalhes-pergunta.component.scss']
 })
 export class DetalhesPerguntaComponent implements OnInit {
-  pergunta = {
-              titulo: '',
-              descricao: '',
-              usuario: { nomeReal: '' },
-              disciplina: { nome: '', createdAt: new Date },
-            };
-  respostaOficial: any;
+  perguntaObject: any = {};
+  id: any;
 
   constructor(
-    private respostaService: RespostaService,
     private perguntaService: PerguntaService,
     private route: ActivatedRoute,
-    private spinner: NgxSpinnerService
-  ) { }
+    private spinner: NgxSpinnerService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.route.params.subscribe(param => {
-      this.findByIDPergunta(param['id']);
+      this.id = param['id'];
+      this.detalhesPergunta();
     });
   }
 
-  findByIDPergunta(id) {
+  detalhesPergunta( ) {
+    this.perguntaObject = new Pergunta();
     this.spinner.show();
-    this.perguntaService.findByID(id).subscribe(data => {
-      this.pergunta = data[0];
+    this.perguntaService.detalhes(this.id).subscribe(data => {
+      this.perguntaObject = data[0];
       this.spinner.hide();
     });
   }
 
+  onClickSessaoRespostas() {
+    this.router.navigate(['mural/detalhe-pergunta/respostas/', this.id]);
+  }
 }

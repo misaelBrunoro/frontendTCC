@@ -39,11 +39,19 @@ export class PerguntaService {
     });
   }
 
-  findByID(id) {
-    return this._http.get<any>(environment.API_URL + '/perguntas/findByID', {
+  detalhes(id) {
+    return this._http.get<any>(environment.API_URL + '/perguntas/detalhes', {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('id', id)
+    });
+  }
+
+  buscarPorID(page, id) {
+    return this._http.get<any>(environment.API_URL + '/perguntas/buscarPorID', {
+      observe: 'body',
+      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
+      params: new HttpParams().append('page', page).append('id', id)
     });
   }
 }
