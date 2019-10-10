@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -11,7 +10,8 @@ import { DetalhesPerguntaComponent } from '.././components/pergunta/detalhes-per
 import { ListarSalasComponent } from '.././components/salas/listar-salas/listar-salas.component';
 import { FiltrosComponent } from '.././components/filtros/filtros.component';
 import { MaterialFormatModule } from '../material/material-format.module';
-import { ListarRespostasComponent } from './listar-respostas/listar-respostas.component';
+import { ListarRespostasComponent } from './resposta/listar-respostas/listar-respostas.component';
+import { RespostaNovaComponent } from './resposta/resposta-nova/resposta-nova.component';
 
 @NgModule({
   imports: [
@@ -29,7 +29,8 @@ import { ListarRespostasComponent } from './listar-respostas/listar-respostas.co
     DetalhesPerguntaComponent,
     ListarSalasComponent,
     FiltrosComponent,
-    ListarRespostasComponent
+    ListarRespostasComponent,
+    RespostaNovaComponent
   ],
   exports: [
     FooterComponent,
@@ -40,10 +41,13 @@ import { ListarRespostasComponent } from './listar-respostas/listar-respostas.co
     ListarPerguntasComponent,
     DetalhesPerguntaComponent,
     ListarSalasComponent,
-    FiltrosComponent
+    FiltrosComponent,
+    ListarRespostasComponent,
+    RespostaNovaComponent
   ],
   providers: [
     MaterialFormatModule
-  ]
+  ],
+  entryComponents: [RespostaNovaComponent]
 })
 export class ComponentsModule { }

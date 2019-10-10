@@ -1,7 +1,9 @@
+import { Component, OnInit } from '@angular/core';
+import { RespostaNovaComponent } from './../resposta-nova/resposta-nova.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from 'app/services/pergunta/pergunta.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 @Component({
   selector: 'app-listar-respostas',
@@ -18,7 +20,8 @@ export class ListarRespostasComponent implements OnInit {
   constructor(
     private perguntaService: PerguntaService,
     private route: ActivatedRoute,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -39,6 +42,13 @@ export class ListarRespostasComponent implements OnInit {
       this.spinner.hide();
     }, error => {
       console.log(error);
+    });
+  }
+
+  onClickNovaResposta() {
+    const dialogRef = this.dialog.open(RespostaNovaComponent, {
+      width: '60%',
+      height: '70%'
     });
   }
 }

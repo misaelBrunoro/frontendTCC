@@ -18,7 +18,12 @@
                             [fullScreen] = "true">
                             <p style="color: white" > Buscando... </p>
                         </ngx-spinner>
-
+                        
+                        <button mat-raised-button color="primary"
+                                (click)="onClickNovaResposta()">
+                                Adicionar uma Resposta
+                        </button>
+                        
                         <div *ngFor="let item of pageOfItems">
                             <div class="card">
                                 <div class="card-body">

@@ -1,3 +1,4 @@
+import { AutosizeModule } from 'ngx-autosize';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,6 +20,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -40,6 +42,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    AutosizeModule
   ],
   exports: [
     MatButtonModule,
@@ -58,6 +62,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    AutosizeModule
   ],
   providers: [
     MatDatepickerModule,
