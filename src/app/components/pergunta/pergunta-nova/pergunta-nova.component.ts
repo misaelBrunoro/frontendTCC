@@ -21,7 +21,6 @@ export class PerguntaNovaComponent implements OnInit {
       private perguntaService: PerguntaService,
       private disciplinaService: DisciplinaService,
       private toastr: ToastrService,
-      private uploadService: UploadFilesService,
       private spinner: NgxSpinnerService,
       public router: Router
   ) { }
@@ -48,7 +47,6 @@ export class PerguntaNovaComponent implements OnInit {
     if (this.perguntaForm.get('anexo').value === '') {
       this.perguntaForm.removeControl('anexo');
     }
-    // TODO ENVIAR ANEXO VERIFICAR SE FOI E DEPOIS A PERGUNTA
     this.enviarPergunta();
   }
 
@@ -62,15 +60,6 @@ export class PerguntaNovaComponent implements OnInit {
       this.toastr.error(error.error.errors, 'Falha ao enviar pergunta');
       this.spinner.hide();
     });
-  }
-
-  uploadAnexo(uid: string): any {
-    const file = this.perguntaForm.get('file').value;
-    const Arquivo = {
-      'File': file.files[0],
-      'Caminho': '/Anexos/' + uid + '/' + file.files[0].name
-    }
-    return this.uploadService.upload(Arquivo);
   }
 }
 

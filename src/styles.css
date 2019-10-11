@@ -9,3 +9,7 @@
 .my-dialog-class .mat-dialog-container {
     padding: 0;
   }
+
+.dialogClass .mat-dialog-container {
+    background-color: black;
+}

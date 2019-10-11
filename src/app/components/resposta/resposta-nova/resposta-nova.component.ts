@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resposta-nova.component.scss']
 })
 export class RespostaNovaComponent implements OnInit {
+  widthDialog: any;
+  heightDialog: any;
 
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit() {
+    this.calcularTamanho();
   }
 
+  calcularTamanho() {
+    console.log(this.heightDialog);
+    console.log(this.widthDialog);
+  }
 }
