@@ -10,7 +10,7 @@ export class RespostaService {
   constructor( private _http: HttpClient ) { }
 
   insert (body: any) {
-    return this._http.post<any>(environment.API_URL + '/respostas', body, {
+    return this._http.post<any>(environment.API_URL + '/respostas/nova_resposta', body, {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
     });

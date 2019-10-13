@@ -1,10 +1,22 @@
 <div class="col-md-5 divFormat">
     <h4 class="card-title">Detalhe sua resposta</h4>
 </div>
-<mat-form-field appearance="outline">
-    <textarea style="min-height: 215px;" matInput placeholder="Descrição"></textarea>
-</mat-form-field>
-<button mat-raised-button class="btn-danger pull-right">
-    Enviar Resposta
-</button>      
-        
+<form [formGroup]="respostaForm" (ngSubmit)="onSubmitEnviarResposta()">
+    <ngx-spinner
+        bdColor = "#090909"
+        size = "medium"
+        color = "#f40b0b"
+        type = "square-jelly-box"
+        [fullScreen] = "true">
+        <p style="color: white" > Enviando sua resposta... </p>
+    </ngx-spinner>
+
+    <mat-form-field appearance="outline">
+        <textarea formControlName="descricao" style="min-height: 215px;" matInput placeholder="Descrição"></textarea>
+    </mat-form-field>
+    <button type='submit' mat-raised-button 
+            class="btn-danger pull-right"
+            [disabled]="respostaForm.invalid">
+        Enviar Resposta
+    </button>      
+</form>  
