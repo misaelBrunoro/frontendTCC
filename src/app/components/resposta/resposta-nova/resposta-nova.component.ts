@@ -1,7 +1,6 @@
 import { RespostaService } from './../../../services/resposta/resposta.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PerguntaService } from 'app/services/pergunta/pergunta.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -15,7 +14,6 @@ export class RespostaNovaComponent implements OnInit {
   ID_pergunta: any;
 
   constructor(
-    private perguntaService: PerguntaService,
     private respostaService: RespostaService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService
@@ -29,18 +27,12 @@ export class RespostaNovaComponent implements OnInit {
 
   onSubmitEnviarResposta() {
     this.spinner.show();
-    this.respostaService.insert(this.respostaForm.value).subscribe(data => {
-      this.perguntaService.responder(this.ID_pergunta, data.value._id).subscribe(data => {
+      this.respostaService.responder(this.ID_pergunta, this.respostaForm.value ).subscribe(data => {
         this.toastr.success('Resposta enviada', 'Resposta');
       }, error => {
         console.log(error);
         this.spinner.hide();
-       })
-      this.spinner.hide();
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
-    });
+      });
   }
 
 }

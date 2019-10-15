@@ -61,6 +61,21 @@
                                         </label>
                                     </div>
                                 </div>   
+
+                                <div *ngIf="!perguntaObject.resposta && perguntaObject.resposta.length == 0" class="card">
+                                    <div class="card-header card-header-danger">
+                                        <h4 class="card-title">Resposta Oficial</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4>Está pergunta ainda não possui uma resposta oficial</h4>
+                                        <label class="mr-5">
+                                            <b>Postado por: Mensagem do sistema</b>
+                                        </label>
+                                        <label>
+                                            <b>Publicação: {{date | date: 'dd/MM/yyyy'}}</b>
+                                        </label>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
 

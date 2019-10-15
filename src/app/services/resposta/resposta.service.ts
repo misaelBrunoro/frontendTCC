@@ -38,4 +38,12 @@ export class RespostaService {
       params: new HttpParams().append('page', page)
     });
   }
+
+  responder(ID_pergunta, body) {
+    return this._http.post<any>(environment.API_URL + '/respostas/nova_resposta', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
+      params: new HttpParams().append('ID_pergunta', ID_pergunta)
+    });
+  }
 }

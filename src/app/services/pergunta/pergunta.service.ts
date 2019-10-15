@@ -55,12 +55,4 @@ export class PerguntaService {
     });
   }
 
-  responder(ID_pergunta, ID_resposta) {
-    return this._http.get<any>(environment.API_URL + '/perguntas/responder', {
-      observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-      params: new HttpParams().append('ID_pergunta', ID_pergunta)
-                              .append('ID_resposta', ID_resposta)
-    });
-  }
 }

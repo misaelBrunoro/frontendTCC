@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class DetalhesPerguntaComponent implements OnInit {
   perguntaObject: any = {};
   id: any;
+  date = new Date;
 
   constructor(
     private perguntaService: PerguntaService,
