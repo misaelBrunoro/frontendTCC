@@ -47,12 +47,4 @@ export class PerguntaService {
     });
   }
 
-  buscarPorID(page, id) {
-    return this._http.get<any>(environment.API_URL + '/perguntas/buscarPorID', {
-      observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-      params: new HttpParams().append('page', page).append('id', id)
-    });
-  }
-
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-resposta-nova',
@@ -16,7 +17,8 @@ export class RespostaNovaComponent implements OnInit {
   constructor(
     private respostaService: RespostaService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private dialogRef: MatDialogRef<RespostaNovaComponent>,
   ) { }
 
   ngOnInit() {
@@ -27,8 +29,10 @@ export class RespostaNovaComponent implements OnInit {
 
   onSubmitEnviarResposta() {
     this.spinner.show();
-      this.respostaService.responder(this.ID_pergunta, this.respostaForm.value ).subscribe(data => {
+      this.respostaService.insert( this.respostaForm.value, this.ID_pergunta ).subscribe(data => {
         this.toastr.success('Resposta enviada', 'Resposta');
+        this.spinner.hide();
+        this.dialogRef.close();
       }, error => {
         console.log(error);
         this.spinner.hide();

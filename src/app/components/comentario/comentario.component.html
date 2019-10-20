@@ -1,0 +1,65 @@
+<mat-accordion>
+    <mat-expansion-panel class="bg-dark">
+        <mat-expansion-panel-header>
+            <mat-panel-title style="color: white">
+                <b>Comentarios:</b>
+            </mat-panel-title>
+            <mat-panel-description style="color: white">
+                Clique para expandir.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let item of pageOfItems">
+            <div class="card">
+                <div class="card-body">
+                    <h4>{{item.descricao}}</h4>
+                    <div class="row">
+                        <div class="col">
+                            <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
+                            <label class="mr-5"><b>Publicação: {{item.createdAt | date: 'dd/MM/yyyy'}}</b></label>
+                            <label><b>Tipo: {{item.tipo}}</b></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="comentarioForm" (ngSubmit)="onSubmitEnviarComentario()">
+                    <ngx-spinner
+                        bdColor = "#090909"
+                        size = "medium"
+                        color = "#f40b0b"
+                        type = "square-jelly-box"
+                        [fullScreen] = "true">
+                        <p style="color: white" > Enviando seu comentario... </p>
+                    </ngx-spinner>
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                                    <mat-form-field appearance="outline">
+                                    <mat-label>Tipo</mat-label>
+                                    <mat-select formControlName="tipo" required>
+                                        <mat-option *ngFor="let item of comboTipos" [value]="item">
+                                        {{item}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                        </div>
+                    </div>    
+                    <div class="row">
+                        <div class="col-md-10">
+                            <mat-form-field appearance="outline">
+                                <textarea formControlName="descricao" matInput placeholder="Comentário"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="mt-3 col-1 col-md-1">
+                            <button mat-raised-button type="submit" color="primary" class="btn-just-icon">
+                                <i class="material-icons">send</i><div class="ripple-container"></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -9,10 +9,11 @@ export class RespostaService {
 
   constructor( private _http: HttpClient ) { }
 
-  insert (body: any) {
+  insert(body, ID_pergunta) {
     return this._http.post<any>(environment.API_URL + '/respostas/nova_resposta', body, {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
+      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
+      params: new HttpParams().append('ID_pergunta', ID_pergunta)
     });
   }
 
@@ -31,19 +32,12 @@ export class RespostaService {
     });
   }
 
-  loadItems(page, body) {
-    return this._http.post<any>(environment.API_URL + '/respostas/pagination', body, {
+  loadItems(page, ID_pergunta) {
+    return this._http.get<any>(environment.API_URL + '/respostas/retorna_respostas', {
       observe: 'body',
       headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-      params: new HttpParams().append('page', page)
+      params: new HttpParams().append('page', page).append('ID_pergunta', ID_pergunta)
     });
   }
 
-  responder(ID_pergunta, body) {
-    return this._http.post<any>(environment.API_URL + '/respostas/nova_resposta', body, {
-      observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
-      params: new HttpParams().append('ID_pergunta', ID_pergunta)
-    });
-  }
 }

@@ -29,10 +29,11 @@ export class DetalhesPerguntaComponent implements OnInit {
   }
 
   detalhesPergunta( ) {
-    this.perguntaObject = new Pergunta();
+    console.log(this.perguntaObject);
     this.spinner.show();
     this.perguntaService.detalhes(this.id).subscribe(data => {
       this.perguntaObject = data[0];
+      console.log(this.perguntaObject);
       this.spinner.hide();
     });
   }

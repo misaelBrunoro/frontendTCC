@@ -27,23 +27,50 @@
                         <div *ngFor="let item of pageOfItems">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4>{{item.descricao}}...</h4>
+                                    <h4>{{item.descricao}}</h4>
                                     <div class="row">
                                         <div class="col">
                                             <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
                                             <label><b>Publicação: {{item.createdAt | date: 'dd/MM/yyyy'}}</b></label>
-                                        
-                                            <button class="btn btn btn-info btn-sm float-right mr-2">
-                                                Responder
-                                            </button>
+                                            
+                                            <app-comentario [ID_resposta]= item._id></app-comentario>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div> 
+                    
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <ul *ngIf="pager.pages && pager.pages.length" 
+                                    class="pagination justify-content-center">
+                                    <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item first-item">
+                                        <a routerLink="/mural/detalhe-pergunta/respostas/{{ID_pergunta}}"
+                                           [queryParams]="{page: 1 }" class="page-link">Primeiro</a>
+                                    </li>
+                                    <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item previous-item">
+                                        <a routerLink="/mural/detalhe-pergunta/respostas/{{ID_pergunta}}"
+                                           [queryParams]="{ page: pager.currentPage - 1 }" class="page-link">Anterior</a>
+                                    </li>
+                                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item number-item">
+                                        <a routerLink="/mural/detalhe-pergunta/respostas/{{ID_pergunta}}" 
+                                           [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+                                    </li>
+                                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item next-item">
+                                        <a routerLink="/mural/detalhe-pergunta/respostas/{{ID_pergunta}}"
+                                           [queryParams]="{ page: pager.currentPage + 1 }" class="page-link">Próximo</a>
+                                    </li>
+                                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item last-item">
+                                        <a routerLink="/mural/detalhe-pergunta/respostas/{{ID_pergunta}}" 
+                                           [queryParams]="{ page: pager.totalPages }" class="page-link">Último</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>    
 
-                    </div>
-                </div>
+                    </div> <!--Fim do body principal-->
+                </div><!--Fim do card principal-->
                 
             </div>
         </div>

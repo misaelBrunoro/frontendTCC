@@ -1,0 +1,20 @@
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+
+.pagination>.active>a {
+    background-color: rgb(12, 103, 223);
+    color: white;
+}
+
+.pagination>li.disabled>a {
+    color: rgb(0, 0, 0);
+}
+
+.pagination a {
+    color: rgb(12, 103, 223);
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #ddd;
+}

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RespostaNovaComponent } from './../resposta-nova/resposta-nova.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
-import { PerguntaService } from 'app/services/pergunta/pergunta.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { RespostaService } from 'app/services/resposta/resposta.service';
 
 @Component({
   selector: 'app-listar-respostas',
@@ -14,11 +14,11 @@ export class ListarRespostasComponent implements OnInit {
   // Itens buscados
   pager = { pages: ''};
   pageOfItems = [];
-  id: any;
+  ID_pergunta: any;
   page: any;
 
   constructor(
-    private perguntaService: PerguntaService,
+    private respostaService: RespostaService,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private dialog: MatDialog
@@ -28,7 +28,7 @@ export class ListarRespostasComponent implements OnInit {
     this.route.queryParams.subscribe(x => {
       this.page = x.page;
       this.route.params.subscribe(param => {
-        this.id = param['id'];
+        this.ID_pergunta = param['id'];
         this.loadPage( );
       });
     });
@@ -36,7 +36,7 @@ export class ListarRespostasComponent implements OnInit {
 
   loadPage( ) {
     this.spinner.show();
-    this.perguntaService.buscarPorID(this.page, this.id).subscribe(x => {
+    this.respostaService.loadItems(this.page, this.ID_pergunta).subscribe(x => {
       this.pager = x.pager;
       this.pageOfItems = x.pageOfItems;
       this.spinner.hide();
@@ -51,6 +51,11 @@ export class ListarRespostasComponent implements OnInit {
       height: '70%',
       panelClass: 'dialogClass',
     });
-    (dialogRef.componentInstance).ID_pergunta = this.id;
+
+    (dialogRef.componentInstance).ID_pergunta = this.ID_pergunta;
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadPage();
+    });
   }
 }

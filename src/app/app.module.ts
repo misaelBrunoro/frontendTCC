@@ -25,9 +25,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthService} from './services/auth//auth.service';
-import { PerguntaService } from './services/pergunta/pergunta.service';
 import { UserService } from './services/user/user.service';
-import { UploadFilesService } from './services/upload/upload-file.service';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
@@ -58,8 +56,6 @@ import { RegistroComponent } from './pages/registro/registro.component';
       RegistroComponent,
   ],
   providers: [
-      PerguntaService,
-      UploadFilesService,
       UserService,
       AuthService,
       AuthGuard,

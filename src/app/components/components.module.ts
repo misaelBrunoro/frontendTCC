@@ -12,6 +12,7 @@ import { FiltrosComponent } from '.././components/filtros/filtros.component';
 import { MaterialFormatModule } from '../material/material-format.module';
 import { ListarRespostasComponent } from './resposta/listar-respostas/listar-respostas.component';
 import { RespostaNovaComponent } from './resposta/resposta-nova/resposta-nova.component';
+import { ComentarioComponent } from './comentario/comentario.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { RespostaNovaComponent } from './resposta/resposta-nova/resposta-nova.co
     ListarSalasComponent,
     FiltrosComponent,
     ListarRespostasComponent,
-    RespostaNovaComponent
+    RespostaNovaComponent,
+    ComentarioComponent
   ],
   exports: [
     FooterComponent,
@@ -43,7 +45,8 @@ import { RespostaNovaComponent } from './resposta/resposta-nova/resposta-nova.co
     ListarSalasComponent,
     FiltrosComponent,
     ListarRespostasComponent,
-    RespostaNovaComponent
+    RespostaNovaComponent,
+    ComentarioComponent
   ],
   providers: [
     MaterialFormatModule

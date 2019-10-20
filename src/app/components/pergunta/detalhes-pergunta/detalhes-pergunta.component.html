@@ -47,7 +47,7 @@
 
                         <div class="row mt-3">
                             <div class="col">
-                                <div *ngIf="perguntaObject.resposta && perguntaObject.resposta.length > 0" class="card">
+                                <div *ngIf="perguntaObject.resposta && perguntaObject.resposta.length > 0 " class="card">
                                     <div class="card-header card-header-danger">
                                         <h4 class="card-title">Resposta Oficial</h4>
                                     </div>
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>   
 
-                                <div *ngIf="!perguntaObject.resposta && perguntaObject.resposta.length == 0" class="card">
+                                <div *ngIf="perguntaObject.resposta && perguntaObject.resposta.length == 0" class="card">
                                     <div class="card-header card-header-danger">
                                         <h4 class="card-title">Resposta Oficial</h4>
                                     </div>
