@@ -12,7 +12,6 @@ export class PerguntaService {
   insert (body: any) {
     return this._http.post<any>(environment.API_URL + '/perguntas/nova_pergunta', body, {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
     });
   }
 
@@ -26,15 +25,13 @@ export class PerguntaService {
 
   getList() {
     return this._http.get<any>(environment.API_URL + '/perguntas', {
-      observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
+      observe: 'body'
     });
   }
 
   filteredItems(page, body) {
     return this._http.post<any>(environment.API_URL + '/perguntas/pagination', body, {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('page', page)
     });
   }
@@ -42,7 +39,6 @@ export class PerguntaService {
   detalhes(id) {
     return this._http.get<any>(environment.API_URL + '/perguntas/detalhes', {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('id', id)
     });
   }

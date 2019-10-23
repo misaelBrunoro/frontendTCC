@@ -12,7 +12,6 @@ export class DisciplinaService {
     insert (body: any) {
         return this._http.post<any>(environment.API_URL + '/disciplinas', body, {
             observe: 'body',
-            headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
         });
     }
     update( ) {
@@ -26,7 +25,6 @@ export class DisciplinaService {
     getList() {
         return this._http.get<any>(environment.API_URL + '/disciplinas', {
           observe: 'body',
-          headers: new HttpHeaders().append('authorization', localStorage.getItem('token'))
         });
     }
 

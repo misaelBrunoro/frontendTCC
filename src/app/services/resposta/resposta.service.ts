@@ -12,7 +12,6 @@ export class RespostaService {
   insert(body, ID_pergunta) {
     return this._http.post<any>(environment.API_URL + '/respostas/nova_resposta', body, {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('ID_pergunta', ID_pergunta)
     });
   }
@@ -28,14 +27,12 @@ export class RespostaService {
   getList() {
     return this._http.get<any>(environment.API_URL + '/respostas', {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
     });
   }
 
   loadItems(page, ID_pergunta) {
     return this._http.get<any>(environment.API_URL + '/respostas/retorna_respostas', {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('page', page).append('ID_pergunta', ID_pergunta)
     });
   }

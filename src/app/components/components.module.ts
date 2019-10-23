@@ -7,7 +7,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PerguntaNovaComponent } from '.././components/pergunta/pergunta-nova/pergunta-nova.component';
 import { ListarPerguntasComponent } from '.././components/pergunta/listar-perguntas/listar-perguntas.component';
 import { DetalhesPerguntaComponent } from '.././components/pergunta/detalhes-pergunta/detalhes-pergunta.component';
-import { ListarSalasComponent } from '.././components/salas/listar-salas/listar-salas.component';
 import { FiltrosComponent } from '.././components/filtros/filtros.component';
 import { MaterialFormatModule } from '../material/material-format.module';
 import { ListarRespostasComponent } from './resposta/listar-respostas/listar-respostas.component';
@@ -28,7 +27,6 @@ import { ComentarioComponent } from './comentario/comentario.component';
     PerguntaNovaComponent,
     ListarPerguntasComponent,
     DetalhesPerguntaComponent,
-    ListarSalasComponent,
     FiltrosComponent,
     ListarRespostasComponent,
     RespostaNovaComponent,
@@ -42,7 +40,6 @@ import { ComentarioComponent } from './comentario/comentario.component';
     PerguntaNovaComponent,
     ListarPerguntasComponent,
     DetalhesPerguntaComponent,
-    ListarSalasComponent,
     FiltrosComponent,
     ListarRespostasComponent,
     RespostaNovaComponent,

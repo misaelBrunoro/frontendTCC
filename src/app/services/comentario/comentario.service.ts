@@ -12,7 +12,6 @@ export class ComentarioService {
   insert (body, ID_resposta) {
     return this._http.post<any>(environment.API_URL + '/comentarios/novo_comentario', body, {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('ID_resposta', ID_resposta)
     });
   }
@@ -28,7 +27,6 @@ export class ComentarioService {
   loadItems(ID_resposta) {
     return this._http.get<any>(environment.API_URL + '/comentarios/retorna_comentarios', {
       observe: 'body',
-      headers: new HttpHeaders().append('authorization', localStorage.getItem('token')),
       params: new HttpParams().append('ID_resposta', ID_resposta)
     });
   }

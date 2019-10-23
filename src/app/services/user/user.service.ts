@@ -1,4 +1,4 @@
-import { Usuario } from '../../entities/usuario.model';
+import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,11 +9,11 @@ export class UserService {
 
   constructor( private _http: HttpClient ) { }
 
-  insert (usuario: Usuario) {
+  insert ( ) {
 
   }
 
-  update(usuario: Usuario) {
+  update( ) {
 
   }
 
@@ -25,7 +25,7 @@ export class UserService {
 
   }
 
-  getUserBy_id(_id: string) {
-
+  currentUser() {
+      return this._http.get<any>(environment.API_URL + '/users/current_user');
   }
 }

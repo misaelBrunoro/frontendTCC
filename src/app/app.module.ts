@@ -1,9 +1,9 @@
+import { Interceptor } from './services/auth/interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'
 
 import { AuthGuard} from './guards/auth.guard';
 
@@ -30,12 +30,15 @@ import { UserService } from './services/user/user.service';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 
+import { HttpClientModule } from '@angular/common/http'
+
 @NgModule({
   imports: [
       BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
       HttpModule,
+      Interceptor,
       HttpClientModule,
       ComponentsModule,
       RouterModule,

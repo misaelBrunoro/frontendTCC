@@ -29,4 +29,5 @@ export class AuthService {
         }
         return this._http.post<any>(environment.OAPI_URL + '/validateToken', body).toPromise();
     }
+
 }
