@@ -1,4 +1,3 @@
-import { Pergunta } from './../../../entities/pergunta.model';
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from 'app/services/pergunta/pergunta.service';
 import { ActivatedRoute, Router } from '@angular/router';

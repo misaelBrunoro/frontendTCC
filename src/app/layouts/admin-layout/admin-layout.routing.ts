@@ -9,14 +9,51 @@ import { ChatComponent } from '../../pages/chat/chat.component';
 import { PerguntaNovaComponent } from 'app/components/pergunta/pergunta-nova/pergunta-nova.component';
 import { DetalhesPerguntaComponent } from './../../components/pergunta/detalhes-pergunta/detalhes-pergunta.component';
 import { ListarRespostasComponent } from './../../components/resposta/listar-respostas/listar-respostas.component';
+import { AuthGuard } from '../../guards/auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'graficos',                    component: DashboardComponent },
-    { path: 'perfil-user',                 component: PerfilUserComponent },
-    { path: 'mural',                       component: MuralComponent },
-    { path: 'mural/nova-pergunta',         component: PerguntaNovaComponent},
-    { path: 'mural/detalhe-pergunta/:id',  component: DetalhesPerguntaComponent},
-    { path: 'mural/detalhe-pergunta/respostas/:id', component: ListarRespostasComponent},
-    { path: 'chat',                        component: ChatComponent },
-    { path: 'admin',                       component: AdminComponent },
+    {
+        path: '',
+        canActivate: [AuthGuard],
+        redirectTo: 'graficos'
+    },
+    {
+        path: 'graficos',
+        canActivate: [AuthGuard],
+        component: DashboardComponent
+    },
+    {
+        path: 'perfil-user',
+        canActivate: [AuthGuard],
+        component: PerfilUserComponent 
+    },
+    {
+        path: 'mural',
+        canActivate: [AuthGuard],
+        component: MuralComponent
+    },
+    {
+        path: 'mural/nova-pergunta',
+        canActivate: [AuthGuard],
+        component: PerguntaNovaComponent
+    },
+    {
+        path: 'mural/detalhe-pergunta/:id',
+        canActivate: [AuthGuard],
+        component: DetalhesPerguntaComponent
+    },
+    {
+        path: 'mural/detalhe-pergunta/respostas/:id',
+        canActivate: [AuthGuard],
+        component: ListarRespostasComponent
+    },
+    {
+        path: 'chat',
+        canActivate: [AuthGuard],
+        component: ChatComponent },
+    {
+        path: 'admin',
+        canActivate: [AuthGuard],
+        component: AdminComponent,
+        data: {tipo: 'admin'} },
 ];

@@ -25,7 +25,7 @@ export class UserService {
 
   }
 
-  currentUser() {
-      return this._http.get<any>(environment.API_URL + '/users/current_user');
+  currentUser(): Promise<any> {
+      return this._http.get<any>(environment.API_URL + '/users/current_user').toPromise();
   }
 }
