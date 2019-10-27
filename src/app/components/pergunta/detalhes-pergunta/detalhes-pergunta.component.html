@@ -20,7 +20,8 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                <button mat-raised-button color="primary" (click)="onClickSessaoRespostas()">Ir para sessão de respostas</button>
+                                <button mat-raised-button color="primary"
+                                 (click)="onClickSessaoRespostas()">Ir para sessão de respostas</button>
                             </div>
                         </div>
 
@@ -59,6 +60,11 @@
                                         <label>
                                             <b>Publicação: {{perguntaObject.resposta[0].createdAt | date: 'dd/MM/yyyy'}}</b>
                                         </label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <app-comentario [ID_resposta]=perguntaObject.resposta[0]._id></app-comentario>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>   
 
@@ -74,6 +80,7 @@
                                         <label>
                                             <b>Publicação: {{date | date: 'dd/MM/yyyy'}}</b>
                                         </label>
+                                        
                                     </div>
                                 </div> 
                             </div>

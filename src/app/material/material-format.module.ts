@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -43,7 +44,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    AutosizeModule
+    AutosizeModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatButtonModule,
@@ -63,7 +65,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    AutosizeModule
+    AutosizeModule,
+    MatSlideToggleModule
   ],
   providers: [
     MatDatepickerModule,

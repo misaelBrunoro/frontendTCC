@@ -37,4 +37,12 @@ export class RespostaService {
     });
   }
 
+  oficializar(ID_pergunta, ID_resposta, ID_resposta_anterior) {
+    return this._http.get<any>(environment.API_URL + '/respostas/oficializar', {
+      observe: 'body',
+      params: new HttpParams().append('ID_resposta', ID_resposta)
+                              .append('ID_pergunta', ID_pergunta)
+                              .append('ID_resposta_anterior', ID_resposta_anterior)
+    });
+  }
 }

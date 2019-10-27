@@ -14,12 +14,12 @@
                     <div class="card-body">
                         <form [formGroup]="filtroForm" (ngSubmit)="onSubmitEnviarFiltros()">
                             <div class="row">
-                                <div class="col-6 col-md-6">
+                                <div class="col-12 col-md-6">
                                     <mat-form-field appearance="outline">
                                         <input formControlName="texto" matInput placeholder="Buscar por texto">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-3 col-md-3">
+                                <div class="col-8 col-md-3">
                                     <mat-form-field appearance="outline">
                                         <mat-label>Disciplinas</mat-label>
                                         <mat-select formControlName="disciplina">
@@ -31,18 +31,22 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3 col-md-3">
+                                <div class="col-8 col-md-3">
                                     <mat-form-field appearance="outline">
                                         <input formControlName="dataPublicacao" matInput [matDatepicker]="picker1" placeholder="Data de publicação">
                                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                         <mat-datepicker #picker1></mat-datepicker>
                                     </mat-form-field>
                                 </div>
+                                <mat-slide-toggle>Minhas perguntas</mat-slide-toggle>
+                                <mat-slide-toggle>Perguntas para mim</mat-slide-toggle>
+                                <mat-slide-toggle>Não respondidas</mat-slide-toggle>
+                                <mat-slide-toggle>Respondidas</mat-slide-toggle>
                                 <div class="col-1 col-md-1">
                                     <button mat-raised-button type="submit" color="primary" class="btn-just-icon">
                                         <i class="material-icons">search</i><div class="ripple-container"></div>
                                     </button>
-                                </div>
+                                </div>               
                             </div>
                         </form>
                     </div>

@@ -43,4 +43,10 @@ export class PerguntaService {
     });
   }
 
+  getByID(id) {
+    return this._http.get<any>(environment.API_URL + '/perguntas/getByID', {
+      observe: 'body',
+      params: new HttpParams().append('id', id)
+    });
+  }
 }
