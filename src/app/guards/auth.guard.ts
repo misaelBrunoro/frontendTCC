@@ -19,29 +19,22 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot ) {
-    if ( this.verificarToken ( ) ) {
-      const currentUser = this.userService.currentUser();
-      if (currentUser) {
-        return currentUser.then(data => {
-            if ((route.data && route.data.tipo) && route.data.tipo !== data.tipo) {
-              this.router.navigate(['/graficos']);
-              return false
-            } else {
-              return true;
-            }
-          });
-      }
-    }
-    this.router.navigate(['/login']);
-    return false
-  }
-
-  verificarToken ( ) {
     return this.authService.verifyToken( ).then(ret => {
-      if (!ret.valid) {
-        this.router.navigate(['/login']);
+      if (ret.valid) {
+        const currentUser = this.userService.currentUser();
+        if (currentUser) {
+          return currentUser.then(data => {
+              if ((route.data && route.data.tipo) && route.data.tipo !== data.tipo) {
+                this.router.navigate(['/graficos']);
+                return false
+              } else {
+                return true;
+              }
+            });
+        }
       }
-      return ret.valid;
+      this.router.navigate(['/login']);
+      return false
     });
   }
 }
