@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate {
         const currentUser = this.userService.currentUser();
         if (currentUser) {
           return currentUser.then(data => {
+            console.log(route.data.tipo)
               if ((route.data && route.data.tipo) && route.data.tipo !== data.tipo) {
                 this.router.navigate(['/graficos']);
                 return false

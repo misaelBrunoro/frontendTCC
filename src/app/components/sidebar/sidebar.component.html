@@ -6,26 +6,10 @@
         Monitoria
     </div>
 </div>
-<div class="sidebar-wrapper">
-  <div *ngIf="isMobileMenu()">
-    <ul class="nav navbar-nav nav-mobile-menu">
-        <li class="nav-item dropdown">
-            <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="material-icons">notifications</i>
-                <span class="notification">1</span>
-                <p>
-                    <span class="d-lg-none d-md-block">Notificações</span>
-                </p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Fulano respondeu sua pergunta</a>
-            </div>
-        </li>
-    </ul>
-  </div>
+<div class="sidebar-wrapper" *ngIf="currentUser" >
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
+            <a *ngIf="menuItem.tipo.indexOf(currentUser.tipo) > -1" class="nav-link" [routerLink]="[menuItem.path]">
                 <i class="material-icons">{{menuItem.icon}}</i>
                 <p>{{menuItem.title}}</p>
             </a>

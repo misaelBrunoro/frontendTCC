@@ -28,11 +28,11 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
       this.listTitles = ROUTES.filter(listTitle => listTitle);
-      const navbar: HTMLElement = this.element.nativeElement;
+      let navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
       this.router.events.subscribe((event) => {
         this.sidebarClose();
-         const $layer: any = document.getElementsByClassName('close-layer')[0];
+         let $layer: any = document.getElementsByClassName('close-layer')[0];
          if ($layer) {
            $layer.remove();
            this.mobile_menu_visible = 0;
@@ -41,8 +41,8 @@ export class NavbarComponent implements OnInit {
     }
 
     sidebarOpen() {
-        const toggleButton = this.toggleButton;
-        const body = document.getElementsByTagName('body')[0];
+        let toggleButton = this.toggleButton;
+        let body = document.getElementsByTagName('body')[0];
         setTimeout(function() {
             toggleButton.classList.add('toggled');
         }, 500);
@@ -52,22 +52,22 @@ export class NavbarComponent implements OnInit {
         this.sidebarVisible = true;
     };
     sidebarClose() {
-        const body = document.getElementsByTagName('body')[0];
+        let body = document.getElementsByTagName('body')[0];
         this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         body.classList.remove('nav-open');
     };
     sidebarToggle() {
-        // const toggleButton = this.toggleButton;
-        // const body = document.getElementsByTagName('body')[0];
-        const $toggle = document.getElementsByClassName('navbar-toggler')[0];
+        // let toggleButton = this.toggleButton;
+        ///  body = document.getElementsByTagName('body')[0];
+        let $toggle = document.getElementsByClassName('navbar-toggler')[0];
 
         if (this.sidebarVisible === false) {
             this.sidebarOpen();
         } else {
             this.sidebarClose();
         }
-        const body = document.getElementsByTagName('body')[0];
+        let body = document.getElementsByTagName('body')[0];
 
         if (this.mobile_menu_visible === 1) {
             // $('html').removeClass('nav-open');

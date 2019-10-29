@@ -55,5 +55,5 @@ export const AdminLayoutRoutes: Routes = [
         path: 'admin',
         canActivate: [AuthGuard],
         component: AdminComponent,
-        data: {tipo: 'admin'} },
+        data: {tipo: 'Admin'} },
 ];
