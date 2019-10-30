@@ -15,6 +15,7 @@ import {
   MatNativeDateModule,
   MAT_DATE_LOCALE,
   MatIconModule,
+  MatButtonToggleModule
 } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -45,7 +46,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     MatDialogModule,
     AutosizeModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatButtonModule,
@@ -66,7 +68,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     MatDialogModule,
     AutosizeModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatButtonToggleModule
   ],
   providers: [
     MatDatepickerModule,

@@ -7,6 +7,7 @@
     </div>
 </div>
 <div class="sidebar-wrapper" *ngIf="currentUser" >
+        
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
             <a *ngIf="menuItem.tipo.indexOf(currentUser.tipo) > -1" class="nav-link" [routerLink]="[menuItem.path]">

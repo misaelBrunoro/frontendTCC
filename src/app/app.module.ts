@@ -11,13 +11,8 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
-import {
-  MatButtonModule,
-  MatInputModule,
-  MatFormFieldModule,
-  MatCardModule,
-  MatIconModule
-} from '@angular/material';
+
+import { MaterialFormatModule } from './material/material-format.module';
 
 import { ToastrModule } from 'ngx-toastr';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -43,11 +38,7 @@ import { HttpClientModule } from '@angular/common/http'
       ComponentsModule,
       RouterModule,
       AppRoutingModule,
-      MatButtonModule,
-      MatInputModule,
-      MatFormFieldModule,
-      MatCardModule,
-      MatIconModule,
+      MaterialFormatModule,
       FlexLayoutModule,
       NgxSpinnerModule,
       ToastrModule.forRoot(),

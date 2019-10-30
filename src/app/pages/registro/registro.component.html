@@ -45,15 +45,21 @@
                                        matInput placeholder="Cornfirmar Senha"
                                        type="password">
                             </mat-form-field>
-
+                            <mat-button-toggle-group formControlName="tipo" class="mb-3">
+                                <mat-button-toggle value="Aluno">Aluno</mat-button-toggle>
+                                <mat-button-toggle value="Professor">Professor</mat-button-toggle>
+                            </mat-button-toggle-group>
                             <div class="row" fxLayoutAlign="center">
                                 <button  mat-raised-button type="submit"
-                                         class="btn btn-danger pull-right">Registrar</button>
-                            </div>
-                            <div class="row" fxLayoutAlign="center">
+                                         class="btn btn-danger pull-right"
+                                         [disabled]="registroForm.invalid">
+                                        Registrar
+                                </button>
                                 <button  mat-raised-button type="button"
                                          [routerLink] = "['/login']"
-                                         class="btn btn-danger pull-right">Retornar</button>
+                                         class="btn btn-danger pull-right">
+                                         Retornar
+                                </button>
                             </div>
                             <div class="clearfix"></div>
                         </form>
