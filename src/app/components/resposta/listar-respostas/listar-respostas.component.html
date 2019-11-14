@@ -18,15 +18,14 @@
                             [fullScreen] = "true">
                             <p style="color: white" > Buscando... </p>
                         </ngx-spinner>
-                        <div *ngIf="(currentUser && currentPergunta.length > 0)">
-                                <button *ngIf="(currentUser.tipo !== 'Aluno' && currentUser.tipo !== 'Admin') 
-                                        && (currentUser.disciplina._id === currentPergunta[0].disciplina._id)"
-                                        mat-raised-button color="primary"
-                                        class="btn-outline"
-                                        (click)="onClickNovaResposta()">
-                                        Adicionar uma Resposta
-                                </button>
-                        </div>
+
+                        <button *ngIf="verificarPermissao()"
+                                mat-raised-button color="primary"
+                                class="btn-outline"
+                                (click)="onClickNovaResposta()">
+                                Adicionar uma Resposta
+                        </button>
+
                         <div *ngFor="let item of pageOfItems">
                             <div class="card">
                                 <div class="card-body">
@@ -37,14 +36,13 @@
                                                 <div class="col-md-12">
                                                     <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
                                                     <label><b>Publicação: {{item.createdAt | date: 'dd/MM/yyyy'}}</b></label>
-                                                    <div *ngIf="(currentUser && currentPergunta.length > 0)">
-                                                        <button *ngIf="(currentUser.tipo === 'Monitor' || currentUser.tipo === 'Professor') 
-                                                                || currentUser._id === currentPergunta[0].usuario._id" 
-                                                            class="btn btn btn-outline-warning btn-sm float-right mb-3 mr-2"
-                                                            (click)="onClickOficializar(item._id)">
-                                                            Oficializar
-                                                        </button>
-                                                    </div>
+                                                    
+                                                    <button *ngIf="verificarPermissao()" 
+                                                        class="btn btn btn-outline-warning btn-sm float-right mb-3 mr-2"
+                                                        (click)="onClickOficializar(item._id)">
+                                                        Oficializar
+                                                    </button>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="row">
