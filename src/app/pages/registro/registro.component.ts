@@ -36,6 +36,11 @@ export class RegistroComponent implements OnInit {
     this.authService.register(this.registroForm.value).subscribe(data => {
       this.toastr.success('Registrado com sucesso', 'Registro');
       this.spinner.hide();
+      const loginForm = {
+        email: this.registroForm.get('email').value,
+        password: this.registroForm.get('password').value
+      };
+      this.authService.login(loginForm);
     }, error => {
       this.toastr.error(error['error']['errors'], 'Registro');
       this.spinner.hide();

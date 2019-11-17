@@ -63,9 +63,8 @@ export class ListarRespostasComponent implements OnInit {
 
   onClickNovaResposta() {
     const dialogRef = this.dialog.open(RespostaNovaComponent, {
-      width: '70%',
-      height: '70%',
-      panelClass: 'dialogClass',
+      width: '900px',
+      height: '505px'
     });
 
     (dialogRef.componentInstance).ID_pergunta = this.ID_pergunta;
