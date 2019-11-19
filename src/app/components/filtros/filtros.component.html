@@ -1,17 +1,17 @@
 <div>
     <div>
         <mat-accordion>
-            <mat-expansion-panel class="bg-dark">
+            <mat-expansion-panel class="shadow-lg">
                 <mat-expansion-panel-header>
-                    <mat-panel-title style="color: white">
+                    <mat-panel-title>
                         <b>Filtros de Busca:</b>
                     </mat-panel-title>
-                    <mat-panel-description style="color: white">
+                    <mat-panel-description>
                         Clique para expandir.
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body shadow-lg">
                         <form [formGroup]="filtroForm" (ngSubmit)="onSubmitEnviarFiltros()">
                             <div class="row">
                                 <div class="col-12 col-md-6">

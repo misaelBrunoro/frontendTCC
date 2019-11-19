@@ -1,70 +1,74 @@
 <div class="main-content">
-        <div class="container-fluid">
-          <div class="card">
-              <div class="card-header card-header-danger">
-                  <h4 class="card-title">Gerenciar Professores</h4>
-                  <p class="card-category">Gerencie as contas de professores</p>
-              </div>
-              <div class="card-body">
-               
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                
-                  <ng-container matColumnDef="nomeReal">
-                    <th mat-header-cell *matHeaderCellDef> Nome Real </th>
-                    <td mat-cell *matCellDef="let element"> {{element.nomeReal}} </td>
-                  </ng-container>
-                
-                  <ng-container matColumnDef="nomeVirtual">
-                    <th mat-header-cell *matHeaderCellDef> Nome Virtual </th>
-                    <td mat-cell *matCellDef="let element"> {{element.nomeVirtual}} </td>
-                  </ng-container>
-                
-                  <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef> Email </th>
-                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-                  </ng-container>
-                  
-                  <ng-container matColumnDef="situacao">
-                      <th mat-header-cell *matHeaderCellDef> Situação </th>
-                      <td mat-cell *matCellDef="let element"> {{element.situacao}} </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="acoes">
-                    <th mat-header-cell *matHeaderCellDef> Ações</th>
-                    <td mat-cell *matCellDef="let element">                    
-                      
-                      <button style="margin-left: 5px;"
-                              mat-mini-fab color="primary"
-                              class="btn-just-icon">
-                          <i class="material-icons">add</i>
-                          <div class="ripple-container"></div>
-                      </button> 
-
-                      <button *ngIf="element.situacao === 'Inativo'"
-                              style="margin-left: 5px;" mat-mini-fab 
-                              class="bg-success btn-just-icon"
-                              (click)="onClickAtivar(true)">
-                          <i class="material-icons">done_all</i>
-                          <div class="ripple-container"></div>
-                      </button>
-
-                      <button *ngIf="element.situacao === 'Ativo'"
-                              tyle="margin-left: 5px;"
-                              mat-mini-fab class="bg-danger btn-just-icon"
-                              (click)="onClickAtivar(false)">
-                          <i class="material-icons">border_clear</i>
-                          <div class="ripple-container"></div>
-                      </button>
-                        
-                    </td>
-                  </ng-container>
-
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-                
-                <mat-paginator [pageSizeOptions]="[15]" showFirstLastButtons></mat-paginator>
-              </div>
-          </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header card-header-danger">
+          <h4 class="card-title">Gerenciar Professores</h4>
+          <p class="card-category">Gerencie as contas de professores</p>
       </div>
+      <div class="card-body">
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+          <ng-container matColumnDef="nomeReal">
+            <th mat-header-cell *matHeaderCellDef> Nome Real </th>
+            <td mat-cell *matCellDef="let element"> {{element.nomeReal}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="nomeVirtual">
+            <th mat-header-cell *matHeaderCellDef> Nome Virtual </th>
+            <td mat-cell *matCellDef="let element"> {{element.nomeVirtual}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="situacao">
+              <th mat-header-cell *matHeaderCellDef> Situação </th>
+              <td mat-cell *matCellDef="let element"> {{element.situacao}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef> Ações</th>
+            <td mat-cell *matCellDef="let element">                    
+              
+              <button style="margin-left: 5px;"
+                      mat-mini-fab color="primary"
+                      class="btn-just-icon"
+                      (click)="onClickDisciplinas()">
+                  <i class="material-icons">add</i>
+                  <div class="ripple-container"></div>
+              </button> 
+
+              <button *ngIf="element.situacao === 'Inativo'"
+                      style="margin-left: 5px;" mat-mini-fab 
+                      class="bg-success btn-just-icon"
+                      (click)="onClickAtivar('Ativo', element._id)">
+                  <i class="material-icons">done_all</i>
+                  <div class="ripple-container"></div>
+              </button>
+
+              <button *ngIf="element.situacao === 'Ativo'"
+                      style="margin-left: 5px;"
+                      mat-mini-fab class="bg-danger btn-just-icon"
+                      (click)="onClickAtivar('Inativo', element._id)">
+                  <i class="material-icons">clear</i>
+                  <div class="ripple-container"></div>
+              </button>
+                
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        <mat-paginator 
+            [pageSizeOptions]="[10]" 
+            showFirstLastButtons>
+          </mat-paginator>
+      </div>
+    </div>
+  </div>
 </div>

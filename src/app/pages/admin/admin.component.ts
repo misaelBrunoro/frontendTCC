@@ -1,3 +1,4 @@
+import { DisciplinasComponent } from '../../components/disciplinas/disciplinas.component';
 import { ConfirmDialogComponent } from './../../components/confirm-dialog/confirm-dialog.component';
 import { UserService } from './../../services/user/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -29,7 +30,7 @@ export class AdminComponent implements OnInit {
     this.paginator._intl.itemsPerPageLabel = 'Items por página';
     this.paginator._intl.getRangeLabel = this.getRangeLabel;
     this.dataSource.paginator = this.paginator;
-    this.getProfessores();
+    this.getProfessores( );
   }
 
   getRangeLabel(page: number, pageSize: number, length: number): string {
@@ -45,30 +46,46 @@ export class AdminComponent implements OnInit {
     return `${startIndex + 1} - ${endIndex} de ${length}`;
   }
 
-  getProfessores() {
+  getProfessores( ) {
     this.userService.getList('Professor').subscribe(res => {
-      console.log(res);
       this.dataSource.data = res;
+      console.log(res)
     }, error => {
       console.log(error);
     })
   }
 
-  onClickAtivar(ativo) {
+  onClickAtivar(ativo, id) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
-      height: '130px',
+      height: '153px',
     });
-    if (ativo === false) {
-      (dialogRef.componentInstance).mensagem = 'Deseja desativar este professor?'
+    if (ativo === 'Inativo') {
+      (dialogRef.componentInstance).mensagem = 'Deseja mesmo desativar este professor?'
     } else {
-      (dialogRef.componentInstance).mensagem = 'Deseja ativar este professor?'
+      (dialogRef.componentInstance).mensagem = 'Deseja mesmo ativar este professor?'
     }
 
     dialogRef.afterClosed().subscribe(result => {
       if ((dialogRef.componentInstance).option) {
-        console.log(ativo);
+        this.userService.ativarUser(ativo, id).subscribe(res => {
+          if (ativo === 'Ativo') {
+            this.toast.success('Usuário ativado com sucesso', 'Ativação');
+          } else {
+            this.toast.success('Usuário desativado com sucesso', 'Ativação');
+          }
+          this.getProfessores( );
+        }, error => {
+            console.log(error);
+        })
       }
+    });
+  }
+
+  onClickDisciplinas() {
+    const dialogRef = this.dialog.open(DisciplinasComponent, {
+      width: '450px',
+      height: '300px'
     });
   }
 }

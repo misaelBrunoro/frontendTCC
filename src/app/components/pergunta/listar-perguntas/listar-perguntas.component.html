@@ -2,14 +2,14 @@
     <div class="col-md-12">
         <div *ngFor="let item of pageOfItems">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body shadow-lg">
                     <ngx-spinner
                         bdColor = "#090909"
                         size = "medium"
                         color = "#f40b0b"
                         type = "square-jelly-box"
                         [fullScreen] = "true">
-                        <p style="color: white" > Buscando... </p>
+                        <p class="foregroundWhite"> Buscando... </p>
                     </ngx-spinner>
                     <h3><b>{{item.titulo}}</b></h3>
                     <h4 class="broken-text">{{item.descricao}}...</h4>
@@ -24,16 +24,16 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn btn-outline-info btn-sm float-right mr-2"
+                                    <button class="btn btn-outline btn-sm float-right mr-2"
                                     [routerLink]="['detalhe-pergunta/', item._id]">
                                             Visualizar
                                     </button>
                                     <button *ngIf="item.resolvido == false"
-                                            class="btn btn btn-outline-danger btn-sm float-right">
+                                            class="btn btn-outline-danger btn-sm float-right">
                                             Aguardando
                                     </button>
                                     <button *ngIf="item.resolvido == true"
-                                            class="btn btn btn-outline-success btn-sm float-right">
+                                            class="btn btn-outline-success btn-sm float-right">
                                             Resolvido
                                     </button>     
                                 </div>

@@ -47,6 +47,7 @@
     "moment": "2.24.0",
     "ngx-autosize": "^1.6.4",
     "ngx-material-file-input": "^2.0.0",
+    "ngx-page-scroll-core": "^7.0.0",
     "ngx-spinner": "^8.0.3",
     "ngx-textarea-autosize": "^2.0.3",
     "ngx-toastr": "^10.2.0",

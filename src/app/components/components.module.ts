@@ -13,6 +13,7 @@ import { ListarRespostasComponent } from './resposta/listar-respostas/listar-res
 import { RespostaNovaComponent } from './resposta/resposta-nova/resposta-nova.component';
 import { ComentarioComponent } from './comentario/comentario.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { DisciplinasComponent } from './disciplinas/disciplinas.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     ListarRespostasComponent,
     RespostaNovaComponent,
     ComentarioComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DisciplinasComponent
   ],
   exports: [
     FooterComponent,
@@ -51,6 +53,6 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
   providers: [
     MaterialFormatModule
   ],
-  entryComponents: [RespostaNovaComponent, ConfirmDialogComponent]
+  entryComponents: [RespostaNovaComponent, ConfirmDialogComponent, DisciplinasComponent]
 })
 export class ComponentsModule { }

@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -23,6 +23,13 @@ export class UserService {
   alterarPerfil(body) {
     return this._http.post<any>(environment.API_URL + '/users/alterar_perfil', body, {
       observe: 'body',
+    });
+  }
+
+  ativarUser(ativo, id) {
+    return this._http.get<any>(environment.API_URL + '/users/ativar_user', {
+      observe: 'body',
+      params: new HttpParams().append('ativo', ativo).append('_id', id)
     });
   }
 }

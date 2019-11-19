@@ -2,13 +2,12 @@
   <div class="container-fluid">
       <div class="row">
           <div class="col-md-12" style="margin: 0 auto">
-              <div class="card bg-dark">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title">Editar Perfil</h4>
-                      <p class="card-category">Edite o seu perfil abaixo</p>
+              <div class="card">
+                  <div class="card-header primaryColor">
+                      <h4 class="foregroundWhite card-title">Editar Perfil</h4>
                   </div>
                   <div class="card-body">
-                      <div class="card">
+                      <div class="card shadow-lg">
                         <div class="card-body">
                             <form [formGroup]="perfilForm" (ngSubmit)="onSubmitPerfil()">
                                 <div class="row">
@@ -75,7 +74,7 @@
                                         </mat-form-field>
                                     </div>
                                 </div>
-                                <button mat-raised-button type="submit" class="btn btn-outline-danger pull-right">Editar Perfil</button>
+                                <button mat-raised-button type="submit" class="btn btn-outline pull-right">Editar Perfil</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>    

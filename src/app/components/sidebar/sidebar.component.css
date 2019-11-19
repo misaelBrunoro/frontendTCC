@@ -1,0 +1,12 @@
+.primaryColor {
+    /*background-color: #355C7D !important;*/
+    background-color: #2c3e50;
+}/*#985EFF*/
+
+.foregroundWhite {
+    color: white;
+}
+
+.secondaryColor {
+    background-color: #985EFF !important;
+}
