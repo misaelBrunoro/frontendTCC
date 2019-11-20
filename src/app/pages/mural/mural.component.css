@@ -5,3 +5,8 @@
 .foregroundWhite {
     color: white;
 }
+
+.btn-outline {
+    border-color: #2c3e50 !important;
+    color: #2c3e50 !important;
+}

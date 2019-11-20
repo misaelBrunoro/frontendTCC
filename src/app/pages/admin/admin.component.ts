@@ -5,7 +5,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,14 +13,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  displayedColumns: string[] = ['nomeReal', 'nomeVirtual', 'email', 'situacao', 'acoes'];
+  displayedColumns: string[] = ['nomeReal', 'email', 'situacao', 'acoes'];
   dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
     private userService: UserService,
-    private spinner: NgxSpinnerService,
     private dialog: MatDialog,
     private toast: ToastrService
   ) { }
@@ -82,10 +80,11 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  onClickDisciplinas() {
+  onClickDisciplinas(id) {
     const dialogRef = this.dialog.open(DisciplinasComponent, {
       width: '450px',
-      height: '300px'
+      height: '400px'
     });
+    (dialogRef.componentInstance).idSelecionado = id;
   }
 }

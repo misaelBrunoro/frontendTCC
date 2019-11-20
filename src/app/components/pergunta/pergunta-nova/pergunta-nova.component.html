@@ -1,11 +1,11 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="card bg-dark">
-            <div class="card-header card-header-danger">
-                <h4 class="card-title">Descreva a sua pergunta</h4>
+        <div class="card shadow">
+            <div class="card-header primaryColor">
+                <h4 class="foregroundWhite card-title">Descreva a sua pergunta</h4>
             </div>
             <div class="card-body">
-                <div class="card">
+                <div class="card shadow-lg">
                     <div class="card-body">
                         <ngx-spinner
                             bdColor = "#090909"
@@ -50,9 +50,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-
                                 <button mat-raised-button type='submit' 
-                                    class="btn btn-danger pull-right" 
+                                    class="btn btn-outline pull-right" 
                                     [disabled]="perguntaForm.invalid">Enviar Pergunta
                                 </button>
                             </div>

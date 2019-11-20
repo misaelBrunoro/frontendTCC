@@ -1,5 +1,5 @@
-<div class="col-md-5 divFormat">
-    <h4 class="card-title">Detalhe sua resposta</h4>
+<div class="col-md-5 primaryColor">
+    <h4 class="foregroundWhite card-title">Detalhe sua resposta</h4>
 </div>
 <form [formGroup]="respostaForm" (ngSubmit)="onSubmitEnviarResposta()">
     <ngx-spinner
@@ -15,7 +15,7 @@
         <textarea formControlName="descricao" style="min-height: 215px;" matInput placeholder="Descrição"></textarea>
     </mat-form-field>
     <button type='submit' mat-raised-button 
-            class="btn-danger pull-right"
+            class="btn btn-outline pull-right"
             [disabled]="respostaForm.invalid">
         Enviar Resposta
     </button>      

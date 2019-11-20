@@ -10,9 +10,9 @@ export class DisciplinaService {
     constructor( private _http: HttpClient ) { }
 
     insert (body: any) {
-        return this._http.post<any>(environment.API_URL + '/disciplinas', body, {
-            observe: 'body',
-        });
+      return this._http.post<any>(environment.API_URL + '/disciplinas', body, {
+          observe: 'body',
+      });
     }
     update( ) {
 
@@ -23,9 +23,9 @@ export class DisciplinaService {
     }
 
     getList() {
-        return this._http.get<any>(environment.API_URL + '/disciplinas', {
-          observe: 'body',
-        });
+      return this._http.get<any>(environment.API_URL + '/disciplinas', {
+        observe: 'body',
+      });
     }
 
     // Paginacao

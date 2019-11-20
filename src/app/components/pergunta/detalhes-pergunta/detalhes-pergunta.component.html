@@ -3,9 +3,9 @@
         <div class="row mt-3">
             <div class="col-md-12">
                 
-                <div class="card bg-dark">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title">Detalhamento da pergunta</h4>
+                <div class="card shadow">
+                    <div class="card-header primaryColor">
+                        <h4 class="foregroundWhite card-title">Detalhamento da pergunta</h4>
                     </div>
 
                     <div class="card-body">
@@ -20,16 +20,16 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                <button mat-raised-button color="primary"
+                                <button mat-raised-button class="btn btn-outline"
                                  (click)="onClickSessaoRespostas()">Ir para sessão de respostas</button>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col">
-                                <div *ngIf="perguntaObject.usuario" class="card">
-                                    <div class="card-header card-header-danger">
-                                        <h4 class="card-title">Pergunta Completa</h4>
+                                <div *ngIf="perguntaObject.usuario" class="card shadow-lg">
+                                    <div class="card-header primaryColor">
+                                        <h4 class="foregroundWhite card-title">Pergunta Completa</h4>
                                     </div>
                                     <div class="card-body">
                                         <h3><b>{{perguntaObject.titulo}}</b></h3>
@@ -48,9 +48,9 @@
 
                         <div class="row mt-3">
                             <div class="col">
-                                <div *ngIf="perguntaObject.resposta && perguntaObject.resposta.length > 0 " class="card">
-                                    <div class="card-header card-header-danger">
-                                        <h4 class="card-title">Resposta Oficial</h4>
+                                <div *ngIf="perguntaObject.resposta && perguntaObject.resposta.length > 0 " class="card shadow-lg">
+                                    <div class="card-header primaryColor">
+                                        <h4 class="foregroundWhite card-title">Resposta Oficial</h4>
                                     </div>
                                     <div class="card-body">
                                         <h4>{{perguntaObject.resposta[0].descricao}}</h4>
@@ -68,9 +68,9 @@
                                     </div>
                                 </div>   
 
-                                <div *ngIf="perguntaObject.resposta && perguntaObject.resposta.length == 0" class="card">
-                                    <div class="card-header card-header-danger">
-                                        <h4 class="card-title">Resposta Oficial</h4>
+                                <div *ngIf="perguntaObject.resposta && perguntaObject.resposta.length == 0" class="card shadow-lg">
+                                    <div class="card-header primaryColor">
+                                        <h4 class="foregroundWhite card-title">Resposta Oficial</h4>
                                     </div>
                                     <div class="card-body">
                                         <h4>Está pergunta ainda não possui uma resposta oficial</h4>

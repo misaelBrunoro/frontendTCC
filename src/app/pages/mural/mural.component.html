@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <app-filtros></app-filtros>
 
-        <div class="card" >
+        <div class="card shadow">
 
             <div class="card-header primaryColor">
                 <h4 class="foregroundWhite card-title">Consulte o Mural de Perguntas</h4>
@@ -10,13 +10,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <button  mat-raised-button color="primary"
+                        <button mat-raised-button 
+                                class="btn btn-outline"
                                 (click)="onClickNovaPergunta()">
-                                Adicionar uma Pergunta
+                                Fazer uma Pergunta
                         </button>
                     </div>
                 </div>
-                    <app-listar-perguntas></app-listar-perguntas>
+                <div class="row">
+                    <div class="col">
+                        <app-listar-perguntas></app-listar-perguntas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
