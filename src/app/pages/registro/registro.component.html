@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-5" style="margin: 0 auto">
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title">Registrar-se</h4>
+                <div class="card shadow">
+                    <div class="card-header primaryColor">
+                        <h4 class="foregroundWhite card-title">Registrar-se</h4>
                     </div>
                     <div class="card-body">
                         <ngx-spinner
@@ -51,13 +51,13 @@
                             </mat-button-toggle-group>
                             <div class="row" fxLayoutAlign="center">
                                 <button  mat-raised-button type="submit"
-                                         class="btn btn-danger pull-right"
+                                         class="btn primaryColor pull-right"
                                          [disabled]="registroForm.invalid">
                                         Registrar
                                 </button>
                                 <button  mat-raised-button type="button"
                                          [routerLink] = "['/login']"
-                                         class="btn btn-danger pull-right">
+                                         class="btn primaryColor pull-right">
                                          Retornar
                                 </button>
                             </div>

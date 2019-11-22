@@ -80,11 +80,11 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  onClickDisciplinas(id) {
+  onClickDisciplinas(user) {
     const dialogRef = this.dialog.open(DisciplinasComponent, {
       width: '450px',
       height: '400px'
     });
-    (dialogRef.componentInstance).idSelecionado = id;
+    (dialogRef.componentInstance).userSelecionado = user;
   }
 }

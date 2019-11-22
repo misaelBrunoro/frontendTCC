@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
@@ -14,11 +15,12 @@ import { MatTableDataSource } from '@angular/material/table';
 export class DisciplinasComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'acoes'];
   dataSource = new MatTableDataSource<any>([]);
-  idSelecionado: any;
+  userSelecionado: any;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
+    private userService: UserService,
     private disciplinaService: DisciplinaService,
     private dialog: MatDialog,
     private toast: ToastrService
@@ -47,13 +49,39 @@ export class DisciplinasComponent implements OnInit {
   getDisciplinas( ) {
     this.disciplinaService.getList( ).subscribe(res => {
       this.dataSource.data = res;
+      this.renovarUser();
     }, error => {
       console.log(error);
     })
   }
 
-  temDisciplina() {
-    return true;
+  temDisciplina(disciplina) {
+    const vector = this.userSelecionado.disciplina.filter( el => {
+      return el === disciplina;
+    });
+    if (vector.length > 0) {
+      return true;
+    }
+    return false;
   }
 
+  renovarUser() {
+    this.userService.getByID(this.userSelecionado._id).subscribe(res => {
+      console.log(res)
+      this.userSelecionado = res;
+    });
+  }
+
+  vincularDisciplina(disciplina, vincular) {
+    this.userService.vincularDisciplina(disciplina, vincular, this.userSelecionado._id).subscribe(res => {
+      if (vincular === 'Adicionar') {
+        this.toast.success('Disciplina vinculada', 'Disciplina');
+      } else {
+        this.toast.success('Disciplina desvinculada', 'Disciplina');
+      }
+      this.getDisciplinas();
+    }, error => {
+      console.log(error);
+    });
+  }
 }

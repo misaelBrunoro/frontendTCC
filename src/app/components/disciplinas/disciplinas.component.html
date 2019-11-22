@@ -13,13 +13,22 @@
                 <th class="acoes" mat-header-cell *matHeaderCellDef> Ações</th>
                 <td class="acoes" mat-cell *matCellDef="let element">                    
 
-                <button *ngIf="temDisciplina()"
+                <button *ngIf="temDisciplina(element._id)"
                         style="margin-left: 5px;" mat-mini-fab
-                        class="btn btn-outline btn-just-icon">
-                    <i class="material-icons">add</i>
+                        class="btn btn-outline btn-just-icon"
+                        (click)="vincularDisciplina(element._id, 'Remover')">
+                    <i class="material-icons">clear</i>
                     <div class="ripple-container"></div>
                 </button> 
-                    
+                 
+                <button *ngIf="!temDisciplina(element._id)"
+                        style="margin-left: 5px;" mat-mini-fab
+                        class="btn btn-outline btn-just-icon"
+                        (click)="vincularDisciplina(element._id, 'Adicionar')">
+                    <i class="material-icons">done_all</i>
+                    <div class="ripple-container"></div>
+                </button> 
+
                 </td>
             </ng-container>
     

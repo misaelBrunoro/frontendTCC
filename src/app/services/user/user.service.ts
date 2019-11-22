@@ -32,4 +32,19 @@ export class UserService {
       params: new HttpParams().append('ativo', ativo).append('_id', id)
     });
   }
+
+  getByID(id) {
+    return this._http.get<any>(environment.API_URL + '/users/user_porID', {
+      observe: 'body',
+      params: new HttpParams().append('_id', id)
+    });
+  }
+
+  vincularDisciplina(id, vincular, user_id) {
+    return this._http.get<any>(environment.API_URL + '/users/vincular_disciplina', {
+      observe: 'body',
+      params: new HttpParams().append('_id', id).append('vincular', vincular)
+      .append('user_id', user_id)
+    });
+  }
 }
