@@ -10,7 +10,7 @@ declare interface RouteInfo {
     tipo: any[];
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/graficos', title: 'Gráficos',  icon: 'trending_up', class: '', tipo: ['Admin', 'Monitor', 'Professor', 'Aluno'] },
+    { path: '/dashboard', title: 'Dashboard',  icon: 'trending_up', class: '', tipo: ['Admin', 'Monitor', 'Professor', 'Aluno'] },
     { path: '/perfil-user', title: 'Perfil de Usuário',  icon: 'person', class: '', tipo: ['Admin', 'Monitor', 'Professor', 'Aluno'] },
     { path: '/mural', title: 'Mural de Perguntas',  icon: 'content_paste', class: '', tipo: ['Admin', 'Monitor', 'Professor', 'Aluno'] },
     { path: '/chat', title: 'Chat',  icon: 'speaker_notes', class: '', tipo: ['Admin', 'Monitor', 'Professor', 'Aluno'] },

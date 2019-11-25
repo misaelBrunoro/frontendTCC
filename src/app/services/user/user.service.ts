@@ -47,4 +47,12 @@ export class UserService {
       .append('user_id', user_id)
     });
   }
+
+  tornarMonitor(id, tipo) {
+    return this._http.get<any>(environment.API_URL + '/users/tornar_monitor', {
+      observe: 'body',
+      params: new HttpParams().append('_id', id).append('_id', id)
+      .append('tipo', tipo)
+    });
+  }
 }

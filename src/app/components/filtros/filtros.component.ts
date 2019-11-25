@@ -21,6 +21,10 @@ export class FiltrosComponent implements OnInit {
       texto: new FormControl(''),
       disciplina: new FormControl(''),
       dataPublicacao: new FormControl(''),
+      minhasPerguntas: new FormControl(''),
+      paraMim: new FormControl(''),
+      naoRespondidas: new FormControl(''),
+      respondidas: new FormControl(''),
     });
     this.loadComboDisciplina();
   }

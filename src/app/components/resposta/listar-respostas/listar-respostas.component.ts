@@ -105,7 +105,6 @@ export class ListarRespostasComponent implements OnInit {
       const vector = this.currentUser.disciplina.filter( el => {
         return el._id === this.currentPergunta[0].disciplina._id;
       });
-      console.log(this.currentUser.disciplina);
       if (this.currentUser.tipo === 'Monitor' && vector.length > 0) {
         return true;
       } else if (this.currentUser.tipo === 'Professor' && vector.length > 0) {

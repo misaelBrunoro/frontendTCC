@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 mt-3">
                                         <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
                                         <label class="mr-5"><b>Disciplina: {{item.disciplina.nome}}</b></label>
                                         <label><b>Publicação: {{item.createdAt | date: 'dd/MM/yyyy'}}</b></label> 
@@ -26,7 +26,7 @@
                                 <div class="col-md-12">
                                     <button class="btn btn-outline btn-sm float-right mr-2"
                                     [routerLink]="['detalhe-pergunta/', item._id]">
-                                            Visualizar
+                                            Detalhes
                                     </button>
                                     <button *ngIf="item.resolvido == false"
                                             class="btn btn-outline-danger btn-sm float-right">

@@ -1,3 +1,4 @@
+import { ProfessorComponent } from './../../pages/professor/professor.component';
 
 import { Routes } from '@angular/router';
 
@@ -15,10 +16,10 @@ export const AdminLayoutRoutes: Routes = [
     {
         path: '',
         canActivate: [AuthGuard],
-        redirectTo: 'graficos'
+        redirectTo: 'dashboard'
     },
     {
-        path: 'graficos',
+        path: 'dashboard',
         canActivate: [AuthGuard],
         component: DashboardComponent
     },
@@ -50,10 +51,18 @@ export const AdminLayoutRoutes: Routes = [
     {
         path: 'chat',
         canActivate: [AuthGuard],
-        component: ChatComponent },
+        component: ChatComponent
+    },
     {
         path: 'admin',
         canActivate: [AuthGuard],
         component: AdminComponent,
-        data: {tipo: 'Admin'} },
+        data: {tipo: 'Admin'}
+    },
+    {
+        path: 'professor',
+        canActivate: [AuthGuard],
+        component: ProfessorComponent,
+        data: {tipo: 'Professor'}
+    },
 ];

@@ -10,6 +10,7 @@ import { PerfilUserComponent } from '../../pages/perfil-user/perfil-user.compone
 import { MuralComponent } from '../../pages/mural/mural.component';
 import { AdminComponent } from '../../pages/admin/admin.component';
 import { ChatComponent } from '../../pages/chat/chat.component';
+import { ProfessorComponent } from './../../pages/professor/professor.component';
 import { ComponentsModule } from '../../components/components.module';
 import { MaterialFormatModule } from '../../material/material-format.module';
 
@@ -28,6 +29,7 @@ import { MaterialFormatModule } from '../../material/material-format.module';
     MuralComponent,
     AdminComponent,
     ChatComponent,
+    ProfessorComponent
   ],
 })
 

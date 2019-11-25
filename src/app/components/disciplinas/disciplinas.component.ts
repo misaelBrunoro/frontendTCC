@@ -1,7 +1,5 @@
 import { UserService } from './../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 import { DisciplinaService } from 'app/services/disciplina/disciplina.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -16,13 +14,14 @@ export class DisciplinasComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'acoes'];
   dataSource = new MatTableDataSource<any>([]);
   userSelecionado: any;
+  professor: boolean;
+  currentUser: any;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
     private userService: UserService,
     private disciplinaService: DisciplinaService,
-    private dialog: MatDialog,
     private toast: ToastrService
   ) { }
 
@@ -30,7 +29,13 @@ export class DisciplinasComponent implements OnInit {
     this.paginator._intl.itemsPerPageLabel = 'Items por página';
     this.paginator._intl.getRangeLabel = this.getRangeLabel;
     this.dataSource.paginator = this.paginator;
-    this.getDisciplinas( );
+
+    this.userService.currentUser().then(res => {
+      this.currentUser = res;
+      this.getDisciplinas( );
+    }, error => {
+      console.log(error);
+    });
   }
 
   getRangeLabel(page: number, pageSize: number, length: number): string {
@@ -46,15 +51,23 @@ export class DisciplinasComponent implements OnInit {
     return `${startIndex + 1} - ${endIndex} de ${length}`;
   }
 
+  // Buscar disciplinas no servidor
   getDisciplinas( ) {
-    this.disciplinaService.getList( ).subscribe(res => {
-      this.dataSource.data = res;
+    if (this.professor) {
+      console.log(this.currentUser);
+      this.dataSource.data = this.currentUser.disciplina;
       this.renovarUser();
-    }, error => {
-      console.log(error);
-    })
+    } else {
+      this.disciplinaService.getList().subscribe(res => {
+        this.dataSource.data = res;
+        this.renovarUser();
+      }, error => {
+        console.log(error);
+      });
+    }
   }
 
+  // Verifica se usuario selecionado tem uma disciplina vinculada
   temDisciplina(disciplina) {
     const vector = this.userSelecionado.disciplina.filter( el => {
       return el === disciplina;
@@ -65,13 +78,14 @@ export class DisciplinasComponent implements OnInit {
     return false;
   }
 
+  // Busca usuario novamente após o vinculo
   renovarUser() {
     this.userService.getByID(this.userSelecionado._id).subscribe(res => {
-      console.log(res)
       this.userSelecionado = res;
     });
   }
 
+  // Vincula a disciplina selcionada ao usuario
   vincularDisciplina(disciplina, vincular) {
     this.userService.vincularDisciplina(disciplina, vincular, this.userSelecionado._id).subscribe(res => {
       if (vincular === 'Adicionar') {

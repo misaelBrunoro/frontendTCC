@@ -28,16 +28,9 @@ export class DisciplinaService {
       });
     }
 
-    // Paginacao
-    loadItems() {
-
-    }
-
-    prevPage( ) {
-
-    }
-
-    nextPage( ) {
-
+    filtrarDisciplinas(body) {
+      return this._http.post<any>(environment.API_URL + '/disciplinas/filtrar_disciplinas', body, {
+        observe: 'body',
+      });
     }
 }

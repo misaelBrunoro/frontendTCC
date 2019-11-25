@@ -37,7 +37,7 @@
                                         <label class="mr-5">
                                             <b>Postado por: {{perguntaObject.usuario.nomeVirtual}}</b>
                                         </label>
-                                        <label class="mr-5"><b>Disciplina: {{perguntaObject.disciplina.nome}}</b></label>
+                                        <label class="mr-5 mt-3"><b>Disciplina: {{perguntaObject.disciplina.nome}}</b></label>
                                         <label>
                                             <b>Publicação: {{perguntaObject.createdAt | date: 'dd/MM/yyyy'}}</b>
                                         </label>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="card-body">
                                         <h4>{{perguntaObject.resposta[0].descricao}}</h4>
-                                        <label class="mr-5">
+                                        <label class="mr-5 mt-3">
                                             <b>Postado por: {{perguntaObject.resposta[0].usuario.nomeReal}}</b>
                                         </label>
                                         <label>
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="card-body">
                                         <h4>Está pergunta ainda não possui uma resposta oficial</h4>
-                                        <label class="mr-5">
+                                        <label class="mr-5 mt-3">
                                             <b>Postado por: Mensagem do sistema</b>
                                         </label>
                                         <label>
