@@ -49,4 +49,10 @@ export class PerguntaService {
       params: new HttpParams().append('id', id)
     });
   }
+
+  retornarDados() {
+    return this._http.get<any>(environment.API_URL + '/perguntas/retornar_dados', {
+      observe: 'body',
+    });
+  }
 }
