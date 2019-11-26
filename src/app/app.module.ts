@@ -41,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
       MaterialFormatModule,
       FlexLayoutModule,
       NgxSpinnerModule,
-      ToastrModule.forRoot(),
+      ToastrModule.forRoot()
   ],
   declarations: [
       AppComponent,

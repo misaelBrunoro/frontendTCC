@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -50,9 +50,10 @@ export class PerguntaService {
     });
   }
 
-  retornarDados() {
+  retornarDados(id) {
     return this._http.get<any>(environment.API_URL + '/perguntas/retornar_dados', {
       observe: 'body',
+      params: new HttpParams().append('id', id)
     });
   }
 }

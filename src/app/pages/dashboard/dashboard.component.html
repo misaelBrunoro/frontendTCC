@@ -1,34 +1,15 @@
 <div class="main-content">
-  <div class="container-fluid">
-    <div *ngIf="currentUser" class="row">
-        <div class="col-md-8 " style="margin: 0 auto; margin-top:-40px">
-            <div class="card shadow">
-                <div class="card-header primaryColor">
-                <h4 class="foregroundWhite card-title">Seus Dados</h4>
-            </div>
-           <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                        <h5 class="font-weight-bold">Nome Real: </h5>
-                        <h4>{{currentUser.nomeReal}}</h4>
-                    </div>
-                    <div class="col-6">
-                        <h5 class="font-weight-bold">Nome Virtual: </h5>
-                        <h4>{{currentUser.nomeVirtual}}</h4>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <h5 class="font-weight-bold">Email: </h5>
-                        <h4>{{currentUser.email}}</h4>
-                    </div>
-                    <div class="col-6">
-                        <h5 class="font-weight-bold">Tipo: </h5>
-                        <h4>{{currentUser.tipo}}</h4>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid">
+        <h2 style="margin-top:-40px">Perguntas por disciplina</h2>
+        <div *ngIf="barChartData" class="chart-wrapper">
+            <canvas baseChart 
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+        </canvas>
         </div>
-    </div>     
-  </div>
+    </div>
 </div>

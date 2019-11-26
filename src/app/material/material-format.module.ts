@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [],
@@ -48,6 +49,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AutosizeModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
+    ChartsModule
   ],
   exports: [
     MatButtonModule,
@@ -70,6 +72,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AutosizeModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
+    ChartsModule
   ],
   providers: [
     MatDatepickerModule,
