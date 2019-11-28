@@ -1,15 +1,35 @@
 <div class="main-content">
     <div class="container-fluid">
-        <h2 style="margin-top:-40px">Perguntas por disciplina</h2>
-        <div *ngIf="barChartData" class="chart-wrapper">
-            <canvas baseChart 
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-        </canvas>
+        <div class="row">
+            <div class="col">
+                <h2 style="margin-top:-40px">Perguntas por disciplina</h2>
+                <div *ngIf="lineChartData.length > 0" class="chart-wrapper">
+                    <canvas baseChart 
+                        [datasets]="lineChartData" 
+                        [labels]="lineChartLabels" 
+                        [options]="chartOptions"
+                        [colors]="lineChartColors" 
+                        [legend]="lineChartLegend" 
+                        [chartType]="lineChartType" 
+                        [plugins]="lineChartPlugins">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 9%;">
+            <div class="col">
+                <h2 style="margin-top:-40px">Respostas por disciplina</h2>
+                <div *ngIf="barChartData.length > 0" class="chart-wrapper">
+                    <canvas baseChart 
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="chartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+                    </canvas>
+                </div>
+            </div>
         </div>
     </div>
 </div>
