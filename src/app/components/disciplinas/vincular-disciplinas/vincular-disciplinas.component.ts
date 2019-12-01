@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user/user.service';
+import { UserService } from '../../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { DisciplinaService } from 'app/services/disciplina/disciplina.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -6,16 +6,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-disciplinas',
-  templateUrl: './disciplinas.component.html',
-  styleUrls: ['./disciplinas.component.scss']
+  selector: 'app-vincular-disciplinas',
+  templateUrl: './vincular-disciplinas.component.html',
+  styleUrls: ['./vincular-disciplinas.component.scss']
 })
-export class DisciplinasComponent implements OnInit {
+export class VincularDisciplinasComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'acoes'];
   dataSource = new MatTableDataSource<any>([]);
   userSelecionado: any;
-  professor: boolean;
   currentUser: any;
+  contexto: any;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -33,11 +33,10 @@ export class DisciplinasComponent implements OnInit {
     this.userService.currentUser().then(res => {
       this.currentUser = res;
       this.getDisciplinas( );
-    }, error => {
-      console.log(error);
     });
   }
 
+  // Apenas sobrescreve o metodo para tradução de palavras
   getRangeLabel(page: number, pageSize: number, length: number): string {
     if (length === 0 || pageSize === 0) {
       return `0 de ${length}`;
@@ -51,18 +50,16 @@ export class DisciplinasComponent implements OnInit {
     return `${startIndex + 1} - ${endIndex} de ${length}`;
   }
 
-  // Buscar disciplinas no servidor
+  // Buscar disciplinas no servidor, componente genério que busca de acordo com o contexto
   getDisciplinas( ) {
-    if (this.professor) {
+    if (this.contexto === 'Professor') {
       console.log(this.currentUser);
       this.dataSource.data = this.currentUser.disciplina;
       this.renovarUser();
-    } else {
+    } else if (this.contexto === 'Admin') {
       this.disciplinaService.getList().subscribe(res => {
         this.dataSource.data = res;
         this.renovarUser();
-      }, error => {
-        console.log(error);
       });
     }
   }
@@ -94,8 +91,6 @@ export class DisciplinasComponent implements OnInit {
         this.toast.success('Disciplina desvinculada', 'Disciplina');
       }
       this.getDisciplinas();
-    }, error => {
-      console.log(error);
     });
   }
 }

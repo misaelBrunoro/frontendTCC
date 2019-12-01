@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+
+th, td {
+  overflow: hidden;
+  width: 25%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.acoes {
+  width: 5% !important;
+}
+
+.primaryColor {
+  background-color: #2c3e50 !important;
+}
+
+.foregroundWhite {
+  color: white;
+}
+
+.btn-outline {
+  border-color: #2c3e50 !important;
+  color: #2c3e50 !important;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DisciplinasComponent } from '../../components/disciplinas/disciplinas.component';
+import { VincularDisciplinasComponent } from '../../components/disciplinas/vincular-disciplinas/vincular-disciplinas.component';
 import { ConfirmDialogComponent } from './../../components/confirm-dialog/confirm-dialog.component';
 import { UserService } from './../../services/user/user.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -64,13 +64,12 @@ export class ProfessorComponent implements OnInit {
 
   // Abrir o dialog de vinculo de disciplinas
   onClickDisciplinas(user) {
-    this
-    const dialogRef = this.dialog.open(DisciplinasComponent, {
+    const dialogRef = this.dialog.open(VincularDisciplinasComponent, {
       width: '450px',
       height: '400px'
     });
     (dialogRef.componentInstance).userSelecionado = user;
-    (dialogRef.componentInstance).professor = true;
+    (dialogRef.componentInstance).contexto = 'Professor';
     this.getAlunos( );
   }
 

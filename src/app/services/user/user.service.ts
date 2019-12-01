@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -53,6 +53,12 @@ export class UserService {
       observe: 'body',
       params: new HttpParams().append('_id', id).append('_id', id)
       .append('tipo', tipo)
+    });
+  }
+
+  getFilteredList(body) {
+    return this._http.post<any>(environment.API_URL + '/users/filtrar_user', body, {
+      observe: 'body',
     });
   }
 }

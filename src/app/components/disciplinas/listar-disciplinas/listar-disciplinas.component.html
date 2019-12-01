@@ -1,0 +1,64 @@
+<div class="card shadow">
+    <div class="card-header primaryColor">
+        <h4 class="foregroundWhite card-title">Gerenciar Disciplinas</h4>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="disciplinaForm" (ngSubmit)="onSubmitAdicionarDisciplina()">
+            <div class="row" style="margin-bottom: -10px;">
+                <div class="col-6">
+                    <mat-form-field appearance="outline">
+                        <input formControlName="nome" matInput placeholder="Adicionar disciplina">
+                    </mat-form-field> 
+                </div>
+                <div *ngIf="editMode === false" >
+                    <button mat-button class="btn btn-outline btn-just-icon">
+                        <i class="material-icons">add</i>
+                        <div class="ripple-container"></div>
+                    </button> 
+                </div>
+                <div *ngIf="editMode === true" >
+                    <button mat-button class="btn btn-outline btn-just-icon">
+                        <i class="material-icons">create</i>
+                        <div class="ripple-container"></div>
+                    </button> 
+                </div>
+                <div *ngIf="editMode === true" >
+                    <button mat-button class="btn btn-outline btn-just-icon"
+                            type="button" (click)="onClickClear()">
+                        <i class="material-icons">clear</i>
+                        <div class="ripple-container"></div>
+                    </button> 
+                </div>
+            </div>
+        </form>
+        
+        <table mat-table [dataSource]="dataSource" class="shadow-lg">
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef> Nome </th>
+                <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+                <th class="acoes" mat-header-cell *matHeaderCellDef> Ações</th>
+                <td class="acoes" mat-cell *matCellDef="let element">                    
+                
+                <button style="margin-left: 5px;" mat-mini-fab
+                        class="btn btn-outline btn-just-icon"
+                        (click)="onCliclEditarDisciplina(element)">
+                    <i class="material-icons">create</i>
+                    <div class="ripple-container"></div>
+                </button> 
+
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+            
+        <mat-paginator 
+            [pageSizeOptions]="[10]" 
+            showFirstLastButtons>
+        </mat-paginator>
+    </div>
+</div>

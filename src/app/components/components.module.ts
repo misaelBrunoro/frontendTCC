@@ -13,7 +13,9 @@ import { ListarRespostasComponent } from './resposta/listar-respostas/listar-res
 import { RespostaNovaComponent } from './resposta/resposta-nova/resposta-nova.component';
 import { ComentarioComponent } from './comentario/comentario.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { DisciplinasComponent } from './disciplinas/disciplinas.component';
+import { VincularDisciplinasComponent } from './disciplinas/vincular-disciplinas/vincular-disciplinas.component';
+import { ListarProfessoresComponent } from './listar-professores/listar-professores.component';
+import { ListarDisciplinasComponent } from './disciplinas/listar-disciplinas/listar-disciplinas.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { DisciplinasComponent } from './disciplinas/disciplinas.component';
     RespostaNovaComponent,
     ComentarioComponent,
     ConfirmDialogComponent,
-    DisciplinasComponent
+    VincularDisciplinasComponent,
+    ListarProfessoresComponent,
+    ListarDisciplinasComponent,
   ],
   exports: [
     FooterComponent,
@@ -48,11 +52,18 @@ import { DisciplinasComponent } from './disciplinas/disciplinas.component';
     ListarRespostasComponent,
     RespostaNovaComponent,
     ComentarioComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    VincularDisciplinasComponent,
+    ListarProfessoresComponent,
+    ListarDisciplinasComponent,
   ],
   providers: [
     MaterialFormatModule
   ],
-  entryComponents: [RespostaNovaComponent, ConfirmDialogComponent, DisciplinasComponent]
+  entryComponents: [
+    RespostaNovaComponent,
+    ConfirmDialogComponent,
+    VincularDisciplinasComponent
+  ]
 })
 export class ComponentsModule { }

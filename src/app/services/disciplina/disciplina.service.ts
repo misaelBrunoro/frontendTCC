@@ -1,6 +1,6 @@
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +9,16 @@ export class DisciplinaService {
 
     constructor( private _http: HttpClient ) { }
 
-    insert (body: any) {
+    insert (body) {
       return this._http.post<any>(environment.API_URL + '/disciplinas', body, {
           observe: 'body',
       });
     }
-    update( ) {
-
-    }
-
-    delete(_id: string) {
-
+    update(id, body) {
+      return this._http.put<any>(environment.API_URL + '/disciplinas/editar_disciplina', body, {
+        observe: 'body',
+        params: new HttpParams().append('id', id)
+      });
     }
 
     getList() {
