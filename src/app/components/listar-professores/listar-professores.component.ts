@@ -76,9 +76,7 @@ export class ListarProfessoresComponent implements OnInit {
           } else {
             this.toast.success('Usuário desativado com sucesso', 'Ativação');
           }
-          this.getProfessores( );
-        }, error => {
-            console.log(error);
+          this.onSubmitRealizarBusca( );
         })
       }
     });
@@ -94,13 +92,9 @@ export class ListarProfessoresComponent implements OnInit {
   }
 
   onSubmitRealizarBusca() {
-    if (this.buscaForm.get('texto').value) {
-      this.userService.getFilteredList(this.buscaForm.value).subscribe(res => {
-        this.toast.warning('Professores buscados: ' + res.length, 'Busca');
-        this.dataSource = res;
-      });
-    } else {
-      this.getProfessores();
-    }
+    this.userService.getFilteredList(this.buscaForm.value).subscribe(res => {
+      this.toast.warning('Professores buscados: ' + res.length, 'Busca');
+      this.dataSource = res;
+    });
   }
 }
