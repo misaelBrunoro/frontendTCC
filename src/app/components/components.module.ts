@@ -16,6 +16,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { VincularDisciplinasComponent } from './disciplinas/vincular-disciplinas/vincular-disciplinas.component';
 import { ListarProfessoresComponent } from './listar-professores/listar-professores.component';
 import { ListarDisciplinasComponent } from './disciplinas/listar-disciplinas/listar-disciplinas.component';
+import { PerguntasSimilaresComponent } from './pergunta/perguntas-similares/perguntas-similares.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { ListarDisciplinasComponent } from './disciplinas/listar-disciplinas/lis
     VincularDisciplinasComponent,
     ListarProfessoresComponent,
     ListarDisciplinasComponent,
+    PerguntasSimilaresComponent,
   ],
   exports: [
     FooterComponent,
@@ -63,7 +65,8 @@ import { ListarDisciplinasComponent } from './disciplinas/listar-disciplinas/lis
   entryComponents: [
     RespostaNovaComponent,
     ConfirmDialogComponent,
-    VincularDisciplinasComponent
+    VincularDisciplinasComponent,
+    PerguntasSimilaresComponent
   ]
 })
 export class ComponentsModule { }

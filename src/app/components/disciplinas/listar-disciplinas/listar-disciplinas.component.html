@@ -11,20 +11,23 @@
                     </mat-form-field> 
                 </div>
                 <div *ngIf="editMode === false" >
-                    <button mat-button class="btn btn-outline btn-just-icon">
+                    <button mat-button class="btn btn-outline btn-just-icon"
+                            matTooltip="Cadastrar Disciplina">
                         <i class="material-icons">add</i>
                         <div class="ripple-container"></div>
                     </button> 
                 </div>
                 <div *ngIf="editMode === true" >
-                    <button mat-button class="btn btn-outline btn-just-icon">
+                    <button mat-button class="btn btn-outline btn-just-icon"
+                            matTooltip="Editar Disciplina">
                         <i class="material-icons">create</i>
                         <div class="ripple-container"></div>
                     </button> 
                 </div>
                 <div *ngIf="editMode === true" >
                     <button mat-button class="btn btn-outline btn-just-icon"
-                            type="button" (click)="onClickClear()">
+                            type="button" (click)="onClickClear()"
+                            matTooltip="Cancelar">
                         <i class="material-icons">clear</i>
                         <div class="ripple-container"></div>
                     </button> 
@@ -44,7 +47,8 @@
                 
                 <button style="margin-left: 5px;" mat-mini-fab
                         class="btn btn-outline btn-just-icon"
-                        (click)="onCliclEditarDisciplina(element)">
+                        (click)="onCliclEditarDisciplina(element)"
+                        matTooltip="Habilitar Edição">
                     <i class="material-icons">create</i>
                     <div class="ripple-container"></div>
                 </button> 

@@ -11,7 +11,8 @@
                     </mat-form-field> 
                 </div>
                 <div class="pull-right">
-                    <button mat-button class="btn btn-outline btn-just-icon">
+                    <button mat-button class="btn btn-outline btn-just-icon"
+                        matTooltip="Buscar">
                         <i class="material-icons">search</i>
                         <div class="ripple-container"></div>
                     </button>
@@ -40,6 +41,7 @@
             <td class="acoes" mat-cell *matCellDef="let element">                    
             
             <button style="margin-left: 5px;" mat-mini-fab
+                    matTooltip="Vincular Disciplinas"
                     class="btn btn-outline btn-just-icon"
                     (click)="onClickDisciplinas(element)">
                 <i class="material-icons">add</i>
@@ -47,7 +49,8 @@
             </button> 
 
             <button *ngIf="element.situacao === 'Inativo'"
-                    style="margin-left: 5px;" mat-mini-fab 
+                    style="margin-left: 5px;" mat-mini-fab
+                    matTooltip="Ativar Professor" 
                     class="btn btn-outline btn-just-icon"
                     (click)="onClickAtivar('Ativo', element._id)">
                 <i class="material-icons">done_all</i>
@@ -56,6 +59,7 @@
 
             <button *ngIf="element.situacao === 'Ativo'"
                     style="margin-left: 5px;"
+                    matTooltip="Desativar Professor"
                     mat-mini-fab class="btn btn-outline btn-just-icon"
                     (click)="onClickAtivar('Inativo', element._id)">
                 <i class="material-icons">clear</i>

@@ -42,5 +42,4 @@ export class ListarPerguntasComponent implements OnInit {
       console.log(error);
     });
   }
-  
 }

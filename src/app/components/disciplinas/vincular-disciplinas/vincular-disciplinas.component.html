@@ -16,7 +16,8 @@
                 <button *ngIf="temDisciplina(element._id)"
                         style="margin-left: 5px;" mat-mini-fab
                         class="btn btn-outline btn-just-icon"
-                        (click)="vincularDisciplina(element._id, 'Remover')">
+                        (click)="vincularDisciplina(element._id, 'Remover')"
+                        matTooltip="Desvincular">
                     <i class="material-icons">clear</i>
                     <div class="ripple-container"></div>
                 </button> 
@@ -24,7 +25,8 @@
                 <button *ngIf="!temDisciplina(element._id)"
                         style="margin-left: 5px;" mat-mini-fab
                         class="btn btn-outline btn-just-icon"
-                        (click)="vincularDisciplina(element._id, 'Adicionar')">
+                        (click)="vincularDisciplina(element._id, 'Adicionar')"
+                        matTooltip="Vincular">
                     <i class="material-icons">done_all</i>
                     <div class="ripple-container"></div>
                 </button> 

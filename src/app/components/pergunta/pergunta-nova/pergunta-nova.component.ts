@@ -1,3 +1,4 @@
+import { PerguntasSimilaresComponent } from './../perguntas-similares/perguntas-similares.component';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PerguntaService } from 'app/services/pergunta/pergunta.service';
@@ -5,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DisciplinaService } from 'app/services/disciplina/disciplina.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-pergunta-nova',
@@ -20,7 +22,8 @@ export class PerguntaNovaComponent implements OnInit {
       private disciplinaService: DisciplinaService,
       private toastr: ToastrService,
       private spinner: NgxSpinnerService,
-      private router: Router
+      private router: Router,
+      private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -39,15 +42,21 @@ export class PerguntaNovaComponent implements OnInit {
   }
 
   onSubmitEnviarPergunta() {
-    this.spinner.show();
-    this.perguntaService.insert(this.perguntaForm.value).subscribe(data => {
-      this.toastr.success('Pergunta enviada com sucesso', 'Pergunta');
-      this.spinner.hide();
-      this.router.navigate(['/mural']);
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
+    //this.spinner.show();
+    const dialogRef = this.dialog.open(PerguntasSimilaresComponent, {
+      width: '250px',
+      height: '153px',
     });
+    (dialogRef.componentInstance).filtroForm = this.perguntaForm.value;
+
+    //this.perguntaService.insert(this.perguntaForm.value).subscribe(data => {
+    //  this.toastr.success('Pergunta enviada com sucesso', 'Pergunta');
+    //  this.spinner.hide();
+    //  this.router.navigate(['/mural']);
+    //}, error => {
+    // console.log(error);
+    //  this.spinner.hide();
+    //});
   }
 }
 
