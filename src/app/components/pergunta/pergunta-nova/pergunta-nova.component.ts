@@ -42,21 +42,34 @@ export class PerguntaNovaComponent implements OnInit {
   }
 
   onSubmitEnviarPergunta() {
-    //this.spinner.show();
-    const dialogRef = this.dialog.open(PerguntasSimilaresComponent, {
-      width: '250px',
-      height: '153px',
-    });
-    (dialogRef.componentInstance).filtroForm = this.perguntaForm.value;
+    let items: any = [];
 
-    //this.perguntaService.insert(this.perguntaForm.value).subscribe(data => {
-    //  this.toastr.success('Pergunta enviada com sucesso', 'Pergunta');
-    //  this.spinner.hide();
-    //  this.router.navigate(['/mural']);
-    //}, error => {
-    // console.log(error);
-    //  this.spinner.hide();
-    //});
+    const filtroForm = {
+      texto: this.perguntaForm.get('descricao').value
+    };
+
+    this.perguntaService.filteredItems(1, filtroForm).subscribe(res => {
+      items = res.pageOfItems;
+    });
+
+    if (items.length > 0) {
+      const dialogRef = this.dialog.open(PerguntasSimilaresComponent, {
+        width: '550px',
+        height: '400px',
+      });
+      (dialogRef.componentInstance).items = items;
+    }
+  }
+
+  concluirEnvio() {
+    this.perguntaService.insert(this.perguntaForm.value).subscribe(data => {
+      this.toastr.success('Pergunta enviada com sucesso', 'Pergunta');
+      this.spinner.hide();
+      this.router.navigate(['/mural']);
+    }, error => {
+     console.log(error);
+      this.spinner.hide();
+    });
   }
 }
 

@@ -7,17 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./perguntas-similares.component.scss']
 })
 export class PerguntasSimilaresComponent implements OnInit {
-  filtroForm: any;
   continuar: boolean;
+  items: any;
 
   constructor(
     private perguntaService: PerguntaService
   ) { }
 
-  ngOnInit() {
-    this.perguntaService.filteredItems(1, this.filtroForm).subscribe(res =>{
-      console.log(res);
-    });
-  }
+  ngOnInit() {}
 
 }
