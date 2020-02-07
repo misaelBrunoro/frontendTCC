@@ -16,7 +16,8 @@ import {
   MAT_DATE_LOCALE,
   MatIconModule,
   MatButtonToggleModule,
-  MatTabsModule
+  MatTabsModule,
+  MatCardModule
 } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -51,7 +52,8 @@ import { ChartsModule } from 'ng2-charts';
     MatSlideToggleModule,
     MatButtonToggleModule,
     ChartsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule
   ],
   exports: [
     MatButtonModule,
@@ -75,7 +77,8 @@ import { ChartsModule } from 'ng2-charts';
     MatSlideToggleModule,
     MatButtonToggleModule,
     ChartsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule
   ],
   providers: [
     MatDatepickerModule,

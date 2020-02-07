@@ -45,20 +45,30 @@ export class PerguntaNovaComponent implements OnInit {
     let items: any = [];
 
     const filtroForm = {
-      texto: this.perguntaForm.get('descricao').value
+      texto: this.perguntaForm.get('descricao').value,
+      disciplina: this.perguntaForm.get('disciplina').value
     };
 
     this.perguntaService.filteredItems(1, filtroForm).subscribe(res => {
       items = res.pageOfItems;
-    });
 
-    if (items.length > 0) {
-      const dialogRef = this.dialog.open(PerguntasSimilaresComponent, {
-        width: '550px',
-        height: '400px',
-      });
-      (dialogRef.componentInstance).items = items;
-    }
+      if (items.length > 0) {
+        const dialogRef = this.dialog.open(PerguntasSimilaresComponent, {
+          width: '550px',
+          height: '530px',
+        });
+        (dialogRef.componentInstance).items = items;
+        
+        dialogRef.afterClosed().subscribe(result => {
+          if ((dialogRef.componentInstance).aceitar) { 
+            this.concluirEnvio();
+          }
+        });
+      } else {
+        this.concluirEnvio();
+      }
+    });
+    
   }
 
   concluirEnvio() {
