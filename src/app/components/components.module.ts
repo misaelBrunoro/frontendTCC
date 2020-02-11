@@ -17,6 +17,7 @@ import { VincularDisciplinasComponent } from './disciplinas/vincular-disciplinas
 import { ListarProfessoresComponent } from './listar-professores/listar-professores.component';
 import { ListarDisciplinasComponent } from './disciplinas/listar-disciplinas/listar-disciplinas.component';
 import { PerguntasSimilaresComponent } from './pergunta/perguntas-similares/perguntas-similares.component';
+import { RealtimeChatComponent } from './realtime-chat/realtime-chat.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { PerguntasSimilaresComponent } from './pergunta/perguntas-similares/perg
     ListarProfessoresComponent,
     ListarDisciplinasComponent,
     PerguntasSimilaresComponent,
+    RealtimeChatComponent,
   ],
   exports: [
     FooterComponent,
@@ -58,6 +60,7 @@ import { PerguntasSimilaresComponent } from './pergunta/perguntas-similares/perg
     VincularDisciplinasComponent,
     ListarProfessoresComponent,
     ListarDisciplinasComponent,
+    RealtimeChatComponent
   ],
   providers: [
     MaterialFormatModule

@@ -1,0 +1,55 @@
+<div class="card shadow">
+    <div class="card-header primaryColor">
+        <h4 class="foregroundWhite card-title">Salas de chat</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Selecione uma disciplina</mat-label>
+                    <mat-select>
+                        <mat-option value="Lobby">Lobby</mat-option>
+                        <mat-option value="Hall">Hall</mat-option>
+                        <mat-option value="Deluxe">Deluxe</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <button mat-raised-button type='submit' 
+                        class="btn btn-outline pull-right"
+                        (click)="leave()"><i class="material-icons mr-3">exit_to_app</i>Leave
+                </button>
+                <button mat-raised-button type='submit' 
+                        class="btn btn-outline pull-right"
+                        (click)="join()"><i class="material-icons mr-3">arrow_forward</i>Join
+                </button>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="well" style="height:200px; padding:15px;">
+                <div *ngFor="let item of messageArray">
+                <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <mat-form-field appearance="outline">
+                    <textarea matInput 
+                            placeholder="Mensagem"
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="3"
+                            cdkAutosizeMaxRows="3"
+                            [(ngModel)]="messageText"></textarea>
+                </mat-form-field>         
+            </div>
+            <div class="col-md-2">
+                <button mat-raised-button type='submit' 
+                        class="btn btn-outline pull-right"
+                        (click)="sendMessage()"><i class="material-icons mr-3">send</i>Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>  
