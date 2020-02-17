@@ -16,14 +16,6 @@ export class ComentarioService {
     });
   }
 
-  update( ) {
-
-  }
-
-  delete(_id: string) {
-
-  }
-
   loadItems(ID_resposta) {
     return this._http.get<any>(environment.API_URL + '/comentarios/retorna_comentarios', {
       observe: 'body',

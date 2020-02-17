@@ -26,7 +26,7 @@
             </div>
         </div>
         
-        <div class="card-body mb-3" style="background-color: #ededed; height: 250px;">
+        <div class="card-body mb-3" style="background-color: #ededed; height: 260px;">
             <div class="row">
                 <div class="well">
                     <div *ngFor="let item of messageArray">
@@ -42,8 +42,8 @@
                     <textarea matInput 
                             placeholder="Mensagem"
                             cdkTextareaAutosize
-                            cdkAutosizeMinRows="3"
-                            cdkAutosizeMaxRows="3"
+                            cdkAutosizeMinRows="2"
+                            cdkAutosizeMaxRows="2"
                             [(ngModel)]="messageText"></textarea>
                 </mat-form-field>         
             </div>

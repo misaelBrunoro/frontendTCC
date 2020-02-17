@@ -1,9 +1,11 @@
+import { ChatService } from './../../services/chat/chat.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-realtime-chat',
   templateUrl: './realtime-chat.component.html',
-  styleUrls: ['./realtime-chat.component.scss']
+  styleUrls: ['./realtime-chat.component.scss'],
+  providers: [ChatService]
 })
 export class RealtimeChatComponent implements OnInit {
   user: String;
@@ -11,7 +13,7 @@ export class RealtimeChatComponent implements OnInit {
   messageText: String;
   messageArray: Array<{user: String, message: String}> = [];
 
-  constructor() { }
+  constructor(private chatService: ChatService) { }
 
   ngOnInit() {
   }
