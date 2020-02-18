@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <mat-form-field appearance="outline">
                     <mat-label>Salas disponiveis</mat-label>
-                    <mat-select>
+                    <mat-select [(ngModel)]="room">
                         <mat-option value="Lobby">Lobby</mat-option>
                         <mat-option value="Hall">Hall</mat-option>
                         <mat-option value="Deluxe">Deluxe</mat-option>
@@ -26,7 +26,7 @@
             </div>
         </div>
         
-        <div class="card-body mb-3" style="background-color: #ededed; height: 260px;">
+        <div class="styled-chat card-body mb-3">
             <div class="row">
                 <div class="well">
                     <div *ngFor="let item of messageArray">
