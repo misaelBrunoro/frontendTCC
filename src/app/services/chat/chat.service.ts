@@ -28,4 +28,34 @@ export class ChatService {
 
         return observable;
     }
+
+    leaveRoom(data) {
+        this.socket.emit('leave', data);
+    }
+
+    userLeftRoom() {
+        const observable = new Observable<{user: String, message: String}>(observer => {
+            this.socket.on('left room', (data) => {
+                observer.next(data);
+            });
+            return () => { this.socket.disconnect(); }
+        });
+
+        return observable;
+    }
+
+    sendMessage(data) {
+        this.socket.emit('message', data);
+    }
+
+    newMessageReceived() {
+        const observable = new Observable<{user: String, message: String}>(observer => {
+            this.socket.on('new message', (data) => {
+                observer.next(data);
+            });
+            return () => { this.socket.disconnect(); }
+        });
+
+        return observable;
+    }
 }

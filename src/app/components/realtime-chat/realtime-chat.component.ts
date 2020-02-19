@@ -21,6 +21,14 @@ export class RealtimeChatComponent implements OnInit {
       this.chatService.newUserJoined().subscribe(data => {
         this.messageArray.push(data);
       });
+
+      this.chatService.userLeftRoom().subscribe(data => {
+        this.messageArray.push(data);
+      });
+
+      this.chatService.newMessageReceived().subscribe(data => {
+        this.messageArray.push(data);
+      });
     }
 
   ngOnInit() {
@@ -36,8 +44,14 @@ export class RealtimeChatComponent implements OnInit {
   }
 
   leave() {
+    if (this.currentUser) {
+      this.chatService.leaveRoom({user: this.currentUser.nomeVirtual, room: this.room});
+    }
   }
 
   sendMessage() {
+    if (this.currentUser) {
+      this.chatService.sendMessage({user: this.currentUser.nomeVirtual, room: this.room, message: this.messageText});
+    }
   }
 }
