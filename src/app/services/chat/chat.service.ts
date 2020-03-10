@@ -19,7 +19,7 @@ export class ChatService {
     }
 
     newUserJoined() {
-        const observable = new Observable<{user: String, message: String}>(observer => {
+        const observable = new Observable<{user_id: String, user: String, message: String}>(observer => {
             this.socket.on('new user joined', (data) => {
                 observer.next(data);
             });
@@ -34,7 +34,7 @@ export class ChatService {
     }
 
     userLeftRoom() {
-        const observable = new Observable<{user: String, message: String}>(observer => {
+        const observable = new Observable<{user_id: String, user: String, message: String}>(observer => {
             this.socket.on('left room', (data) => {
                 observer.next(data);
             });
@@ -49,7 +49,7 @@ export class ChatService {
     }
 
     newMessageReceived() {
-        const observable = new Observable<{user: String, message: String}>(observer => {
+        const observable = new Observable<{user_id: String, user: String, message: String}>(observer => {
             this.socket.on('new message', (data) => {
                 observer.next(data);
             });

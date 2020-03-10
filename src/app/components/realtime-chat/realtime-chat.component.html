@@ -8,9 +8,7 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Salas disponiveis</mat-label>
                     <mat-select [(ngModel)]="room">
-                        <mat-option value="Lobby">Lobby</mat-option>
-                        <mat-option value="Hall">Hall</mat-option>
-                        <mat-option value="Deluxe">Deluxe</mat-option>
+                        <mat-option *ngFor="let item of disciplinas" value="{{item.nome}}">{{item.nome}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -27,10 +25,23 @@
         </div>
         
         <div class="styled-chat card-body mb-3">
-            <div class="row">
-                <div class="well">
-                    <div *ngFor="let item of messageArray">
-                    <span><b>{{item.user}} : </b> {{item.message}}</span>
+            <div *ngFor="let item of messageArray">
+                <div *ngIf="item.user_id == currentUser._id">
+                    <div class="row mb-2">
+                        <div class="justify-items">
+                            <div class="styled-baloom-me">
+                                <span><b>{{item.user}} : </b> {{item.message}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="item.user_id != currentUser._id">
+                    <div class="row float-right mb-2">
+                        <div class="justify-items">
+                            <div class="styled-baloom-u">
+                                <span><b>{{item.user}} : </b> {{item.message}}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

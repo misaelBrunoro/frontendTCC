@@ -1,3 +1,4 @@
+import { DisciplinaService } from './../../services/disciplina/disciplina.service';
 import { UserService } from './../../services/user/user.service';
 import { ChatService } from './../../services/chat/chat.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,24 +13,30 @@ export class RealtimeChatComponent implements OnInit {
   currentUser: any;
   room: String;
   messageText: String;
-  messageArray: Array<{user: String, message: String}> = [];
+  messageArray: Array<{user_id: String, user: String, message: String}> = [];
+  disciplinas = [];
 
   constructor(
     private chatService: ChatService,
-    private userService: UserService
+    private userService: UserService,
+    private disciplinaService: DisciplinaService
   ) {
-      this.chatService.newUserJoined().subscribe(data => {
-        this.messageArray.push(data);
-      });
+    this.chatService.newUserJoined().subscribe(data => {
+      this.messageArray.push(data);
+    });
 
-      this.chatService.userLeftRoom().subscribe(data => {
-        this.messageArray.push(data);
-      });
+    this.chatService.userLeftRoom().subscribe(data => {
+      this.messageArray.push(data);
+    });
 
-      this.chatService.newMessageReceived().subscribe(data => {
-        this.messageArray.push(data);
-      });
-    }
+    this.chatService.newMessageReceived().subscribe(data => {
+      this.messageArray.push(data);
+    });
+
+    this.disciplinaService.getList().subscribe(data => {
+      this.disciplinas = data;
+    });
+  }
 
   ngOnInit() {
     this.userService.currentUser().then(res => {
@@ -39,19 +46,21 @@ export class RealtimeChatComponent implements OnInit {
 
   join() {
     if (this.currentUser) {
-      this.chatService.joinRoom({user: this.currentUser.nomeVirtual, room: this.room});
+      this.chatService.joinRoom({user_id: this.currentUser._id, user: this.currentUser.nomeVirtual, room: this.room});
     }
   }
 
   leave() {
     if (this.currentUser) {
-      this.chatService.leaveRoom({user: this.currentUser.nomeVirtual, room: this.room});
+      this.chatService.leaveRoom({user_id: this.currentUser._id, user: this.currentUser.nomeVirtual, room: this.room});
     }
+    this.messageArray = [];
   }
 
   sendMessage() {
     if (this.currentUser) {
-      this.chatService.sendMessage({user: this.currentUser.nomeVirtual, room: this.room, message: this.messageText});
+      this.chatService.sendMessage({user_id: this.currentUser._id, user: this.currentUser.nomeVirtual,
+                                    room: this.room, message: this.messageText});
     }
     this.messageText = '';
   }
