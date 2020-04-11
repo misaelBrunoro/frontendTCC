@@ -15,8 +15,10 @@ export class PerguntaService {
     });
   }
 
-  update( ) {
-
+  update(_id, body) {
+    return this._http.put<any>(environment.API_URL + '/perguntas/' + _id, body, {
+      observe: 'body',
+    });
   }
 
   delete(_id: string) {

@@ -1,3 +1,4 @@
+import { EventEmitterService } from './../../../services/event/event-emitter.service';
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from 'app/services/pergunta/pergunta.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './detalhes-pergunta.component.html',
   styleUrls: ['./detalhes-pergunta.component.scss']
 })
+
 export class DetalhesPerguntaComponent implements OnInit {
   perguntaObject: any = {};
   id: any;
@@ -37,5 +39,9 @@ export class DetalhesPerguntaComponent implements OnInit {
 
   onClickSessaoRespostas() {
     this.router.navigate(['mural/detalhe-pergunta/respostas/', this.id]);
+  }
+
+  onClickEditarPergunta() {
+    this.router.navigate(['mural/nova-pergunta', this.id]);
   }
 }

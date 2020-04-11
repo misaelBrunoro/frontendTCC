@@ -34,7 +34,7 @@ export const AdminLayoutRoutes: Routes = [
         component: MuralComponent
     },
     {
-        path: 'mural/nova-pergunta',
+        path: 'mural/nova-pergunta/:id',
         canActivate: [AuthGuard],
         component: PerguntaNovaComponent
     },

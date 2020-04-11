@@ -16,6 +16,6 @@ export class MuralComponent implements OnInit {
   }
 
   onClickNovaPergunta() {
-    this.route.navigate(['mural/nova-pergunta']);
+    this.route.navigate(['mural/nova-pergunta/nova']);
   }
 }
