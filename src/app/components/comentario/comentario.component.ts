@@ -23,7 +23,7 @@ export class ComentarioComponent implements OnInit {
 
   ngOnInit() {
     this.comentarioForm = new FormGroup({
-      descricao: new  FormControl('', Validators.required),
+      descricao: new  FormControl(''),
       tipo: new  FormControl('', Validators.required),
     });
 
@@ -31,7 +31,8 @@ export class ComentarioComponent implements OnInit {
   }
 
   onSubmitEnviarComentario() {
-    this.spinner.show();
+    if (this.comentarioForm.get('descricao').value !== '') {
+      this.spinner.show();
       this.comentarioService.insert(this.comentarioForm.value, this.ID_resposta).subscribe(data => {
         this.toastr.success('Comentario enviado', 'Comentario');
         this.spinner.hide();
@@ -41,6 +42,7 @@ export class ComentarioComponent implements OnInit {
         this.spinner.hide();
       });
       this.comentarioForm.reset();
+    }
   }
 
   loadItens() {

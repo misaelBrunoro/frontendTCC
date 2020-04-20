@@ -4,27 +4,31 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <mat-form-field appearance="outline">
                     <mat-label>Salas disponiveis</mat-label>
                     <mat-select [(ngModel)]="room">
-                        <mat-option *ngFor="let item of disciplinas" value="{{item.nome}}">{{item.nome}}</mat-option>
+                        <mat-option *ngFor="let item of disciplinas" value="{{item._id}}">{{item.nome}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="col-md-6">
-                <button mat-raised-button type='submit' 
-                        class="btn btn-outline pull-right"
-                        (click)="leave()"><i class="material-icons mr-3">exit_to_app</i>Sair
+            <div class="col-md-6 mt-1">
+                <button mat-mini-fab type='submit' 
+                    class="btn btn-outline btn-just-icon"
+                    (click)="join()"
+                    matTooltip="Entrar da sala">
+                    <mat-icon>arrow_forward</mat-icon>
                 </button>
-                <button mat-raised-button type='submit' 
-                        class="btn btn-outline pull-right"
-                        (click)="join()"><i class="material-icons mr-3">arrow_forward</i>Entrar
+                <button mat-mini-fab type='submit' 
+                    class="ml-3 btn btn-outline btn-just-icon"
+                    (click)="leave()"
+                    matTooltip="Sair da sala" >
+                    <mat-icon>exit_to_app</mat-icon>
                 </button>
             </div>
         </div>
         
-        <div class="styled-chat card-body mb-3">
+        <div class="styled-chat card-body mb-3" #chatDiv style="overflow-y: scroll;">
             <div *ngFor="let item of messageArray">
                 <div *ngIf="item.user_id == currentUser._id">
                     <div class="row mb-2">
@@ -36,7 +40,7 @@
                     </div>
                 </div>
                 <div *ngIf="item.user_id != currentUser._id">
-                    <div class="row float-right mb-2">
+                    <div class="row mb-2">
                         <div class="justify-items">
                             <div class="styled-baloom-u">
                                 <span><b>{{item.user}} : </b> {{item.message}}</span>
@@ -58,9 +62,10 @@
                             [(ngModel)]="messageText"></textarea>
                 </mat-form-field>         
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 mb-3">
                 <button mat-raised-button type='submit' 
                         class="btn btn-outline pull-right"
+                        matTooltip="Enviar mensagem"
                         (click)="sendMessage()"><i class="material-icons mr-3">send</i>Enviar
                 </button>
             </div>

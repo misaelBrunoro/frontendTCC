@@ -1,3 +1,4 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -10,7 +11,7 @@ import * as io from 'socket.io-client';
 export class ChatService {
     private socket;
 
-    constructor() {
+    constructor(private _http: HttpClient) {
         this.socket = io(environment.FREE_URL);
     }
 
@@ -20,7 +21,7 @@ export class ChatService {
 
     newUserJoined() {
         const observable = new Observable<{user_id: String, user: String, message: String}>(observer => {
-            this.socket.on('new user joined', (data) => {
+            this.socket.on('novo usuário entrou', (data) => {
                 observer.next(data);
             });
             return () => { this.socket.disconnect(); }
@@ -35,7 +36,7 @@ export class ChatService {
 
     userLeftRoom() {
         const observable = new Observable<{user_id: String, user: String, message: String}>(observer => {
-            this.socket.on('left room', (data) => {
+            this.socket.on('saiu da sala', (data) => {
                 observer.next(data);
             });
             return () => { this.socket.disconnect(); }
@@ -50,12 +51,19 @@ export class ChatService {
 
     newMessageReceived() {
         const observable = new Observable<{user_id: String, user: String, message: String}>(observer => {
-            this.socket.on('new message', (data) => {
+            this.socket.on('nova mensagem', (data) => {
                 observer.next(data);
             });
             return () => { this.socket.disconnect(); }
         });
 
         return observable;
+    }
+
+    searchMessages(room) {
+        return this._http.get<any>(environment.API_URL + '/chat/retornarMensagens', {
+            observe: 'body',
+            params: new HttpParams().append('ID_sala', room)
+        });
     }
 }
