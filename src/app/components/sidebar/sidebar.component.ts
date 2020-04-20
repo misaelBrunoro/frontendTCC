@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/mural', title: 'Mural de Perguntas',  icon: 'content_paste', class: '', tipo: ['Admin', 'Monitor', 'Professor', 'Aluno'] },
     { path: '/chat', title: 'Chat',  icon: 'speaker_notes', class: '', tipo: ['Admin', 'Monitor', 'Professor', 'Aluno'] },
     { path: '/admin', title: 'Admin',  icon: 'build', class: '', tipo: ['Admin'] },
-    { path: '/aluno', title: 'Alunos',  icon: 'school', class: '', tipo: ['Professor'] },
+    { path: '/professor', title: 'Professor',  icon: 'school', class: '', tipo: ['Professor'] },
 ];
 
 @Component({
