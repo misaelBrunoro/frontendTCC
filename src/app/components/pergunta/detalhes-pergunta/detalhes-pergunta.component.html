@@ -40,7 +40,7 @@
                                         <label>
                                             <b>Publicação: {{perguntaObject.createdAt | date: 'dd/MM/yyyy'}}</b>
                                         </label>
-                                        <button class="btn btn-outline float-right" (click)="onClickEditarPergunta()">
+                                        <button *ngIf="habilitarEdit()" class="btn btn-outline float-right" (click)="onClickEditarPergunta()">
                                                 Editar
                                         </button>
                                     </div>
@@ -74,7 +74,7 @@
                                     <div class="card-header primaryColor">
                                         <h4 class="foregroundWhite card-title">Resposta Oficial</h4>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body borderColor">
                                         <h4>Está pergunta ainda não possui uma resposta oficial</h4>
                                         <label class="mr-5 mt-3">
                                             <b>Postado por: Mensagem do sistema</b>

@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user/user.service';
 import { EventEmitterService } from './../../../services/event/event-emitter.service';
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from 'app/services/pergunta/pergunta.service';
@@ -14,12 +15,14 @@ export class DetalhesPerguntaComponent implements OnInit {
   perguntaObject: any = {};
   id: any;
   date = new Date;
+  currentUser: any;
 
   constructor(
     private perguntaService: PerguntaService,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
     ) { }
 
   ngOnInit() {
@@ -35,6 +38,10 @@ export class DetalhesPerguntaComponent implements OnInit {
       this.perguntaObject = data[0];
       this.spinner.hide();
     });
+
+    this.userService.currentUser().then(res => {
+      this.currentUser = res;
+    });
   }
 
   onClickSessaoRespostas() {
@@ -43,5 +50,22 @@ export class DetalhesPerguntaComponent implements OnInit {
 
   onClickEditarPergunta() {
     this.router.navigate(['mural/nova-pergunta', this.id]);
+  }
+
+  habilitarEdit() {
+    if (this.currentUser && this.perguntaObject) {
+      if (this.currentUser._id === this.perguntaObject.usuario._id ) {
+        return true;
+      }
+      if (this.currentUser.tipo === 'Professor') {
+        const vector = this.currentUser.disciplina.filter( el => {
+          return el._id === this.perguntaObject.disciplina._id;
+        });
+        if (vector.length > 0) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

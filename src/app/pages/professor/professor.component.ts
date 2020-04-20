@@ -59,7 +59,7 @@ export class ProfessorComponent implements OnInit {
       });
     }, error => {
       console.log(error);
-    })
+    });
   }
 
   // Abrir o dialog de vinculo de disciplinas

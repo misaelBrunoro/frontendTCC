@@ -67,6 +67,7 @@ export class ListarRespostasComponent implements OnInit {
       height: '410px'
     });
 
+    (dialogRef.componentInstance).editMode = false;
     (dialogRef.componentInstance).ID_pergunta = this.ID_pergunta;
 
     dialogRef.afterClosed().subscribe(result => {
@@ -100,6 +101,20 @@ export class ListarRespostasComponent implements OnInit {
     });
   }
 
+  onClickEditarResposta(resposta) {
+    const dialogRef = this.dialog.open(RespostaNovaComponent, {
+      width: '900px',
+      height: '410px'
+    });
+
+    (dialogRef.componentInstance).editMode = true;
+    (dialogRef.componentInstance).ID_resposta = resposta._id;
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadPage();
+    });
+  }
+
   verificarPermissao() {
     if (this.currentUser && this.currentPergunta.length > 0) {
       const vector = this.currentUser.disciplina.filter( el => {
@@ -116,4 +131,17 @@ export class ListarRespostasComponent implements OnInit {
     }
   }
 
+  verificarPermissaoEdicao() {
+    if (this.currentUser && this.currentPergunta.length > 0) {
+      const vector = this.currentUser.disciplina.filter( el => {
+        return el._id === this.currentPergunta[0].disciplina._id;
+      });
+      if (this.currentUser._id === this.currentPergunta[0].usuario._id) {
+        return true;
+      } else if (this.currentUser.tipo === 'Professor' && vector.length > 0) {
+        return true;
+      }
+      return false;
+    }
+  }
 }

@@ -53,7 +53,6 @@ export class VincularDisciplinasComponent implements OnInit {
   // Buscar disciplinas no servidor, componente genério que busca de acordo com o contexto
   getDisciplinas( ) {
     if (this.contexto === 'Professor') {
-      console.log(this.currentUser);
       this.dataSource.data = this.currentUser.disciplina;
       this.renovarUser();
     } else if (this.contexto === 'Admin') {

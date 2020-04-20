@@ -40,6 +40,12 @@
                                                         (click)="onClickOficializar(item._id)">
                                                         Oficializar
                                                     </button>
+
+                                                    <button *ngIf="verificarPermissaoEdicao()" 
+                                                        class="btn btn btn-outline btn-sm float-right mb-3 mr-2"
+                                                        (click)="onClickEditarResposta(item)">
+                                                        Editar
+                                                    </button>
                                                     
                                                 </div>
                                             </div>
@@ -48,8 +54,6 @@
                                                     <app-comentario [ID_resposta]= item._id></app-comentario>
                                                 </div>
                                             </div>
-                                            
-
                                         </div>
                                     </div>
                                 </div>

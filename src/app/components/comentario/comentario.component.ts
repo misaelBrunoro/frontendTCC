@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ComentarioComponent implements OnInit {
   pageOfItems = [];
-  comboTipos = ['Afirmação', 'Dúvida', 'Confirmação', 'Aceitação', 'Correção'];
+  comboTipos = ['Afirmação', 'Dúvida', 'Confirmação', 'Correção'];
   comentarioForm: FormGroup;
   @Input() ID_resposta;
 

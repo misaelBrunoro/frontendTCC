@@ -16,16 +16,20 @@ export class RespostaService {
     });
   }
 
-  update( ) {
-
-  }
-
-  delete(_id: string) {
-
+  update(_id, body) {
+    return this._http.put<any>(environment.API_URL + '/respostas/' + _id, body, {
+      observe: 'body',
+    });
   }
 
   getList() {
     return this._http.get<any>(environment.API_URL + '/respostas', {
+      observe: 'body',
+    });
+  }
+
+  getByID(id) {
+    return this._http.get<any>(environment.API_URL + '/respostas/' + id, {
       observe: 'body',
     });
   }

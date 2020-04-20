@@ -13,6 +13,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 export class RespostaNovaComponent implements OnInit {
   respostaForm: FormGroup;
   ID_pergunta: any;
+  editMode: boolean;
+  ID_resposta: any;
 
   constructor(
     private respostaService: RespostaService,
@@ -25,10 +27,17 @@ export class RespostaNovaComponent implements OnInit {
     this.respostaForm = new FormGroup({
       descricao: new  FormControl('', Validators.required)
     });
+
+    if (this.editMode) {
+      this.respostaService.getByID(this.ID_resposta).subscribe(res => {
+        this.respostaForm.get('descricao').setValue(res.descricao);
+      });
+    }
   }
 
   onSubmitEnviarResposta() {
     this.spinner.show();
+    if (!this.editMode) {
       this.respostaService.insert( this.respostaForm.value, this.ID_pergunta ).subscribe(data => {
         this.toastr.success('Resposta enviada', 'Resposta');
         this.spinner.hide();
@@ -37,6 +46,16 @@ export class RespostaNovaComponent implements OnInit {
         console.log(error);
         this.spinner.hide();
       });
+    } else {
+      this.respostaService.update( this.ID_resposta, this.respostaForm.value ).subscribe(data => {
+        this.toastr.success('Resposta atualizada', 'Resposta');
+        this.spinner.hide();
+        this.dialogRef.close();
+      }, error => {
+        console.log(error);
+        this.spinner.hide();
+      });
+    }
   }
 
 }

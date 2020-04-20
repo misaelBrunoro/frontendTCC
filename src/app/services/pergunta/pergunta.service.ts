@@ -21,10 +21,6 @@ export class PerguntaService {
     });
   }
 
-  delete(_id: string) {
-
-  }
-
   getList() {
     return this._http.get<any>(environment.API_URL + '/perguntas', {
       observe: 'body'
@@ -46,9 +42,8 @@ export class PerguntaService {
   }
 
   getByID(id) {
-    return this._http.get<any>(environment.API_URL + '/perguntas/getByID', {
+    return this._http.get<any>(environment.API_URL + '/perguntas/' + id, {
       observe: 'body',
-      params: new HttpParams().append('id', id)
     });
   }
 

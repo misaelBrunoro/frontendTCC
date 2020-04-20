@@ -34,9 +34,8 @@ export class UserService {
   }
 
   getByID(id) {
-    return this._http.get<any>(environment.API_URL + '/users/user_porID', {
+    return this._http.get<any>(environment.API_URL + '/users/' + id, {
       observe: 'body',
-      params: new HttpParams().append('_id', id)
     });
   }
 
