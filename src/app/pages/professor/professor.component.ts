@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VincularDisciplinasComponent } from '../../components/disciplinas/vincular-disciplinas/vincular-disciplinas.component';
 import { ConfirmDialogComponent } from './../../components/confirm-dialog/confirm-dialog.component';
@@ -16,6 +17,7 @@ export class ProfessorComponent implements OnInit {
   displayedColumns: string[] = ['nomeReal', 'email', 'tipo', 'acoes'];
   dataSource = new MatTableDataSource<any>([]);
   currentUser: any;
+  buscaForm: FormGroup;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -26,6 +28,11 @@ export class ProfessorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.buscaForm = new FormGroup({
+      texto: new FormControl(''),
+      tipo: new FormControl('')
+    });
+
     this.userService.currentUser().then(res => {
       this.currentUser = res;
     }, error => {
@@ -107,6 +114,16 @@ export class ProfessorComponent implements OnInit {
           });
         }
       }
+    });
+  }
+
+  onSubmitRealizarBusca() {
+    this.buscaForm.get('tipo').setValue('Aluno');
+    this.userService.getFilteredList(this.buscaForm.value).subscribe(alunos => {
+      this.buscaForm.get('tipo').setValue('Monitor');
+      this.userService.getFilteredList(this.buscaForm.value).subscribe(monitores => {
+        this.dataSource.data = alunos.concat(monitores);
+      });
     });
   }
 }

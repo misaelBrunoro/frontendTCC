@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { DisciplinaService } from './../../services/disciplina/disciplina.service';
 import { UserService } from './../../services/user/user.service';
 import { ChatService } from './../../services/chat/chat.service';
@@ -15,6 +16,8 @@ export class RealtimeChatComponent implements OnInit {
   messageText: String;
   messageArray: Array<{user_id: String, user: String, message: String}> = [];
   disciplinas = [];
+  buscaForm: FormGroup;
+
   @ViewChild('chatDiv', {static: false}) public chatDiv: ElementRef;
 
   constructor(
@@ -43,14 +46,18 @@ export class RealtimeChatComponent implements OnInit {
     this.userService.currentUser().then(res => {
       this.currentUser = res;
     });
+
+    this.buscaForm = new FormGroup({
+      texto: new FormControl('')
+    });
   }
 
   join() {
     this.messageArray = [];
-    if (this.currentUser) {
+    if (this.currentUser && this.room) {
       this.chatService.joinRoom({user_id: this.currentUser._id, user: this.currentUser.nomeVirtual, room: this.room});
 
-      this.chatService.searchMessages(this.room).subscribe(res => {
+      this.chatService.searchFilteredMessages(this.room, null).subscribe(res => {
         res.forEach(element => {
           this.messageArray.push({user_id: element.usuario._id, user: element.usuario.nomeVirtual, message: element.mensagem});
         });
@@ -61,7 +68,7 @@ export class RealtimeChatComponent implements OnInit {
 
   leave() {
     this.messageArray = [];
-    if (this.currentUser) {
+    if (this.currentUser && this.room) {
       this.chatService.leaveRoom({user_id: this.currentUser._id, user: this.currentUser.nomeVirtual, room: this.room});
     }
   }
@@ -77,5 +84,15 @@ export class RealtimeChatComponent implements OnInit {
 
   scrollToBottom() {
     setTimeout(() => { this.chatDiv.nativeElement.scrollTop = this.chatDiv.nativeElement.scrollHeight; }, 3)
+  }
+
+  onSubmitRealizarBusca() {
+    this.messageArray = [];
+    this.chatService.searchFilteredMessages(this.room, this.buscaForm.value).subscribe(res => {
+      res.forEach(element => {
+        this.messageArray.push({user_id: element.usuario._id, user: element.usuario.nomeVirtual, message: element.mensagem});
+      });
+      this.scrollToBottom();
+    });
   }
 }

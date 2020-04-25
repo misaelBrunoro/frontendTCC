@@ -25,15 +25,18 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button class="btn btn-outline btn-sm float-right mr-2"
-                                    [routerLink]="['detalhe-pergunta/', item._id]">
+                                    [routerLink]="['detalhe-pergunta/', item._id]"
+                                    matTooltip="Ir para os detalhes">
                                             Detalhes
                                     </button>
                                     <button *ngIf="item.resolvido == false"
-                                            class="btn btn-outline-danger btn-sm float-right">
+                                            class="btn btn-outline-danger btn-sm float-right"
+                                            matTooltip="Esperando ser respondida">
                                             Aguardando
                                     </button>
                                     <button *ngIf="item.resolvido == true"
-                                            class="btn btn-outline-success btn-sm float-right">
+                                            class="btn btn-outline-success btn-sm float-right"
+                                            matTooltip="Pergunta resolvida">
                                             Resolvido
                                     </button>     
                                 </div>

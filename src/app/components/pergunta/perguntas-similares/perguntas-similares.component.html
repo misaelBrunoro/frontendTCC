@@ -2,7 +2,7 @@
     <p><b>Opa!</b> existem <b>{{items.length}}</b> perguntas semelhantes a sua, dê uma olhada</p>
     <p>Aqui alguns exemplos para você:</p>
     <div *ngFor="let item of items | slice:0:2; let i=index">
-        <mat-card class="mt-3 shadow-lg">
+        <mat-card class="mt-3 shadow-lg borderColor">
             <mat-card-header>
                 <mat-card-title>{{item.titulo}}</mat-card-title>
                 <mat-card-subtitle class="mt-3">{{tratarDescricao(item.descricao)}}</mat-card-subtitle>
@@ -10,14 +10,16 @@
             <mat-card-content>
                 <button mat-button
                         (click)="navigateRoute(item._id)"
-                        class="btn btn-outline">
+                        class="btn btn-outline"
+                        matTooltip="Ir para os detalhes">
                     Acessar
                 </button>
             </mat-card-content>
         </mat-card>
     </div>
     <button mat-button (click)="aceitarPostar()"
-            class="mt-3 btn btn-outline pull-right">
+            class="mt-3 btn btn-outline pull-right"
+            matTooltip="Enviar formulário"> 
         Postar mesmo assim
     </button>
 </div>

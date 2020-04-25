@@ -26,7 +26,6 @@ import { RealtimeChatComponent } from './realtime-chat/realtime-chat.component';
     MaterialFormatModule,
   ],
   declarations: [
-    FooterComponent,
     NavbarComponent,
     SidebarComponent,
     FiltrosComponent,
@@ -45,7 +44,6 @@ import { RealtimeChatComponent } from './realtime-chat/realtime-chat.component';
     RealtimeChatComponent,
   ],
   exports: [
-    FooterComponent,
     NavbarComponent,
     SidebarComponent,
     FiltrosComponent,

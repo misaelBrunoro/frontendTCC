@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h2 style="margin-top:-40px">Perguntas por disciplina</h2>
+                <h2 style="margin-top:-40px">Quantitativo de perguntas por disciplina</h2>
                 <div *ngIf="lineChartData.length > 0" class="chart-wrapper">
                     <canvas baseChart 
                         [datasets]="lineChartData" 
@@ -18,7 +18,7 @@
         </div>
         <div class="row" style="margin-top: 9%;">
             <div class="col">
-                <h2 style="margin-top:-40px">Respostas por disciplina</h2>
+                <h2 style="margin-top:-40px">Quantitativo de respostas por disciplina</h2>
                 <div *ngIf="barChartData.length > 0" class="chart-wrapper">
                     <canvas baseChart 
                     [datasets]="barChartData"

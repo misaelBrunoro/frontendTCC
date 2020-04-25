@@ -19,3 +19,8 @@
 .borderColor{
     border: solid 1px #3a4e61
 }
+
+::ng-deep .mat-tooltip {
+    color: white !important;
+    background-color: #2c3e50;
+}

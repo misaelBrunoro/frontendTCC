@@ -60,8 +60,8 @@ export class ChatService {
         return observable;
     }
 
-    searchMessages(room) {
-        return this._http.get<any>(environment.API_URL + '/chat/retornarMensagens', {
+    searchFilteredMessages(room, body) {
+        return this._http.post<any>(environment.API_URL + '/chat/retornarMensagensFiltradas', body , {
             observe: 'body',
             params: new HttpParams().append('ID_sala', room)
         });

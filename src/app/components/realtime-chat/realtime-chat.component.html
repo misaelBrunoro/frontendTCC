@@ -12,19 +12,37 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="col-md-6 mt-1">
-                <button mat-mini-fab type='submit' 
-                    class="btn btn-outline btn-just-icon"
-                    (click)="join()"
-                    matTooltip="Entrar da sala">
-                    <mat-icon>arrow_forward</mat-icon>
+            <div class="col-md-3">
+                <button mat-button class="btn btn-outline btn-just-icon"
+                    matTooltip="Entrar da sala"
+                    (click)="join()">
+                    <i class="material-icons">arrow_forward</i>
+                    <div class="ripple-container"></div>
                 </button>
-                <button mat-mini-fab type='submit' 
-                    class="ml-3 btn btn-outline btn-just-icon"
-                    (click)="leave()"
-                    matTooltip="Sair da sala" >
-                    <mat-icon>exit_to_app</mat-icon>
+                <button mat-button class="btn btn-outline btn-just-icon ml-3"
+                    matTooltip="Sair da sala"
+                    (click)="leave()">
+                    <i class="material-icons">exit_to_app</i>
+                    <div class="ripple-container"></div>
                 </button>
+            </div>
+            <div class="col-md-6">
+                <form [formGroup]="buscaForm" (ngSubmit)="onSubmitRealizarBusca()">
+                    <div class="row" style="margin-bottom: -10px;">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <input formControlName="texto" matInput placeholder="Buscar nas mensagens">
+                            </mat-form-field> 
+                        </div>
+                        <div class="pull-right mr-3">
+                            <button mat-button class="btn btn-outline btn-just-icon"
+                                matTooltip="Buscar">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         

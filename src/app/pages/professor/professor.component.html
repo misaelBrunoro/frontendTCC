@@ -7,7 +7,24 @@
                   <h4 class="foregroundWhite card-title">Gerenciar seus Alunos</h4>
               </div>
               <div class="card-body">
-                
+
+                <form [formGroup]="buscaForm" (ngSubmit)="onSubmitRealizarBusca()">
+                  <div class="row" style="margin-bottom: -10px;">
+                      <div class="col-6">
+                          <mat-form-field appearance="outline">
+                              <input formControlName="texto" matInput placeholder="Buscar por texto">
+                          </mat-form-field> 
+                      </div>
+                      <div class="pull-right">
+                          <button mat-button class="btn btn-outline btn-just-icon"
+                              matTooltip="Buscar">
+                              <i class="material-icons">search</i>
+                              <div class="ripple-container"></div>
+                          </button>
+                      </div>  
+                  </div>
+                </form>
+
                 <table mat-table [dataSource]="dataSource" class="shadow-lg">
                 
                   <ng-container matColumnDef="nomeReal">
@@ -32,7 +49,8 @@
                       <button *ngIf="element.tipo === 'Monitor'"
                               style="margin-left: 5px;" mat-mini-fab
                               class="btn btn-outline btn-just-icon"
-                              (click)="onClickDisciplinas(element)">
+                              (click)="onClickDisciplinas(element)"
+                              matTooltip="Vincular Disciplinas">
                           <i class="material-icons">add</i>
                           <div class="ripple-container"></div>
                       </button> 
@@ -40,7 +58,8 @@
                       <button *ngIf="element.tipo === 'Aluno'"
                               style="margin-left: 5px;" mat-mini-fab 
                               class="btn btn-outline btn-just-icon"
-                              (click)="onClickMonitor(element._id, 'Monitor')">
+                              (click)="onClickMonitor(element._id, 'Monitor')"
+                              matTooltip="Tornar Monitor">
                           <i class="material-icons">done_all</i>
                           <div class="ripple-container"></div>
                       </button>
@@ -48,7 +67,8 @@
                       <button *ngIf="element.tipo === 'Monitor'"
                               style="margin-left: 5px;"
                               mat-mini-fab class="btn btn-outline btn-just-icon"
-                              (click)="onClickMonitor(element._id, 'Aluno')">
+                              (click)="onClickMonitor(element._id, 'Aluno')"
+                              matTooltip="Tornar Aluno">
                           <i class="material-icons">clear</i>
                           <div class="ripple-container"></div>
                       </button>

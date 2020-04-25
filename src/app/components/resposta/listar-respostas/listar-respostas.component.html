@@ -20,7 +20,8 @@
                         <button *ngIf="verificarPermissao()"
                                 mat-raised-button 
                                 class="btn btn-outline"
-                                (click)="onClickNovaResposta()">
+                                (click)="onClickNovaResposta()"
+                                matTooltip="Adicionar uma resposta">
                                 Adicionar uma Resposta
                         </button>
 
@@ -37,13 +38,15 @@
                                                     
                                                     <button *ngIf="verificarPermissao()" 
                                                         class="btn btn btn-outline-warning btn-sm float-right mb-3 mr-2"
-                                                        (click)="onClickOficializar(item._id)">
+                                                        (click)="onClickOficializar(item._id)"
+                                                        matTooltip="Tornar resposta oficial">
                                                         Oficializar
                                                     </button>
 
                                                     <button *ngIf="verificarPermissaoEdicao()" 
                                                         class="btn btn btn-outline btn-sm float-right mb-3 mr-2"
-                                                        (click)="onClickEditarResposta(item)">
+                                                        (click)="onClickEditarResposta(item)"
+                                                        matTooltip="Editar resposta">
                                                         Editar
                                                     </button>
                                                     

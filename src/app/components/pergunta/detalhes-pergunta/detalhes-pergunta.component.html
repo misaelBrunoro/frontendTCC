@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <button mat-raised-button class="btn btn-outline"
-                                 (click)="onClickSessaoRespostas()">Ir para sessão de respostas</button>
+                                 (click)="onClickSessaoRespostas()" matTooltip="Sessão de respostas">Ir para sessão de respostas</button>
                             </div>
                         </div>
 
@@ -40,7 +40,10 @@
                                         <label>
                                             <b>Publicação: {{perguntaObject.createdAt | date: 'dd/MM/yyyy'}}</b>
                                         </label>
-                                        <button *ngIf="habilitarEdit()" class="btn btn-outline float-right" (click)="onClickEditarPergunta()">
+                                        <button *ngIf="habilitarEdit()" 
+                                            class="btn btn-outline float-right" 
+                                            (click)="onClickEditarPergunta()"
+                                            matTooltip="Editar pergunta">
                                                 Editar
                                         </button>
                                     </div>
