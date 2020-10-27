@@ -18,6 +18,7 @@ import {ListarProfessoresComponent} from './listar-professores/listar-professore
 import {ListarDisciplinasComponent} from './disciplinas/listar-disciplinas/listar-disciplinas.component';
 import {PerguntasSimilaresComponent} from './pergunta/perguntas-similares/perguntas-similares.component';
 import {RealtimeChatComponent} from './realtime-chat/realtime-chat.component';
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
     imports: [
@@ -42,6 +43,7 @@ import {RealtimeChatComponent} from './realtime-chat/realtime-chat.component';
         ListarDisciplinasComponent,
         PerguntasSimilaresComponent,
         RealtimeChatComponent,
+        EditorComponent,
     ],
     exports: [
         NavbarComponent,
@@ -58,7 +60,8 @@ import {RealtimeChatComponent} from './realtime-chat/realtime-chat.component';
         VincularDisciplinasComponent,
         ListarProfessoresComponent,
         ListarDisciplinasComponent,
-        RealtimeChatComponent
+        RealtimeChatComponent,
+        EditorComponent,
     ],
     providers: [
         MaterialFormatModule
