@@ -4,44 +4,44 @@
             <div class="card">
                 <div class="card-body shadow-lg borderColor">
                     <ngx-spinner
-                        bdColor = "#090909"
-                        size = "medium"
-                        color = "#f40b0b"
-                        type = "square-jelly-box"
-                        [fullScreen] = "true">
+                            bdColor="#090909"
+                            size="medium"
+                            color="#f40b0b"
+                            type="square-jelly-box"
+                            [fullScreen]="true">
                         <p class="foregroundWhite"> Buscando... </p>
                     </ngx-spinner>
                     <h3><b>{{item.titulo}}</b></h3>
-                    <h4 class="broken-text">{{item.descricao}}...</h4>
+                    <h4 class="broken-text" [innerHTML]="item.descricao + '...'"></h4>
                     <div class="row">
                         <div class="col">
                             <div class="row">
                                 <div class="col-md-12 mt-3">
-                                        <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
-                                        <label class="mr-5"><b>Disciplina: {{item.disciplina.nome}}</b></label>
-                                        <label><b>Publicação: {{item.createdAt | date: 'dd/MM/yyyy'}}</b></label> 
+                                    <label class="mr-5"><b>Postado por: {{item.usuario.nomeReal}}</b></label>
+                                    <label class="mr-5"><b>Disciplina: {{item.disciplina.nome}}</b></label>
+                                    <label><b>Publicação: {{item.createdAt | date: 'dd/MM/yyyy'}}</b></label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <button class="btn btn-outline btn-sm float-right mr-2"
-                                    [routerLink]="['detalhe-pergunta/', item._id]"
-                                    matTooltip="Ir para os detalhes">
-                                            Detalhes
+                                            [routerLink]="['detalhe-pergunta/', item._id]"
+                                            matTooltip="Ir para os detalhes">
+                                        Detalhes
                                     </button>
                                     <button *ngIf="item.resolvido == false"
                                             class="btn btn-outline-danger btn-sm float-right"
                                             matTooltip="Esperando ser respondida">
-                                            Aguardando
+                                        Aguardando
                                     </button>
                                     <button *ngIf="item.resolvido == true"
                                             class="btn btn-outline-success btn-sm float-right"
                                             matTooltip="Pergunta resolvida">
-                                            Resolvido
-                                    </button>     
+                                        Resolvido
+                                    </button>
                                 </div>
-                            </div>              
-                            
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
 </div>
 <div class="row mt-3">
     <div class="col-md-12">
-        <ul *ngIf="pager.pages && pager.pages.length" 
+        <ul *ngIf="pager.pages && pager.pages.length"
             class="pagination justify-content-center">
             <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item first-item">
                 <a routerLink="/mural" [queryParams]="{page: 1 }" class="page-link">Primeiro</a>
@@ -59,7 +59,8 @@
             <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item previous-item">
                 <a routerLink="/mural" [queryParams]="{ page: pager.currentPage - 1 }" class="page-link">Anterior</a>
             </li>
-            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item number-item">
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+                class="page-item number-item">
                 <a routerLink="/mural" [queryParams]="{ page: page }" class="page-link">{{page}}</a>
             </li>
             <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item next-item">

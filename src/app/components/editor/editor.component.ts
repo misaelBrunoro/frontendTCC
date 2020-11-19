@@ -21,6 +21,7 @@ export class EditorComponent implements OnInit {
         translate: 'yes',
         enableToolbar: true,
         showToolbar: true,
+        outline: true,
         toolbarHiddenButtons: [
             [],
             [

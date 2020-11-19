@@ -1,6 +1,5 @@
-import {Observable} from 'rxjs';
-import {EventEmitterService} from './../../../services/event/event-emitter.service';
-import {PerguntasSimilaresComponent} from './../perguntas-similares/perguntas-similares.component';
+import {EventEmitterService} from '../../../services/event/event-emitter.service';
+import {PerguntasSimilaresComponent} from '../perguntas-similares/perguntas-similares.component';
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PerguntaService} from 'app/services/pergunta/pergunta.service';
@@ -9,7 +8,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {DisciplinaService} from 'app/services/disciplina/disciplina.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 @Component({
     selector: 'app-pergunta-nova',
@@ -51,7 +49,6 @@ export class PerguntaNovaComponent implements OnInit {
 
         EventEmitterService.get('editorChange').subscribe(data => {
             this.perguntaForm.get('descricao').setValue(data);
-            console.log(data);
         });
     }
 

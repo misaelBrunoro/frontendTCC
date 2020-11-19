@@ -3,21 +3,24 @@
 </div>
 <form [formGroup]="respostaForm" (ngSubmit)="onSubmitEnviarResposta()">
     <ngx-spinner
-        bdColor = "#090909"
-        size = "medium"
-        color = "#f40b0b"
-        type = "square-jelly-box"
-        [fullScreen] = "true">
-        <p style="color: white" > Enviando sua resposta... </p>
+            bdColor="#090909"
+            size="medium"
+            color="#f40b0b"
+            type="square-jelly-box"
+            [fullScreen]="true">
+        <p style="color: white"> Enviando sua resposta... </p>
     </ngx-spinner>
 
-    <mat-form-field appearance="outline">
-        <textarea formControlName="descricao" style="min-height: 215px;" matInput placeholder="Descrição"></textarea>
-    </mat-form-field>
-    <button type='submit' mat-raised-button 
+    <div class="row">
+        <div class="col-md-12">
+            <app-editor></app-editor>
+        </div>
+    </div>
+
+    <button type='submit' mat-raised-button
             class="btn btn-outline pull-right"
             [disabled]="respostaForm.invalid"
             matTooltip="Enviar formulário">
         Enviar Resposta
-    </button>      
+    </button>
 </form>  
